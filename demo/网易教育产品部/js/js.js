@@ -135,11 +135,11 @@ function login(){    //登录
 	oButton[0].onclick = function(){   //点击登录
 		var userName1 = hex_md5(oInput[1].value);
 		var password1 = hex_md5(oInput[2].value);
-		get('http://study.163.com/webDev/login.htm',{userName:userName1,password:password1},function(a){ 
+		get('https://study.163.com/webDev/login.htm',{userName:userName1,password:password1},function(a){ 
 			if( a === '1' ){
 				oPopuplog[0].style.display = 'none';
 				setCookie ('loginSuc', '1', 36500);
-				get('http://study.163.com/webDev/attention.htm','', function(b){
+				get('https://study.163.com/webDev/attention.htm','', function(b){
 					if( b === '1' ){
 						setCookie ('followSuc', '1', 36500);
 						oAttention.value = '以关注';
@@ -175,9 +175,9 @@ function slide(){    //轮播
     var oUl = oBanner.getElementsByTagName('ul')[0];
 	var aLi = oBanner.getElementsByTagName('li');
     var data = [
-        { link: 'http://open.163.com/' , src : 'images/banner1.jpg' },
-        { link: 'http://study.163.com/' , src : 'images/banner2.jpg' },
-        { link: 'http://www.icourse163.org/' , src : 'images/banner3.jpg' }
+        { link: 'https://open.163.com/' , src : 'images/banner1.jpg' },
+        { link: 'https://study.163.com/' , src : 'images/banner2.jpg' },
+        { link: 'https://www.icourse163.org/' , src : 'images/banner3.jpg' }
     ];
 	
 	
@@ -260,7 +260,7 @@ function tab(pagenum,Size) {  //课程列表
 	//获取服务器数据
 	function setData(pagenum,Size,num,element){
 		
-	get('http://study.163.com/webDev/couresByCategory.htm',{pageNo:pagenum,psize:Size,type:num},function(data){   //设置课程
+	get('https://study.163.com/webDev/couresByCategory.htm',{pageNo:pagenum,psize:Size,type:num},function(data){   //设置课程
 		var data = JSON.parse(data)
 		for( var i=0; i<data.list.length; i++){
 			var oTeam = document.createElement('div');
@@ -337,7 +337,7 @@ playvideo();
 function setList(){  //设置热门列表数据
 	var oList = $('j-list');	
 	var oListwrap = getElementsByClassName(oList, 'm-wrap2');
-	get('http://study.163.com/webDev/hotcouresByCategory.htm',{},function(data){
+	get('https://study.163.com/webDev/hotcouresByCategory.htm',{},function(data){
 		var arr = JSON.parse(data);
 		for( var i=0; i<20; i++){
 			var oA = document.createElement('a');
