@@ -1,0 +1,382 @@
+/* app.css */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+ul {
+  margin-top: 0;
+}
+/*结构样式*/
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1500;
+  font-size: 1.4rem;
+  margin-bottom: 0;
+}
+
+.app-header-list {
+  line-height: 50px;
+  text-align: center;
+}
+
+.app-header-list li{
+  margin-right: 5px;
+}
+
+.app-header-list-li{
+  height: 30px;
+  border-left: solid #1A7ABD 1px;
+  border-right: solid #3EA6DB 1px;
+  margin: 10px!important;
+}
+
+.app-header-list-a{
+  width: 120px;
+  border-left: solid #3EA6DB 1px;
+  border-right: solid #1A7ABD 1px;
+  line-height: 30px!important;
+}
+
+.am-dropdown-content{
+  min-width: 0px!important;
+}
+
+.am-dropdown-content a:hover{
+ font-weight: 600;
+ color: #0E90D2!important;
+}
+
+.app-main {
+  position: relative;
+  height: 100%;
+  padding-top: 51px;
+  background: #f3f3f3;
+}
+
+.app-menu {
+  position: fixed;
+  z-index: 10;
+  bottom: 30px;
+  right: 20px;
+}
+
+.app-sidebar {
+  width: 260px;
+  min-height: 100%;
+  float: left;
+  border-right: 1px solid #cecece;
+}
+
+.app-sidebar.am-active {
+  z-index: 1600;
+}
+
+.app-sidebar-list {
+  margin: 0 10px;
+}
+
+.app-sidebar-list li a {
+  color: #5c5c5c;
+  padding-left: 20px;
+}
+
+.app-sidebar-list li span{
+  display: inline-block;
+  width: 20px;
+}
+
+.app-sidebar-list li:first-child {
+  border-top: none;
+}
+
+.app-sidebar-list .app-active{
+  display: inline;
+  color: #0E90D2;
+}
+
+.app-sidebar-sub {
+  margin-top: 0;
+  margin-bottom: 0;
+  box-shadow: 0 16px 8px -15px #e2e2e2 inset;
+  background: #ececec;
+  padding-left: 24px;
+}
+
+.app-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background: #fff;
+}
+
+.app-content,
+.app-sidebar {
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-searchbar{
+  width: 210px;
+}
+
+/*搜索筛选器*/
+.app-search{
+  width: 80px;
+  text-align: right;
+}
+
+.app-searcharea{
+  background-color: #F9F9F9;
+  border-top: solid #DDDDDD 1px;
+  border-bottom: solid #DDDDDD 1px;
+}
+
+.app-searchbox{
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  margin-right: -40px;
+  width: 280px;
+  font-size: 1.2rem;
+}
+
+.app-searchspan{
+  text-align: right;
+  width: 58px;
+  margin-left: 20px;
+  margin-right: 2px;
+  line-height: 14px;
+}
+
+.app-searchbox button{
+  width: 150px;
+  height: 30px;
+  font-size: 1.2rem;
+  background: #FFFFFF!important;
+}
+
+.app-searchbox input{
+  width: 150px!important;
+  height: 30px!important;
+  font-size: 1.2rem!important;
+}
+
+.searchbut{
+  width: 80px;
+  height: 30px;
+}
+
+.searchshow{
+  display: none;
+}
+/*筛选器固定*/
+.app-fixwarp{
+  position: fixed;
+  top: 51px;
+  left: 260px;
+  right: 0;
+  z-index: 1499;
+  background: #fff;
+    }
+
+.app-fixwarp .am-accordion-item{
+  border: none;
+}
+/*工具栏*/
+.app-toorbar{
+  margin-top: 255px;
+}
+
+.app-toorbar .am-btn-default{
+  background: #F5F5F5;
+  height: 30px;
+}
+
+.app-checkbut{
+  width: 70px;
+  height: 30px;
+  font-size: 1.2rem;
+  float: right;
+}
+/*表格*/
+.app-tablewarp{
+  overflow: auto;
+}
+.app-table{
+  padding-right: 20px;
+  table-layout:fixed;
+}
+
+.app-table>thead>tr>th{
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+}
+.app-table>tbody>tr>td{
+  height: 50px;
+  vertical-align: middle;
+  overflow:hidden
+}
+
+.app-table .am-dropdown-toggle{
+  color: #000;
+}
+/*底栏*/
+.app-foot{
+  margin-top: 18px;
+}
+.app-foot .am-selected{
+  width: 62px;
+}
+.app-foot>div>button{
+  width: 60px;
+  border: solid #CCC 1px;
+}
+.app-page{
+  float: right;
+  margin-right: 60px;
+}
+/*响应式布局*/
+@media only screen and (max-width: 1233px) {
+  .app-fixwarp{
+  position: fixed;
+  top: 51px;
+  left: 260px;
+  right: 0;
+  z-index: 1499;
+  }
+
+    .app-toorbar{
+  margin-top: 295px;
+  }
+}
+
+@media only screen and (max-width: 1008px) {
+.app-fixwarp{
+  position: fixed;
+  top: 51px;
+  left: 260px;
+  right: 0;
+  z-index: 1499;
+  }
+
+.app-toorbar{
+  margin-top: 340px;
+  }
+}
+
+@media only screen and (max-width: 764px) {
+.app-fixwarp{
+  position: static;
+  }
+
+.app-toorbar{
+  margin-top: 20px;
+  }
+
+.searchshow{
+  display: block;
+  }
+
+.app-searcharea{
+  text-align: center;
+  }
+}
+
+@media only screen and (min-width: 641px) {
+.app-sidebar {
+  display: block;
+  position: static;
+  background: none;
+  }
+
+.app-offcanvas-bar {
+  position: static;
+  width: auto;
+  background: #fff;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  overflow-y: visible;
+  min-height: 100%;
+  margin-right: 20px;
+  }
+
+  .app-offcanvas-bar:after {
+  content: none;
+  }
+}
+
+
+@media only screen and (max-width: 640px) {
+  .app-sidebar {
+  width: inherit;
+  }
+
+  .app-offcanvas-bar {
+  background: #f3f3f3;
+  }
+
+  .app-offcanvas-bar:after {
+  background: #BABABA;
+  }
+
+  .app-sidebar-list a:hover, .app-sidebar-list a:active{
+  -webkit-transition: background-color .3s ease;
+  -moz-transition: background-color .3s ease;
+  -ms-transition: background-color .3s ease;
+  -o-transition: background-color .3s ease;
+  transition: background-color .3s ease;
+  background: #E4E4E4;
+  }
+
+  .app-content-list li {
+  padding: 10px;
+  border-width: 1px 0;
+  margin-top: -1px;
+  }
+
+  .app-content-list li:first-child {
+  border-top: none;
+  }
+
+  .app-content-list li:last-child {
+  border-bottom: none;
+  }
+
+  .app-form-text {
+  text-align: left !important;
+  }
+
+  .app-header-list-a{
+  width: 100%;
+  }
+
+  .app-searchbar{
+  width: 100%;
+  }
+
+  .searchbox{
+  left:25px;
+  }
+
+  .searchbox i{
+  margin-left: 85px;
+  }
+  
+  #topbar-collapse{
+  height: 250px;
+  }
+}

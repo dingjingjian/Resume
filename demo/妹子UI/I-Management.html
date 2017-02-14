@@ -1,0 +1,971 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>职工信息管理</title>
+  <meta name="description" content="这是 职工信息管理 页面">
+  <meta name="keywords" content="Ioformation Management,信息管理">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="">
+  <link rel="apple-touch-icon-precomposed" href="">
+  <meta name="apple-mobile-web-app-title" content="职工信息管理" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<!-- header start -->
+<header class="am-topbar am-topbar-inverse app-header">
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right app-header-list">
+       <li>欢迎您，张三！</li>
+       <li class="am-dropdown app-header-list-li" data-am-dropdown>
+         <a class="am-dropdown-toggle app-header-list-a" data-am-dropdown-toggle href="javascript:;">
+           <span class="am-icon-user"></span> 院系平台 <span class="am-icon-caret-down"></span>
+         </a>
+           <ul class="am-dropdown-content">
+             <li><a href="#"> 个人平台</a></li>
+             <li><a href="#"> 院系平台</a></li>
+           </ul>
+       </li>
+       <li class="">
+         <a href="javascript:;">
+           <span class="am-icon-power-off"></span><span>退出</span>
+         </a>
+       </li>
+    </ul>
+  </div>
+</header>
+<!-- header end -->
+<div class="am-cf app-main">
+  <!-- sidebar start -->
+  <div class="app-sidebar am-offcanvas" id="app-offcanvas">
+    <div class="am-offcanvas-bar app-offcanvas-bar">
+      <ul class="am-list app-sidebar-list">
+        <li><a href="#"><span class="am-icon-home"></span>&nbsp;首页</a></li>
+        <li>
+        <a href="#"><span class="am-icon-graduation-cap"></span><span class="app-active">&nbsp;职工信息管理</span> <span class="am-icon-angle-right am-fr"></span></a>
+        </li>
+        <li><a href="#"><span class="am-icon-file-text-o"></span>&nbsp;日常行政管理</a></li>
+        <li><a href="#"><span class="am-icon-calendar"></span>&nbsp;考勤管理</a></li>
+        <li><a href="#"><span class="am-icon-group"></span>&nbsp;培训管理</a></li>
+        <li><a href="#"><span class="am-icon-bar-chart"></span>&nbsp;年度考核管理</a></li>
+        <li><a href="#"><span class="am-icon-volume-up"></span>&nbsp;通知公告管理</a></li>
+        <li><a href="#"><span class="am-icon-gear"></span>&nbsp;后台管理</a></li>
+      </ul>
+
+    </div>
+  </div>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="app-content">
+    <div class="app-content-body">
+    <div class="app-fixwarp">
+      <div class="am-cf am-padding am-padding-bottom-0">
+      <!-- 面包屑导航 -->
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>职工信息管理</small></div>
+        <!-- 搜索栏 -->
+        <div class="am-u-sm-12 am-u-md-3 am-fr app-searchbar">
+          <div class="am-input-group am-input-group-sm">
+            <input type="text" class="am-form-field">
+              <span class="am-input-group-btn">
+                <button class="am-btn am-btn-default" type="button">搜索</button>
+              </span>
+          </div>
+        </div>
+
+      </div>
+
+      <hr>
+
+     <!-- 搜索筛选器 -->
+  <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+      <dl class="am-accordion-item am-active">
+        <dt class="am-accordion-title searchshow">
+          搜索筛选器(点击隐藏)
+        </dt>
+        <dd class="am-accordion-bd am-collapse am-in">
+          <div class=" app-searcharea">
+
+          <div class="app-searchbox">
+            <div class="am-fl app-search">部门：</div>
+            <div class="">
+              <select data-am-selected="{btnSize: 'sm'}" placeholder="请选择">
+                <option value=""></option>
+                <option value="option1">全部</option>
+                <option value="option2">学院办公室</option>
+                <option value="option3">党委办公室</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="app-searchbox am-margin-top">
+            <div class="am-fl app-search">职务：</div>
+            <div class="">
+              <select data-am-selected="{btnSize: 'sm'}" placeholder="请选择">
+                <option value=""></option>
+                <option value="option1">全部</option>
+                <option value="option2">院长</option>
+                <option value="option3">副院长</option>
+                <option value="option4">主任</option>
+                <option value="option5">副主任</option>
+                <option value="option6">教师</option>
+                <option value="option7">职员</option>
+                <option value="option8">其他</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="app-searchbox am-margin-top">
+            <div class="am-fl app-search">性别：</div>
+            <div class="">
+              <select data-am-selected="{btnSize: 'sm'}" placeholder="请选择">
+                <option value=""></option>
+                <option value="option1">全部</option>
+                <option value="option2">男</option>
+                <option value="option3">女</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="app-searchbox am-margin-top">
+            <div class="am-fl app-search">政治面貌：</div>
+            <div class="">
+              <select data-am-selected="{btnSize: 'sm'}" placeholder="请选择">
+                <option value=""></option>
+                <option value="option1">全部</option>
+                <option value="option2">中共党员</option>
+                <option value="option3">共青团员</option>
+                <option value="option4">群众</option>
+                <option value="option5">其他</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="app-searchbox am-margin-top">
+            <div class="am-fl app-search">学历：</div>
+            <div class="">
+              <select data-am-selected="{btnSize: 'sm'}" placeholder="请选择">
+                <option value=""></option>
+                <option value="option1">全部</option>
+                <option value="option2">博士研究生</option>
+                <option value="option3">硕士研究生</option>
+                <option value="option4">本科</option>
+                <option value="option5">其他</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="app-searchbox am-margin-top">
+            <div class="am-fl app-search">人员类别：</div>
+            <div class="">
+              <select data-am-selected="{btnSize: 'sm'}" placeholder="请选择">
+                <option value=""></option>
+                <option value="option1">全部</option>
+                <option value="option2">在职人员</option>
+                <option value="option3">离退休人员</option>
+                <option value="option4">外派人员</option>
+                <option value="option5">其他</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="app-searchbox am-margin-top">
+            <span class="am-fl app-searchspan">
+              参加工作时间：
+            </span>
+            <div class="">
+              <form action="" class="am-form am-form-inline">
+                <div class="am-form-group am-form-icon searchbox">
+                  <i class="am-icon-calendar"></i>
+                  <input type="date" class="am-form-field am-input-sm" placeholder="日期">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="app-searchbox am-margin-top">
+            <div class="am-fl app-search">
+              来院时间：
+            </div>
+            <div class="">
+              <form action="" class="am-form am-form-inline">
+                <div class="am-form-group am-form-icon searchbox">
+                  <i class="am-icon-calendar"></i>
+                  <input type="date" class="am-form-field am-input-sm" placeholder="日期">
+                </div>
+              </form>
+            </div>
+          </div>
+
+        <div class="am-g am-margin am-text-center">
+          <button id="searchbut" type="button" class="am-btn am-btn-primary am-btn-xs searchbut">搜索</button>
+          <button id="clearbut" type="button" class="am-text-xs am-btn am-btn-link clearbut">清空搜索条件</button>
+        </div>
+
+      </div>
+
+        </dd>
+      </dl>
+  </section>
+
+
+    </div>
+       <!-- 工具栏 -->
+      <div class="am-g app-toorbar">
+        <div class="am-margin">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus-circle"></span> 新增</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-external-link"></span> 导出</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-download"></span> 导入</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-print"></span> 打印</button>
+            </div>
+          </div>
+
+            <div class="am-margin">
+              <button type="button" class="app-checkbut">批量审核</button>
+            </div>
+
+        </div>
+
+      </div>
+       <!-- 表格部分 -->
+      <div class="am-g am-margin">
+        <div class="app-tablewarp">
+          <form class="am-form am-text-xs am-text-center ">
+            <table class="am-table am-table-striped am-table-hover app-table">
+              <thead>
+              <tr>
+                <th style="width:24px;" class="table-check"><input type="checkbox" /></th>
+                <th style="width:70px;">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">工号 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">升序</a></li>
+                            <li><a href="#">降序</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:70px;">姓名</th>
+                <th style="width:70px">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">部门 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">全部</a></li>
+                            <li><a href="#">学院办公室</a></li>
+                            <li><a href="#">党委办公室</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:70px">岗位</th>
+                <th style="width:70px">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">职务 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">全部</a></li>
+                            <li><a href="#">院长</a></li>
+                            <li><a href="#">副院长</a></li>
+                            <li><a href="#">主任</a></li>
+                            <li><a href="#">副主任</a></li>
+                            <li><a href="#">教师</a></li>
+                            <li><a href="#">职员</a></li>
+                            <li><a href="#">其他</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:70px">职称</th>
+                <th style="width:70px">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">性别 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">全部</a></li>
+                            <li><a href="#">男</a></li>
+                            <li><a href="#">女</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:100px">出生日期</th><th style="width:155px">身份证号</th><th style="width:70px">籍贯</th><th style="width:70px">民族</th>
+                <th style="width:75px">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">政治面貌 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">全部</a></li>
+                            <li><a href="#">中共党员</a></li>
+                            <li><a href="#">共青团员</a></li>
+                            <li><a href="#">群众</a></li>
+                            <li><a href="#">其他</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:100px">入团/党日期</th>
+                <th style="width:70px">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">学历 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">全部</a></li>
+                            <li><a href="#">博士研究生</a></li>
+                            <li><a href="#">硕士研究生</a></li>
+                            <li><a href="#">本科</a></li>
+                            <li><a href="#">其他</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:100px">手机号码</th><th style="width:165px">电子邮箱</th><th style="width:165px">家庭详细住址</th>
+                <th style="width:75px">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">人员类别 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">全部</a></li>
+                            <li><a href="#">在职人员</a></li>
+                            <li><a href="#">离退休人员</a></li>
+                            <li><a href="#">外派人员</a></li>
+                            <li><a href="#">其他</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:110px">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">参加工作时间 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">升序</a></li>
+                            <li><a href="#">降序</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:100px">
+                    <span class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle  href="javascript:;">来院时间 <span class="am-icon-caret-down"></span></a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="#">升序</a></li>
+                            <li><a href="#">降序</a></li>
+                        </ul>
+                    </span>
+                </th>
+                <th style="width:75px">档案存放地</th><th style="width:155px">工商银行卡号</th><th style="width:155px">社保卡号</th><th style="width:155px">公积金账户</th><th style="width:165px">备注</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0001</td>
+                <td>学生名字</td>
+                <td>部门名称</td>
+                <td>职务名称</td>
+                <td>职务名称</td>
+                <td>职务名称</td>
+                <td>男</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>民族民族</td>
+                <td>中共党员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>18888888888@gmail.com</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>单位名称单位名称</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0002</td>
+                <td>学生名字名字</td>
+                <td>部门名称部门名称</td>
+                <td>职务名称职务名称</td>
+                <td>职务名称职务名称</td>
+                <td>职务名称职务名称</td>
+                <td>男</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉湖北武汉</td>
+                <td>民族民族民族民族</td>
+                <td>中共党员</td>
+                <td>1998-01-01</td>
+                <td>博士研究生</td>
+                <td>18888888888</td>
+                <td>youxiang@qq.com</td>
+                <td>-</td>
+                <td>退休人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>存放地</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>备注信息备注信息备注信息备注信备注信息备注信息备</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0003</td>
+                <td>名字</td>
+                <td>部门名称</td>
+                <td>职务名称</td>
+                <td>职务名称</td>
+                <td>职务名称</td>
+                <td>男</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>民族民族</td>
+                <td>中共党员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>youxiang@163.com</td>
+                <td>-</td>
+                <td>兼职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0004</td>
+                <td>名字</td>
+                <td>部门名称</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>男</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>汉族</td>
+                <td>中共党员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>youxiang@gmail.com</td>
+                <td>家庭详细住址家庭详细住址工作单位名称工作单位名称</td>
+                <td>其他人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0005</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>民族民族</td>
+                <td>中共党员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>-</td>
+                <td>家庭详细住址家庭详细住址家庭详细住址家庭详细住址</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0006</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>汉族</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>mail@qq.com</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0007</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>民族民</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>mail@qq.com</td>
+                <td>-</td>
+                <td>其他人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0008</td>
+                <td>名字</td>
+                <td>部门名称</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>男</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>汉族</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>youxiang@gmail.com</td>
+                <td>家庭详细住址家庭详细住址家庭详细住址家庭详细住址</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0009</td>
+                <td>名字</td>
+                <td>部门名称</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>男</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>汉族</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>-</td>
+                <td>mail@qq.com</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0010</td>
+                <td>名字</td>
+                <td>部门名称</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>民族民</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>-</td>
+                <td>家庭详细住址家庭详细住址家庭详细住址家庭详细住址</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0002</td>
+                <td>名字</td>
+                <td>部门名称</td>
+                <td>职务名称</td>
+                <td>职务名称</td>
+                <td>职务名称</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>汉族</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>-</td>
+                <td>youxiang@qq.com</td>
+                <td></td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0003</td>
+                <td>名字</td>
+                <td>部门名称</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>汉族</td>
+                <td>团员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>youxiang@qq.com</td>
+                <td>家庭详细住址家庭详细住址家庭详细住址家庭详细住址</td>
+                <td>退休人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0004</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>男</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>民族民</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>-</td>
+                <td>youxiang@qq.com</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0005</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>男</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>汉族</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>youxiang@qq.com</td>
+                <td>家庭详细住址家庭详细住址家庭详细住址家庭详细住址</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0006</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>湖北武汉</td>
+                <td>汉族</td>
+                <td>群众</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>mail@qq.com</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>备注信息备注信息备注信息备注信息备注信息备注信息</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0007</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>籍贯籍贯</td>
+                <td>民族</td>
+                <td>团员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>-</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>备注信息备注信息</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0008</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>籍贯籍贯</td>
+                <td>民族</td>
+                <td>团员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>youxiang@163.com</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>-</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0009</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>籍贯籍贯</td>
+                <td>民族</td>
+                <td>团员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>youxiang@163.com</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0008</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>籍贯籍贯</td>
+                <td>民族</td>
+                <td>团员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>-</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>-</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>0009</td>
+                <td>名字</td>
+                <td>部门</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>职务</td>
+                <td>女</td>
+                <td>1998-01-01</td>
+                <td>305187199811234321</td>
+                <td>籍贯籍贯</td>
+                <td>民族</td>
+                <td>团员</td>
+                <td>1998-01-01</td>
+                <td>本科</td>
+                <td>18888888888</td>
+                <td>youxiang@163.com</td>
+                <td>-</td>
+                <td>在职人员</td>
+                <td>1998-01-01</td>
+                <td>1998-01-01</td>
+                <td>地址地址</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>8888888888888888888</td>
+                <td>-</td>
+              </tr>
+              
+              </tbody>
+            </table>
+          </form>
+        </div>
+             <!-- 底栏 -->
+            <div class="am-margin am-fl app-foot">
+              显示:
+              <select data-am-selected="{btnSize: 'sm',dropUp: 1}" >
+                <option value="option1">10</option>
+                <option value="option2" selected>20</option>
+                <option value="option3">30</option>
+              </select>
+              条，共<span>278条</span>记录</div>
+              <div>
+              
+              <div class="app-page">
+                <ul class="am-pagination">
+                  <li class="am-disabled"><a href="#">«</a></li>
+                  <li class="am-active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">»</a></li>
+                </ul>
+              </div>
+            </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- content end -->
+</div>
+
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only app-menu" data-am-offcanvas="{target: '#app-offcanvas'}"></a>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+</body>
+</html>
