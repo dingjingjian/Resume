@@ -181,22 +181,13 @@ ul {
 .searchshow{
   display: none;
 }
-/*筛选器固定*/
-.app-fixwarp{
-  position: fixed;
-  top: 51px;
-  left: 260px;
-  right: 0;
-  z-index: 1499;
-  background: #fff;
-    }
 
 .app-fixwarp .am-accordion-item{
   border: none;
 }
 /*工具栏*/
 .app-toorbar{
-  margin-top: 255px;
+  margin: 10px;
 }
 
 .app-toorbar .am-btn-default{

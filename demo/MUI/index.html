@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="./css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/hbuilder.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/ie8.css"><![endif]-->
+	<title>MUI - DCloud</title>
+</head>
+<body>
+	<div class="mui-board-a">
+		<div class="container">
+			<div class="mui-clearfix page-title">
+				<h3 class="mui-pull-left"><span class="color3">MUI</span>-最接近原生App体验的前端框架</h3>
+			</div>
+			<div class="gray-box">
+				<div class="mui-clearfix">
+					<div class="mui-pull-left mui-text-center">
+						<p>扫描二维码或点击二维码下载，可以在您的手机上体验</p>
+						<a href="https://dingjingjian.github.io/Resume/demo/MUI/Vactivities.html" target="view_window">
+							<img src="./img/code.png">
+						</a>
+						<h2>该项目主要应用到了<span class="color3">MUI</span></h2>
+						<ul id="Sh_list" class="mui-list-inline">
+							<li class="">
+								<h3>极小</h3>
+								<p>100k的js文件，60k的css文件。原生编写，不依赖任何三方框架</p>
+							</li>
+							<li>
+								<h3>极强</h3>
+								<p>xcode和Android studio里所有原生控件都具备</p>
+							</li>
+							<li class="active">
+								<h3>高性能</h3>
+								<p>精练的代码、适时的5+原生动画调用，达到原生应用的体验</p>
+							</li>
+							<li class="">
+								<h3>多端发布</h3>
+								<p>编写一套代码，iOS、Android、浏览器、微信App、百度直达号、流应用全覆盖</p>
+							</li>
+						</ul>
+						<script>
+							$('#Sh_list li').hover(function () {
+								$(this).addClass('active').siblings().removeClass('active');
+							});
+						</script>
+					</div>
+					<div class="mui-pull-right">
+						<div class="phone">
+							<iframe src="Vactivities.html" frameborder="0" scrolling="no"></iframe>
+							<div class="statusbar"></div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+</body>
+</html>
