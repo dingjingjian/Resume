@@ -19,4 +19,4 @@ web前端
 
 * MUI移动端框架的学习与使用，了解学习移动web的相关技术与思想；
 
-* VUE框架的学习与使用，包括了Vue,Vuex,Webpack,Vue-cli,Vue-router,结合基于Vue2.0的element框架，制作的一个答题小Demo
+* VUE框架的学习与使用，包括了Vue,Vuex,Webpack,Vue-cli,Vue-router,结合element框架，制作的一个答题小Demo
