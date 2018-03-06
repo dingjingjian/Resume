@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>智慧式用电安全监管与电能管理平台</title>    
+    <link rel="shortcut icon" href="./static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./src/layui/css/layui.css">
+    <link rel="stylesheet" href="./static/css/main.css">
+</head>
+<body>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->          
+    <div class="layui-layout-admin bg-green">
+        <!-- 头部与侧边导航 -->
+        <div class="layui-header layui-bg-green">
+            <a class="logo" href="index.html">
+                <img src="./static/img/logo.png" alt="Mantunsci">
+            </a>
+            <a class="logo-m layui-hide" href="index.html">
+                <img src="./static/img/logo-m.png" alt="Mantunsci">
+            </a>
+            <h1 class="title">智慧式用电安全监管与电能管理平台</h1>
+            <ul class="layui-nav layui-bg-green">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户名</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="index.html">管理平台首页</a></dd>
+                        <dd><a href="page.html">页面访问详情</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">退出登录</a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-side">
+            <div class="layui-side-scroll layui-bg-gray">    
+                <ul class="layui-nav layui-nav-tree">    
+                    <li class="layui-nav-item layui-nav-itemed">                        
+                        <a class="javascript:;" href="javascript:;">电气安全监管<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="warn.html">全部报警</a></dd>
+                            <dd><a href="leakage.html">漏电流</a></dd>
+                            <dd class="layui-this"><a href="javascript:;">温度</a></dd>
+                            <dd><a href="OUvoltage.html">过欠压</a></dd>
+                            <dd><a href="overload.html">过流过载</a></dd>
+                            <dd><a href="leakageW.html">漏电报警</a></dd>
+                            <dd><a href="temperatureW.html">温度报警</a></dd>
+                            <dd><a href="sparkingW.html">打火报警</a></dd>
+                            <dd><a href="shortW.html">短路报警</a></dd>
+                            <dd><a href="surgeW.html">浪涌报警</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="javascript:;" href="javascript:;">智慧能源管理<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="power.html">电量</a></dd>
+                            <dd><a href="load.html">负载</a></dd>
+                            <dd><a href="control.html">控制管理</a></dd>
+                        </dl>
+                    </li>
+                </ul>    
+            </div>
+        </div>
+        <!-- 侧边栏显示隐藏按钮 -->
+        <div class="site-tree-mobile layui-hide">
+            <i class="layui-icon"></i>
+        </div>        
+        <!-- 主体内容 -->
+        <div class="main-top">
+            <!-- 面包屑导航 -->
+            <span class="layui-breadcrumb top-title">
+                <a href="index.html"><b>首页</b></a>
+                <a class="ellipsis" href="javascript:;">项目名称</a>
+                <a href="javascript:;">电气安全监管</a>
+                <a><cite>温度</cite></a>
+            </span>
+            <div class="date-bar">
+                <button class="layui-btn">日</button>
+                <button class="layui-btn layui-btn-primary">月</button>
+                <div class="layui-inline">
+                    <label class="layui-form-label">日期</label>
+                    <div class="layui-input-inline">
+                        <div type="text" class="layui-input" id="date" placeholder="yyyy-MM-dd" lay-key="1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-body layui-row" style="overflow-y: scroll">
+            <div class="layui-col-xs12 layui-col-md12">
+                <div class="charts-box">
+                    <h3>24小时温度情况</h3>
+                    <div id="bar" style="height:400px;min-width: 300px"></div>
+                    <div class="bar-label"><span class="safe-badge"></span>安全<span class="warn-badge"></span>预警<span class="alert-badge"></span>报警</div>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-md12">
+                <div class="table-box">
+                    <table class="layui-hide" id="table" lay-filter="tool"></table>
+                    <!-- 查看历史 -->
+                    <script type="text/html" id="toolbar">
+                        <a class="layui-btn layui-btn-xs" lay-event="histroy">查看</a>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 移动端遮罩 -->
+    <div class="site-mobile-shade"></div>
+    
+<script src="./src/echarts/echarts.js"></script>
+<script src="./src/layui/layui.js"></script>
+<script src="./src/jquery.min.js"></script>
+<script src="./static/js/main.js"></script>
+<script src="./static/js/temperature.js"></script>
+</body>
+</html>

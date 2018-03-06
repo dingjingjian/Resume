@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>智慧式用电安全监管与电能管理平台</title>    
+    <link rel="shortcut icon" href="./static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./src/layui/css/layui.css">
+    <link rel="stylesheet" href="./static/css/main.css">
+</head>
+<body class="page-details">
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->          
+    <div class="layui-layout-admin bg-green">
+        <!-- 头部与侧边导航 -->
+        <div class="layui-header layui-bg-green">
+            <a class="logo" href="index.html">
+                <img src="./static/img/logo.png" alt="Mantunsci">
+            </a>
+            <a class="logo-m layui-hide" href="index.html">
+                <img src="./static/img/logo-m.png" alt="Mantunsci">
+            </a>
+            <h1 class="title">智慧式用电安全监管与电能管理平台</h1>
+            <ul class="layui-nav layui-bg-green">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户名</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="index.html">管理平台首页</a></dd>
+                        <dd><a href="page.html">页面访问详情</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">退出登录</a>
+                </li>
+            </ul>
+        </div>        
+        <!-- 主体内容 -->
+        <div class="main-top">
+            <!-- 面包屑导航 -->
+            <span class="layui-breadcrumb top-title">
+                <a href="index.html"><b>首页</b></a>
+                <a><cite>页面访问详情</cite></a>
+            </span>
+        </div>
+        <div class="layui-body layui-row" style="overflow-y: scroll">
+            <div class="layui-col-xs12 layui-col-md12">
+                <div class="page-box">
+                    <h3>所管理下的用户登录详情</h3>
+                    <form class="layui-form screen-box" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-col-xs12 layui-col-md3">
+                                <label class="layui-form-label">日期</label>
+                                <div class="layui-input-inline">
+                                    <select name="select1">
+                                        <option value="全部" selected="">全部</option>
+                                        <option value="最近7天">最近7天</option>
+                                        <option value="最近30天">最近30天</option>
+                                        <option value="自定义">自定义</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="layui-hide" id="users"></table>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-md12">
+                <div class="page-box">
+                    <h3>页面访问详情</h3>
+                    <form class="layui-form screen-box" action="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户</label>
+                            <div class="layui-input-inline">
+                                <select name="select1">
+                                    <option value="全部" selected="">全部</option>
+                                    <option value="admin">admin</option>
+                                    <option value="admin">admin</option>
+                                    <option value="admin">admin</option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label">日期</label>
+                            <div class="layui-input-inline">
+                                <select name="select1">
+                                    <option value="全部" selected="">全部</option>
+                                    <option value="最近7天">最近7天</option>
+                                    <option value="最近30天">最近30天</option>
+                                    <option value="自定义">自定义</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="bar" style="height:400px;min-width: 300px"></div>
+                    <table class="layui-hide" id="page"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script src="./src/echarts/echarts.js"></script>
+<script src="./src/layui/layui.js"></script>
+<script src="./src/jquery.min.js"></script>
+<script src="./static/js/main.js"></script>
+<script src="./static/js/page.js"></script>
+</body>
+</html>

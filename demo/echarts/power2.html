@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>智慧式用电安全监管与电能管理平台</title>    
+    <link rel="shortcut icon" href="./static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./src/layui/css/layui.css">
+    <link rel="stylesheet" href="./static/css/main.css">
+</head>
+<body>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->          
+    <div class="layui-layout-admin bg-green">
+        <!-- 头部与侧边导航 -->
+        <div class="layui-header layui-bg-green">
+            <a class="logo" href="index.html">
+                <img src="./static/img/logo.png" alt="Mantunsci">
+            </a>
+            <a class="logo-m layui-hide" href="index.html">
+                <img src="./static/img/logo-m.png" alt="Mantunsci">
+            </a>
+            <h1 class="title">智慧式用电安全监管与电能管理平台</h1>
+            <ul class="layui-nav layui-bg-green">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户名</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="index.html">管理平台首页</a></dd>
+                        <dd><a href="page.html">页面访问详情</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">退出登录</a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-side">
+            <div class="layui-side-scroll layui-bg-gray">    
+                <ul class="layui-nav layui-nav-tree">    
+                    <li class="layui-nav-item">                        
+                        <a class="javascript:;" href="javascript:;">电气安全监管<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="warn.html">全部报警</a></dd>
+                            <dd><a href="leakage.html">漏电流</a></dd>
+                            <dd><a href="temperature.html">温度</a></dd>
+                            <dd><a href="OUvoltage.html">过欠压</a></dd>
+                            <dd><a href="overload.html">过流过载</a></dd>
+                            <dd><a href="leakageW.html">漏电报警</a></dd>
+                            <dd><a href="temperatureW.html">温度报警</a></dd>
+                            <dd><a href="sparkingW.html">打火报警</a></dd>
+                            <dd><a href="shortW.html">短路报警</a></dd>
+                            <dd><a href="surgeW.html">浪涌报警</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="javascript:;" href="javascript:;">智慧能源管理<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd class="layui-this"><a href="javascript:;">电量</a></dd>
+                            <dd><a href="load.html">负载</a></dd>
+                            <dd><a href="control.html">控制管理</a></dd>
+                        </dl>
+                    </li>
+                </ul>    
+            </div>
+        </div>
+        <!-- 侧边栏显示隐藏按钮 -->
+        <div class="site-tree-mobile layui-hide">
+            <i class="layui-icon"></i>
+        </div>        
+        <!-- 主体内容 -->
+        <div class="layui-tab">
+            <!-- 面包屑导航 -->
+            <span class="layui-breadcrumb top-title">
+                <a href="index.html"><b>首页</b></a>
+                <a class="ellipsis" href="javascript:;">项目名称</a>
+                <a href="javascript:;">智慧能源管理</a>
+                <a><cite>电量</cite></a>
+            </span>       
+            <ul class="layui-tab-title">                
+                <li><a href="power.html">近两年用电量情况</a></li>
+                <li class="layui-this">每户的用电情况</li>
+            </ul>
+            <div class="layui-tab-content layui-body" style="overflow-y: scroll">
+                <!-- 每户的用电情况 -->
+                <div class="layui-tab-item layui-show">
+                    <!-- 仪表盘 -->
+                    <div class="layui-col-xs12 layui-col-md12">
+                        <div class="charts-box">
+                            <div class="layui-col-xs12 layui-col-md6" id="gauge" style="height: 350px;min-width: 300px"></div>
+                            <div class="layui-col-xs12 layui-col-md6 gauge-text" style="min-width: 300px">
+                                <div>当月用电量：100度</div>
+                                <div>上月用电量：200度</div>
+                                <div>当月对比上月节约了50%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 筛选框 -->
+                    <form class="layui-form screen-box" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-col-xs12 layui-col-md3">
+                                <label class="layui-form-label">楼栋</label>
+                                <div class="layui-input-inline">
+                                    <select name="select1">
+                                        <option value="1栋" selected="">1栋</option>
+                                        <option value="2栋">2栋</option>
+                                        <option value="3栋">3栋</option>
+                                    </select>
+                                </div>
+                            </div>                            
+                            <div class="layui-col-xs12 layui-col-md3">
+                                <label class="layui-form-label">年份</label>
+                                <div class="layui-input-inline">
+                                    <select name="select2">
+                                        <option value="2018年" selected="">2018年</option>
+                                        <option value="2017年">2017年</option>
+                                        <option value="2016年">2016年</option>
+                                    </select>
+                                </div>
+                            </div>                            
+                            <div class="layui-col-xs12 layui-col-md3">
+                                <label class="layui-form-label">月份</label>
+                                <div class="layui-input-inline">
+                                    <select name="select3">
+                                        <option value="1月" selected="">1月</option>
+                                        <option value="2月">2月</option>
+                                        <option value="3月">3月</option>
+                                        <option value="4月">4月</option>
+                                        <option value="5月">5月</option>
+                                        <option value="6月">6月</option>
+                                        <option value="7月">7月</option>
+                                        <option value="8月">8月</option>
+                                        <option value="9月">9月</option>
+                                        <option value="10月">10月</option>
+                                        <option value="11月">11月</option>
+                                        <option value="12月">12月</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs12 layui-col-md3">
+                                <button type="button" class="layui-btn layui-btn-radius screen-btn">筛选</button>
+                                <button type="button" class="layui-btn layui-btn-primary">打印</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- 数据表格 -->
+                    <div class="layui-col-xs12 layui-col-md12">
+                        <div class="table-box">
+                            <table class="layui-hide" id="table"></table>
+                        </div>
+                        <!-- 启用状态单元格格式 -->
+                        <script type="text/html" id="state">
+                            {{#  if(d.state === '启用|在线'){ }}
+                            启用|<span style="color: #5FB878;">在线</span>
+                            {{#  } else if(d.state === '启用|离线'){ }}
+                            启用|<span style="color: #FF5722;">离线</span>
+                            {{#  } else if(d.state === '停用|离线'){ }}
+                            <span style="color: #FF5722;">停用|离线</span>
+                            {{#  } else { }}
+                                {{ d.state }}
+                            {{#  } }}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 移动端遮罩 -->
+    <div class="site-mobile-shade"></div>
+    
+<script src="./src/echarts/echarts.js"></script>
+<script src="./src/layui/layui.js"></script>
+<script src="./src/jquery.min.js"></script>
+<script src="./static/js/main.js"></script>
+<script src="./static/js/power2.js"></script>
+</body>
+</html>

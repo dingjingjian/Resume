@@ -1,0 +1,561 @@
+.layui-layout-admin .layui-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100000;
+}
+.layui-layout-admin .layui-header .logo img {
+  position: relative;
+  top: 12px;
+  left: 40px;
+  height: 25px;
+}
+.layui-layout-admin .layui-header .title {
+  display: inline-block;
+  color: #fff;
+  font-size: 19px;
+  position: relative;
+  top: 16px;
+  left: 50px;
+}
+.layui-layout-admin .layui-header .layui-nav {
+  float: right;
+}
+.layui-layout-admin .layui-side {
+  top: 60px;
+}
+.main-top,
+.layui-tab {
+  border-bottom: 1px solid #f3f3f3;
+  padding: 70px 30px 5px 220px;
+}
+.main-top .top-title,
+.layui-tab .top-title {
+  line-height: 40px;
+  font-weight: bold;
+  display: inline;
+}
+.main-top .top-title .ellipsis,
+.layui-tab .top-title .ellipsis {
+  max-width: 180px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 16px;
+  line-height: 16px;
+  position: relative;
+  top: 3px;
+}
+.main-top .top-title b,
+.layui-tab .top-title b {
+  font-size: 16px;
+  color: #009688;
+}
+.main-top .top-title a:hover b,
+.layui-tab .top-title a:hover b {
+  color: #5FB878;
+}
+.main-top .date-bar,
+.layui-tab .date-bar {
+  float: right;
+}
+.main-top .date-bar .layui-btn,
+.layui-tab .date-bar .layui-btn {
+  padding: 0 12px;
+  width: 38px;
+}
+.main-top .date-bar .layui-form-label,
+.layui-tab .date-bar .layui-form-label {
+  padding: 9px;
+  width: 40px;
+}
+.main-top .date-bar .layui-input,
+.layui-tab .date-bar .layui-input {
+  width: 160px;
+  line-height: 38px;
+  cursor: pointer;
+}
+.layui-tab {
+  padding: 60px 0 5px 200px;
+  overflow: hidden;
+  border-bottom: none;
+}
+.layui-tab .top-title {
+  position: absolute;
+  padding-left: 20px;
+  z-index: 10;
+}
+.layui-tab .layui-tab-title {
+  padding: 10px 20px 0 0;
+  text-align: right;
+}
+.layui-row {
+  padding: 10px;
+}
+.layui-layout-admin .layui-body {
+  top: 120px;
+  bottom: 0;
+}
+.layui-layout-admin .layui-body .charts-box {
+  background-color: #F7F7F7;
+  margin: 10px 10px;
+  padding: 10px;
+  border: 1px solid #f3f3f3;
+  overflow: hidden;
+}
+.layui-layout-admin .layui-body .table-box {
+  margin: 0 10px;
+}
+.bar-label {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.bar-label .safe-badge,
+.bar-label .warn-badge,
+.bar-label .alert-badge {
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  width: 30px;
+  height: 16px;
+  margin: 0 5px 0 15px;
+  border-radius: 3px;
+}
+.bar-label .safe-badge {
+  background-color: #5FB878;
+}
+.bar-label .warn-badge {
+  background-color: #FFB800;
+}
+.bar-label .alert-badge {
+  background-color: #FF5722;
+}
+.layer {
+  padding: 10px;
+  background-color: #eee;
+}
+.layer .layer-date-bar .layui-btn {
+  padding: 0 12px;
+  width: 38px;
+}
+.layer .layer-date-bar .print-btn {
+  width: 60px;
+  float: right;
+}
+.layer .layer-date-bar .layui-form-label {
+  padding: 9px;
+  width: 40px;
+}
+.layer .layer-date-bar .layui-input {
+  width: 120px;
+  line-height: 38px;
+  cursor: pointer;
+}
+.layer .layui-body {
+  top: 58px;
+  left: 0;
+}
+.layer .layui-body .charts-box h3 {
+  padding: 10px 5px 0;
+  text-align: center;
+}
+.page-details .main-top,
+.details .main-top {
+  padding: 70px 30px 5px 20px;
+}
+.page-details .layui-body,
+.details .layui-body {
+  left: 0;
+}
+.page-details .layui-body .page-box,
+.details .layui-body .page-box {
+  background-color: #F7F7F7;
+  margin: 10px 10px;
+  padding: 10px;
+  border: 1px solid #f3f3f3;
+}
+.details .main-top .layui-form {
+  float: left;
+  margin-right: 20px;
+}
+.details .main-top .layui-form .layui-form-label {
+  width: 58px;
+}
+.details .main-top .layui-form .layui-input-inline {
+  width: 160px;
+}
+.bg-green .layui-header .layui-nav-item > a {
+  color: #fff!important;
+}
+.bg-green .layui-header .layui-nav-item > a:hover {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.bg-green .layui-header .layui-nav-item .layui-this > a {
+  color: #fff!important;
+}
+.bg-green .layui-header .layui-nav-item .layui-this > a:hover {
+  background-color: #009688;
+}
+.bg-green .layui-header .layui-nav-item .layui-nav-more.layui-nav-mored {
+  border-bottom-color: #fff;
+  border-top-color: transparent;
+}
+.bg-green .layui-header .layui-nav-item .layui-nav-more {
+  border-top-color: #fff;
+}
+.bg-green .layui-nav.layui-nav-tree {
+  border-right: 1px solid #f3f3f3;
+}
+.bg-green .layui-nav-tree .layui-nav-item {
+  background-color: #f3f3f3;
+}
+.bg-green .layui-nav-tree .layui-nav-item > a {
+  color: #000!important;
+}
+.bg-green .layui-nav-tree .layui-nav-item > a:hover {
+  background-color: #cceae7;
+}
+.bg-green .layui-nav-tree .layui-nav-item.layui-nav-itemed .layui-nav-more {
+  border-bottom-color: #009688;
+  border-top-color: transparent;
+}
+.bg-green .layui-nav-tree .layui-nav-item .layui-nav-more {
+  border-top-color: #009688;
+}
+.bg-green .layui-nav-tree .layui-nav-item .layui-nav-child {
+  background-color: #fff!important;
+}
+.bg-green .layui-nav-tree .layui-nav-item .layui-nav-child dd > a {
+  color: #000!important;
+}
+.bg-green .layui-nav-tree .layui-nav-item .layui-nav-child dd > a:hover {
+  background-color: #cceae7;
+}
+.bg-green .layui-nav-tree .layui-nav-item .layui-nav-child .layui-this > a {
+  color: #fff!important;
+}
+.bg-green .layui-nav-tree .layui-nav-item .layui-nav-child .layui-this > a:hover {
+  background-color: #009688;
+}
+.layui-layout-admin .warn-num {
+  right: 10px;
+}
+.layui-layout-admin .index-side {
+  width: 377px;
+  left: 0;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+}
+.layui-layout-admin .index-side .index-form {
+  background-color: #f3f3f3;
+  padding-top: 20px;
+  box-sizing: border-box;
+  height: 70px;
+}
+.layui-layout-admin .index-side .index-form .index-span {
+  padding-left: 21px;
+  padding-right: 12px;
+}
+.layui-layout-admin .index-side .index-form .layui-input {
+  border-color: #d2d2d2;
+}
+.layui-layout-admin .index-side .index-form .index-select {
+  width: 292px;
+}
+.layui-layout-admin .index-side .index-pie {
+  background-color: #f3f3f3;
+}
+.layui-layout-admin .index-side .index-pie #pie {
+  width: 336px;
+  height: 323px;
+  margin: 0 auto;
+  border-radius: 2px;
+  border: solid 1px #d2d2d2;
+}
+.layui-layout-admin .index-side .layui-side-scroll {
+  width: 397px;
+}
+.layui-layout-admin .index-side .layui-side-scroll .layui-nav {
+  width: 377px;
+  border-bottom: 80px solid #f3f3f3;
+}
+.layui-layout-admin .index-side .index-dl {
+  padding: 40px;
+  text-align: center;
+}
+.layui-layout-admin .index-side .index-dl dd {
+  margin-bottom: 20px;
+  background-color: #009688;
+  border-radius: 2px;
+  position: relative;
+}
+.layui-layout-admin .index-side .index-dl dd a {
+  color: #fff;
+}
+.layui-layout-admin .index-side .index-dl dd:last-child {
+  margin-bottom: 0px;
+}
+.layui-layout-admin .index-side .index-dl dd span {
+  display: block;
+  width: 24px;
+  height: 24px;
+  line-height: 20px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  top: -12px;
+  right: -12px;
+}
+.layui-layout-admin .index-side-btn {
+  display: block!important;
+  position: fixed;
+  z-index: 100000;
+  bottom: 15px;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 2px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+.layui-layout-admin .index-main {
+  height: 100%;
+  margin: 0 0 0 377px;
+  padding-top: 60px;
+  box-sizing: border-box;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+}
+.layui-layout-admin .index-main #main {
+  height: 100%;
+}
+.index-side-hide .layui-side {
+  left: -377px;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+}
+.index-side-hide .index-main {
+  margin: 0;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+}
+.pie {
+  background-color: #fff;
+  overflow-x: auto;
+}
+.gauge-text {
+  text-align: center;
+}
+.gauge-text > div {
+  padding: 5px;
+}
+.gauge-text div:nth-child(1) {
+  font-size: 18px;
+  color: #2EC7C9;
+  margin-top: 100px;
+}
+.gauge-text div:nth-child(2) {
+  font-size: 18px;
+  color: #5AB1EF;
+}
+.gauge-text div:nth-child(3) {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #B8A5DD;
+}
+.screen-box {
+  background-color: #F7F7F7;
+  margin: 0 10px;
+  padding: 10px;
+  border: 1px solid #f3f3f3;
+  clear: both;
+}
+.screen-box .layui-form-item {
+  margin-bottom: 0px;
+  text-align: center;
+}
+.screen-box .layui-form-item .layui-form-label {
+  width: 30px;
+}
+.screen-box .layui-form-item .layui-input-inline {
+  width: 150px;
+}
+.screen-box .layui-form-item .screen-btn {
+  margin-right: 50px;
+  width: 100px;
+}
+@media screen and (max-width: 750px) {
+  .logo {
+    display: none;
+  }
+  .logo-m {
+    display: inline-block !important;
+  }
+  .logo-m img {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    height: 40px;
+  }
+  .title {
+    display: none!important;
+  }
+  .layui-layout-admin .layui-side {
+    position: fixed;
+    left: -260px;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    z-index: 10000;
+  }
+  .site-mobile .layui-side {
+    left: 0;
+  }
+  .site-tree-mobile {
+    display: block!important;
+    position: fixed;
+    z-index: 100000;
+    bottom: 15px;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 2px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+  }
+  .site-mobile .site-tree-mobile {
+    display: none !important;
+  }
+  .site-mobile .site-mobile-shade {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+  }
+  .layui-layout-admin .warn-num {
+    right: 10px;
+  }
+  .layui-layout-admin .index-side {
+    width: 100%;
+    top: 60px;
+    left: 0;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+  }
+  .layui-layout-admin .index-side .layui-side-scroll {
+    width: 100%;
+  }
+  .layui-layout-admin .index-side .layui-side-scroll .layui-nav {
+    width: 100%;
+  }
+  .layui-layout-admin .index-side .index-form .index-select {
+    width: 72%;
+  }
+  .layui-layout-admin .index-side .index-pie #pie {
+    width: 90%;
+  }
+  .layui-layout-admin .main-top,
+  .layui-layout-admin .layui-tab {
+    padding: 70px 20px 44px 20px;
+  }
+  .layui-layout-admin .main-top .ellipsis,
+  .layui-layout-admin .layui-tab .ellipsis {
+    max-width: 75px;
+  }
+  .layui-layout-admin .main-top .layui-tab-title,
+  .layui-layout-admin .layui-tab .layui-tab-title {
+    padding: 45px 0 0 0;
+    text-align: center;
+  }
+  .layui-layout-admin .main-top .layui-tab-content,
+  .layui-layout-admin .layui-tab .layui-tab-content {
+    top: 180px;
+  }
+  .layui-layout-admin .layui-body {
+    top: 160px;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 80px;
+  }
+  .layui-layout-admin .layui-body .charts-box,
+  .layui-layout-admin .layui-body .table-box {
+    overflow-x: auto;
+  }
+  .layui-layout-admin .layui-body .charts-box h3,
+  .layui-layout-admin .layui-body .table-box h3 {
+    position: absolute;
+  }
+  .index-side-hide .layui-side {
+    left: -100%;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+  }
+  .gauge-text {
+    text-align: center;
+  }
+  .gauge-text > div {
+    padding: 5px;
+  }
+  .gauge-text div:nth-child(1) {
+    margin-top: 0;
+  }
+  .gauge-text div:nth-child(3) {
+    margin-top: 0;
+  }
+  .screen-box .layui-form-item .layui-input-inline {
+    display: block;
+    float: none;
+    left: -3px;
+    width: auto;
+    margin: 0 0 10px 112px;
+  }
+  .screen-box .layui-form-item .layui-form-label {
+    margin-bottom: 10px;
+  }
+  .page-details .main-top,
+  .load .main-top {
+    padding: 70px 20px 10px 20px;
+  }
+  .page-details .layui-layout-admin .layui-body,
+  .load .layui-layout-admin .layui-body {
+    top: 126px;
+  }
+  .details .main-top {
+    padding: 70px 20px 110px 20px;
+  }
+  .details .main-top .date-bar .layui-form {
+    width: 100%;
+    float: none;
+    margin-right: 0px;
+  }
+  .details .main-top .date-bar .layui-form .layui-input-inline {
+    width: 215px;
+  }
+  .details .main-top .date-bar .layui-form .layui-input {
+    width: 215px;
+  }
+  .details .main-top .date-bar .date-input .layui-input-inline {
+    width: 120px;
+  }
+  .details .main-top .date-bar .date-input .layui-input-inline .layui-input {
+    width: 120px;
+  }
+  .details .layui-layout-admin .layui-body {
+    top: 226px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .layui-layout-admin .index-side .index-pie #pie {
+    width: 95%;
+  }
+}
