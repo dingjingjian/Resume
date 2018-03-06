@@ -105,7 +105,6 @@ window.onload = function(){
             'echarts/chart/pie'
         ],
         function (ec) {
-            console.log(data)
             // 基于准备好的dom，初始化echarts图表
             var myChart = ec.init(document.getElementById('pie'));         
             var option = {
