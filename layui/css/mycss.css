@@ -78,3 +78,12 @@
 .me-bad{
     color: #c00000;
 }
+
+@media screen and (max-width: 450px) {
+    .me-mobile-hide{
+        display: none!important;
+    }
+    .me-wrap{
+        margin-top: 30px;
+    }
+  }
