@@ -1,0 +1,255 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>立式发酵机生产监控系统</title>
+    <meta name="description" content="立式发酵机生产监控系统">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="./images/icon.ico">
+    <link rel="apple-touch-icon-precomposed" href="./images/icon.ico">
+    <meta name="apple-mobile-web-app-title" content="生产监控系统" />
+    <link rel="stylesheet" href="./css/amazeui.min.css" />
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+    <header class="am-topbar am-topbar-inverse main-header">
+        <div class="am-topbar-brand">            
+            <strong>立式发酵机</strong> <small>生产监控系统</small> 
+        </div>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right main-header-list">
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span class="am-icon-user"></span> 用户名称 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href="userset.html"><span class="am-icon-cog"></span> 用户设置</a></li>
+                    </ul>
+                </li>
+                <li><a href="javascript:;" class="exit"><span class="am-icon-power-off"></span> 退出系统</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="am-cf main-main">
+            <input type="text" class="am-form-field t-datepicker" data-am-datepicker="{format: 'yyyy-mm',viewMode: 1,minViewMode: 1}" readonly placeholder="日期选择">
+        <!-- sidebar start -->
+        <div class="main-sidebar am-offcanvas" id="main-offcanvas">
+            <div class="am-offcanvas-bar main-offcanvas-bar">
+                <ul class="am-list main-sidebar-list">
+                    <li><a href="index.html"><span class="am-icon-desktop"></span> 系统总览</a></li>
+                    <li class="main-parent">
+                        <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-th-list"></span> 设备监控<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class="am-list am-collapse main-sidebar-sub am-in" id="collapse-nav">
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 一号设备监控</a></li>
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 二号设备监控</a></li>
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 三号设备监控</a></li>
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 四号设备监控</a></li>
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 五号设备监控</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="table.html"><span class="am-icon-table"></span> 数据报表</a></li>
+                    <li class="signout-f"><a href="#"><span class="am-icon-sign-out"></span> 退出系统</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- sidebar end -->
+
+        <!-- content start -->
+        <div class="main-content">
+            <div class="main-content-body">
+                <div class="am-cf am-padding am-padding-bottom-0">
+                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">数据报表</strong></div>                    
+                </div>
+                <hr>
+                <!-- 底部导航 -->
+                <nav class="scrollspy-nav">
+                    <ul>
+                        <li><a class="am-btn am-btn-primary am-hide-sm" href="#table1-hd1">一号设备</a></li>
+                        <li><a class="am-btn am-btn-primary am-hide-sm" href="#table1-hd2">二号设备</a></li>
+                        <li><a class="am-btn am-btn-primary am-hide-sm" href="#table1-hd3">三号设备</a></li>
+                        <li><a class="am-btn am-btn-primary am-hide-sm" href="#table1-hd4">四号设备</a></li>
+                        <li><a class="am-btn am-btn-primary am-hide-sm" href="#table1-hd5">五号设备</a></li>
+                        <li class="am-fr">
+                            <div class="am-form-icon am-inline-block">
+                                <i class="am-icon-calendar"></i>
+                                <input id="datepicker_d" type="text" class="am-form-field" data-am-datepicker readonly placeholder="日期选择">
+                                <input id="datepicker_w" style="display: none" type="text" class="am-form-field" data-am-datepicker readonly placeholder="日期选择">
+                                <input id="datepicker_m" style="display: none" type="text" class="am-form-field" data-am-datepicker="{format: 'yyyy-mm',viewMode: 1,minViewMode: 1}" readonly placeholder="日期选择">
+                            </div>
+                            <div class="am-dropdown am-dropdown-up" data-am-dropdown>
+                                <button type="button" class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>数据导出 <span class="am-icon-caret-up"></span></button>
+                                <ul class="am-dropdown-content">
+                                    <li class="am-dropdown-header">选择导出内容</li>
+                                    <li><a href="#">全部导出</a></li>
+                                    <li><a href="#">一号设备数据</a></li>
+                                    <li><a href="#">二号设备数据</a></li>
+                                    <li><a href="#">三号设备数据</a></li>
+                                    <li><a href="#">四号设备数据</a></li>
+                                    <li><a href="#">五号设备数据</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                    </ul>
+                </nav>
+                <div class="am-g am-padding">                    
+                    <ul id="navTabs" class="am-nav am-nav-tabs am-nav-justify">
+                        <li class="am-active"><a href="#">日报表</a></li>
+                        <li><a href="#">周报表</a></li>
+                        <li><a href="#">月报表</a></li>
+                    </ul>
+                    <div class="am-u-sm-12 am-panel am-panel-default am-padding-0">
+                        <div class="am-panel-hd" id="table1-hd1" data-am-collapse="{parent: '#accordion', target: '#table1'}">一号设备<i class="am-icon-ellipsis-h am-fr"></i></div>
+                        <div class="am-collapse am-in main-table" id="table1">
+                            <table class="am-table am-table-centered am-table-hover am-text-nowrap am-scrollable-horizontal">
+                                <thead>
+                                    <tr>
+                                        <th>记录时间</th>
+                                        <th>筒体温度1</th>
+                                        <th>筒体温度2</th>
+                                        <th>筒体温度3</th>
+                                        <th>平均温度</th>
+                                        <th>湿度</th>
+                                        <th>主轴转速</th>
+                                        <th>上料量</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8">暂无数据...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>                        
+                        <div class="am-panel-hd"  id="table1-hd2" data-am-collapse="{parent: '#accordion', target: '#table2'}">二号设备<i class="am-icon-ellipsis-h am-fr"></i></div>
+                        <div class="am-collapse am-in main-table" id="table2">
+                            <table class="am-table am-table-centered am-table-hover am-text-nowrap am-scrollable-horizontal">
+                                <thead>
+                                    <tr>
+                                        <th>记录时间</th>
+                                        <th>筒体温度1</th>
+                                        <th>筒体温度2</th>
+                                        <th>筒体温度3</th>
+                                        <th>平均温度</th>
+                                        <th>湿度</th>
+                                        <th>主轴转速</th>
+                                        <th>上料量</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8">暂无数据...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="am-panel-hd" id="table1-hd3" data-am-collapse="{parent: '#accordion', target: '#table3'}">三号设备<i class="am-icon-ellipsis-h am-fr"></i></div>
+                        <div class="am-collapse am-in main-table" id="table3">
+                            <table class="am-table am-table-centered am-table-hover am-text-nowrap am-scrollable-horizontal">
+                                <thead>
+                                    <tr>
+                                        <th>记录时间</th>
+                                        <th>筒体温度1</th>
+                                        <th>筒体温度2</th>
+                                        <th>筒体温度3</th>
+                                        <th>平均温度</th>
+                                        <th>湿度</th>
+                                        <th>主轴转速</th>
+                                        <th>上料量</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8">暂无数据...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="am-panel-hd" id="table1-hd4" data-am-collapse="{parent: '#accordion', target: '#table4'}">四号设备<i class="am-icon-ellipsis-h am-fr"></i></div>
+                        <div class="am-collapse am-in main-table" id="table4">
+                            <table class="am-table am-table-centered am-table-hover am-text-nowrap am-scrollable-horizontal">
+                                <thead>
+                                    <tr>
+                                        <th>记录时间</th>
+                                        <th>筒体温度1</th>
+                                        <th>筒体温度2</th>
+                                        <th>筒体温度3</th>
+                                        <th>平均温度</th>
+                                        <th>湿度</th>
+                                        <th>主轴转速</th>
+                                        <th>上料量</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8">暂无数据...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="am-panel-hd" id="table1-hd5" data-am-collapse="{parent: '#accordion', target: '#table5'}">五号设备<i class="am-icon-ellipsis-h am-fr"></i></div>
+                        <div class="am-collapse am-in main-table" id="table5">
+                        <table class="am-table am-table-centered am-table-hover am-text-nowrap am-scrollable-horizontal">
+                            <thead>
+                                <tr>
+                                    <th>记录时间</th>
+                                    <th>筒体温度1</th>
+                                    <th>筒体温度2</th>
+                                    <th>筒体温度3</th>
+                                    <th>平均温度</th>
+                                    <th>湿度</th>
+                                    <th>主轴转速</th>
+                                    <th>上料量</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                
+                                <tr>
+                                    <td colspan="8">暂无数据...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="main-content-footer">
+                <hr>
+                <p class="am-padding-right am-text-right">立式发酵机生产监控系统</p>
+            </footer>
+        </div>
+        <!-- content end -->
+
+    </div>
+    <a href="#" id="goTop" class="am-icon-btn am-icon-arrow-up main-top"></a>
+    <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only main-menu table-menu" data-am-offcanvas="{target: '#main-offcanvas'}"></a>
+
+    <!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="./js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="./js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script src="./js/amazeui.min.js"></script>
+    <script src="./src/echarts/echarts.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+        $(function() {app.table()});
+    </script>
+</body>
+
+</html>

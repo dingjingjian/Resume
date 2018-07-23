@@ -1,0 +1,172 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>立式发酵机生产监控系统</title>
+    <meta name="description" content="立式发酵机生产监控系统">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="./images/icon.ico">
+    <link rel="apple-touch-icon-precomposed" href="./images/icon.ico">
+    <meta name="apple-mobile-web-app-title" content="生产监控系统" />
+    <link rel="stylesheet" href="./css/amazeui.min.css" />
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+    <header class="am-topbar am-topbar-inverse main-header">
+        <div class="am-topbar-brand">
+            <strong>立式发酵机</strong> <small>生产监控系统</small> 
+        </div>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right main-header-list">
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        <span class="am-icon-user"></span> 用户名称 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href="userset.html"><span class="am-icon-cog"></span> 用户设置</a></li>
+                    </ul>
+                </li>
+                <li><a href="javascript:;" class="exit"><span class="am-icon-power-off"></span> 退出系统</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="am-cf main-main">
+        <!-- sidebar start -->
+        <div class="main-sidebar am-offcanvas" id="main-offcanvas">
+            <div class="am-offcanvas-bar main-offcanvas-bar">
+                <ul class="am-list main-sidebar-list">
+                    <li class="active"><a href="index.html"><span class="am-icon-desktop"></span> 系统总览</a></li>
+                    <li class="main-parent">
+                        <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-th-list"></span> 设备监控<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                        <ul class="am-list am-collapse main-sidebar-sub am-in" id="collapse-nav">
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 一号设备监控</a></li>
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 二号设备监控</a></li>
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 三号设备监控</a></li>
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 四号设备监控</a></li>
+                            <li><a href="observe.html"><span class="am-icon-area-chart"></span> 五号设备监控</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="table.html"><span class="am-icon-table"></span> 数据报表</a></li>
+                    <li class="signout-f"><a href="#"><span class="am-icon-sign-out"></span> 退出系统</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- sidebar end -->
+
+        <!-- content start -->
+        <div class="main-content">
+            <div class="main-content-body">
+                <div class="am-cf am-padding am-padding-bottom-0">
+                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">系统总览</strong></div>
+                </div>
+                <hr>
+                <div class="am-g am-padding">
+                    <div class="am-u-sm-12 am-panel am-panel-default am-padding-0">
+                        <div class="am-panel-hd">运行状态</div>
+                        <div class="am-g am-panel-bd am-padding">
+                            <ul class="am-avg-sm-2 am-avg-md-5 am-margin am-text-center main-content-list">
+                                <li><a href="observe.html" class="am-text-success"><span class="am-icon-btn am-icon-circle-o-notch am-icon-spin am-success main-icon-btn"></span><br/>一号设备<br/>运行</a></li>
+                                <li><a href="observe.html" class="am-text-success"><span class="am-icon-btn am-icon-circle-o-notch am-icon-spin am-success main-icon-btn"></span><br/>二号设备<br/>运行</a></li>
+                                <li><a href="observe.html" class="am-text-danger"><span class="am-icon-btn am-icon-remove am-danger main-icon-btn"></span><br/>三号设备<br/>停止</a></li>
+                                <li><a href="observe.html" class="am-text-success"><span class="am-icon-btn am-icon-circle-o-notch am-icon-spin am-success main-icon-btn"></span><br/>四号设备<br/>运行</a></li>
+                                <li><a href="observe.html" class="am-text-danger"><span class="am-icon-btn am-icon-remove am-danger main-icon-btn"></span><br/>五号设备<br/>停止</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-panel am-panel-default am-padding-0 main-panel">
+                        <div class="am-panel-hd">设备总览</div>
+                        <div class="am-panel-bd">
+                            <table class="am-table am-table-centered am-table-hover am-text-nowrap am-scrollable-horizontal">
+                                <thead>
+                                    <tr>
+                                        <th>设备名称</th>
+                                        <th>设备号</th>
+                                        <th>日产量（t）</th>
+                                        <th>总产量（t）</th>
+                                        <th>总运行时长（h）</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>一号设备</td>
+                                        <td>001</td>
+                                        <td>6</td>
+                                        <td>46</td>
+                                        <td>128</td>
+                                    </tr>
+                                    <tr>
+                                        <td>二号设备</td>
+                                        <td>002</td>
+                                        <td>6</td>
+                                        <td>46</td>
+                                        <td>128</td>
+                                    </tr>
+                                    <tr>
+                                        <td>三号设备</td>
+                                        <td>003</td>
+                                        <td>6</td>
+                                        <td>46</td>
+                                        <td>128</td>
+                                    </tr>
+                                    <tr>
+                                        <td>四号设备</td>
+                                        <td>004</td>
+                                        <td>6</td>
+                                        <td>46</td>
+                                        <td>128</td>
+                                    </tr>
+                                    <tr>
+                                        <td>五号设备</td>
+                                        <td>005</td>
+                                        <td>6</td>
+                                        <td>46</td>
+                                        <td>128</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="main-content-footer">
+                <hr>
+                <p class="am-padding-right am-text-right">立式发酵机生产监控系统</p>
+            </footer>
+        </div>
+        <!-- content end -->
+
+    </div>
+
+    <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only main-menu" data-am-offcanvas="{target: '#main-offcanvas'}"></a>
+
+    <!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="./js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="./js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script src="./js/amazeui.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+        $(function() {app.index()});
+    </script>
+</body>
+
+</html>
