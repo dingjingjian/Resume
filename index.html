@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="icon" href="layui/images/icon.ico" title="GitHub">
+  <link rel="icon" href="common/images/icon.ico" title="GitHub">
   <title>丁璟剑的简历</title>
-  <link rel="stylesheet" href="layui/css/layui.css">
-  <link rel="stylesheet" href="layui/css/mycss.css">
+  <link rel="stylesheet" href="common/css/layui.css">
+  <link rel="stylesheet" href="common/css/mycss.css">
 </head>
 <body>
 <!-- 顶部导航 -->
@@ -55,6 +55,9 @@
                 <dd>
                     <a href="demo/meeting/index.html"  target="_blank">会议宣传手册</a>
                 </dd>
+                <dd>
+                    <a href="demo/swiper/index.html"  target="_blank">办事大厅自画像</a>
+                </dd>
             </dl>
         </li>
         <li class="layui-nav-item">
@@ -66,7 +69,7 @@
 <div class="me-wrap"  name="top">
 <!-- 个人资料 -->
     <div class="me-div">
-        <img class="me-img" src="layui/images/me.jpg">
+        <img class="me-img" src="common/images/me.jpg">
             <div class="me-fr me-tr">
                 <h1 class="me-h1">丁璟剑</h1>
                 <p class="me-p">男 | 本科 | 1990年10月生 | 户口：湖北-武汉 | 现居住于湖北 武汉-武昌区</p>
@@ -81,8 +84,9 @@
         <ul class="me-ul">
                 <li>精通HTML5、CSS3、JavaScript等Web前端开发技术，精通Web2.0标准，Ajax、DOM、XML、JSON等相关技术；</li>
                 <li>熟练应用HTML5、CSS3，Jquery并已有两年开发经验；</li>
-                <li>已熟练掌握的开发工具：VS Code，Sublime，HBuilder，Eclipse，Webpack，gulp，Webpack，Photoshop；</li>
-                <li>已熟练掌握的前端框架：VUE，Bootstrap，Amaze UI，MUI，Layui；</li>
+                <li>已熟练掌握的开发工具：VS Code，Sublime，HBuilder，Webpack，gulp，Photoshop，Eclipse，Navicat Premium；</li>
+                <li>已熟练掌握的前端框架：VUE，Bootstrap，Amaze UI，MUI，Layui，Echarts，Swiper；</li>
+                <li>已熟练掌握的微信小程序，微信公众号H5开发；</li>
                 <li>已了解的后台语言及数据库：JAVA，MySQL；</li>
                 <li>保持着对前端技术的学习并关注着前端技术的发展。</li>
         </ul>        
@@ -253,6 +257,21 @@
                 </div>
             </li>
             <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">2018/08：网上讲习所小程序开发</h3>
+                    <p class="me-p">开发工具：微信web开发者工具</p>
+                    <p class="me-p">责任描述：</p>
+                        <ol class="me-ol">
+                            <li>小程序前端代码编写；</li>
+                            <li>小程序百度地图API调用；</li>
+                            <li>小程序web-view组件调用；</li>
+                            <li>前后台数据对接、上线试运行与测试。</li>
+                        </ol>
+                    <p class="me-p">项目描述：网上讲习所小程序功能包含有定位签到，图文信息、视频信息、外部H5页面发布，学习的计时与积分，单位及个人排行榜。</p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
                 <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>
                 <div class="layui-timeline-content layui-text">
                     <h3 class="layui-timeline-title">至今...to be continued</h3>
@@ -278,67 +297,8 @@
     </div>
  </div>
  
-<script src="layui/layui.js"></script>
-<script type="text/javascript" src="layui/jquery.min.js"></script>
-<script>
- 
- //下拉元素
- layui.use('element', function(){
-    var element = layui.element;
-  });
-
-//弹窗
-
-layui.use('layer', function(){ //独立版的layer无需执行这一句
-  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-  
-  $('#about').bind('click', function(){
-    layer.open({
-        type: 1
-        ,title: false //不显示标题栏
-        ,closeBtn: false
-        ,area: '300px;'
-        ,shade: 0.8
-        ,btn: ['知道啦']
-        ,moveType: 1 //拖拽模式，0或者1
-        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><p class="me-h2 me-p">丁璟剑</p><p class="me-p">电话：13545171767</p><p class="me-p">邮箱：dingjingjian@qq.com</p></div>'
-        ,success: function(layero){
-          var btn = layero.find('.layui-layer-btn');
-          btn.css('text-align', 'center');
-          btn.find('.layui-layer-btn0').attr({
-            target: '_blank'
-          });
-        }
-      });
-    });
-  
-});
-
-//固定栏
-layui.use('util', function () {
-    var util = layui.util;
-
-    //执行
-    util.fixbar({
-        bar1: true
-        , click: function (type) {
-            if (type === 'bar1') {
-                var ua = navigator.userAgent;
-                var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
-                    isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
-                    isAndroid = ua.match(/(Android)\s+([\d.]+)/),
-                    isMobile = isIphone || isAndroid;
-                    if(isMobile) {
-                        window.location.href="mqqwpa://im/chat?chat_type=wpa&uin=464759011&version=1&src_type=web&web_src=oicqzone.com"
-                    }else{
-                        window.location.href="tencent://message/?uin=464759011&Site=http://vps.shuidazhe.com&Menu=yes"
-                    }
-            }
-        }
-    });
-});
-
-</script> 
-  
+<script src="common/layui.js"></script>
+<script type="text/javascript" src="common/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/index.js"></script>  
 </body>
 </html>

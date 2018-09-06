@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <title>我的办事大厅</title>
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/common.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide swiper-no-swiping">
+                <div class="container">
+                    <div class="title" data='data-1'></div>
+                    <p>您在办事大厅<br>申请了第一个服务项目</p>
+                    <img class="timeAxis" src="./img/timeAxis.png" />
+                    <p>使用服务<em data='data-2'></em>次<br>共约节省<em data='data-3'></em>分钟办理时间</p>
+                    <span class="btn btn1"></span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <h2>用户排行</h2>
+                    <p>我在学生中排行第<em data='data-4'></em>名</p>
+                    <p>超过全校<em data='data-5'></em>的用户</p>
+                    <div class="people_bar">
+                        <div class="bar">
+                            <div class="progress" style="width:0%"></div><img src="./img/people_bar.png">
+                        </div>
+                    </div>
+                    <h2>服务排行</h2>
+                    <p>我使用最多的服务是<em data='data-6'></em></p>
+                    <div class="pie_1">
+                        <div id="pie_1" class="chart"></div>
+                        <div class="legend"></div>
+                    </div>
+
+                </div>
+                <img class="arrow" src="img/arrow.png" />
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <h2>办事习惯</h2>
+                    <p>我更习惯通过<em data='data-7'></em>访问办事大厅</p>
+                    <div id="pie_2" style="height:12rem;"></div>
+                    <p>我更喜欢在上午<em data='data-8'></em>左右申请服务</p>
+                    <div id="line_1" style="height:14rem"></div>
+                </div>
+                <img class="arrow" src="img/arrow.png" />
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <h2>办事习惯</h2>
+                    <p>我总共给出<em data='data-9'></em>次评价，平均分为<em data='data-10'></em></p>
+                    <div class="starBar"></div>
+                    <p>服务平均用时为<em data='data-11'></em>天,办理最快的是<em data='data-12'></em></p>
+                    <div class="projects"></div>
+                </div>
+                <img class="arrow" src="img/arrow.png" />
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="title">截止今天</div>
+                    <p>办事大厅共提供<em data='data-14'></em>类服务</p>
+                    <p>您已使用<em data='data-15'></em>类服务</p>
+                    <p>有需要时，记得常来看看哦~</p>
+                    <img class="timeAxis" src="./img/timeAxis.png" />
+                    <p>数据来源：网络与计算中心</p>
+                    <div class="btnBar">
+                        <span class="btn btn2"></span><span class="btn btn3"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 微信分享遮罩 -->
+    <div id="shareDiv" class="shareDiv"><img src="./img/guide.png"></div>
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+<script>
+    //模拟数据，可通过ajax请求获取，然后调用渲染方法进行数据渲染
+    var data = {
+        'data-1': '2017年11月15日 18:50',//第一次申请服务时间
+        'data-2': 1000,//第一次申请服务次数
+        'data-3': 451,//节约时间
+        'data-4': 342,//用户排名
+        'data-5': '97.12%',//超过用户百分比
+        'data-6': '办公入网申请', //使用最多的服务
+        'data-pie-1': [//服务排行饼形图（最多5项）
+            { value: 1000, name: '办公室入网申请' },
+            { value: 500, name: '邮件申请' },
+            { value: 350, name: '教育发展基金' },
+            { value: 237, name: '校园网VPN申请' },
+            { value: 100, name: '其他' }
+        ],
+        'data-7': '',//最习惯的访问方式
+        'data-pie-2': [620, 1310],//手机端访问次数&PC端访问次数，注意顺序
+        'data-8': '10:00', //申请服务最多的时间
+        'data-line-1': [0, 0, 0, 0, 0, 0, 0, 1, 3, 6, 19, 12, 6, 5, 3, 2, 0, 4, 0, 1, 0, 0, 0],//办事习惯折线图数据，对应0~23点申请服务次数
+        'data-9': 28,//评价总数
+        'data-10': 4.87,//评价平均分
+        'data-bar-1': ['70.00%', '12.00%', '11.00%', '5.00%', '2.00%'],//分别对应5、4、3、2、1星评价占比
+        'data-11': 3.2,//服务平均用时
+        'data-12': '服务名称服务名称',//办理最快的服务名称
+        'data-13': [//排名前三的服务图片、办理时间、服务名称
+            {
+                'imgsrc': './img/1.jpg',
+                'day': 0.2,
+                'name': '信息化大型项目申购'
+            },
+            {
+                'imgsrc': './img/2.jpg',
+                'day': 1.2,
+                'name': '信息系统接入统一身份证上线申请'
+            },
+            {
+                'imgsrc': './img/3.jpg',
+                'day': 2,
+                'name': '信息化项目申购'
+            }
+        ],
+        'data-14': 144,//办事大厅提供服务总数目
+        'data-15': 35//用户已使用的服务数目
+    }
+    //根据手机端访问次数&PC端访问次数判断最习惯访问方式
+    data['data-7'] = (data['data-pie-2'][0] > data['data-pie-2'][1] ? '手机' : '电脑')
+
+    //调用渲染数据方法
+    $(function () {
+        main(data)
+    　　});
+
+    //朋友圈分享
+    //分享遮罩层
+    $(".btn3").click(function () {
+        $("#shareDiv").show();
+    });
+    //点击隐藏遮罩层
+    $("#shareDiv").click(function () {
+        $(this).hide();
+    });
+
+</script>
+
+</html>

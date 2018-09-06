@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../../common/css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/index.css">	
+    <script src="../../common/jquery.min.js"></script>
+	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/ie8.css"><![endif]-->
+	<title>办事大厅自画像</title>
+</head>
+<body>
+	<div class="mui-board-a">
+		<div class="container">
+			<div class="mui-clearfix page-title">
+				<h3 class="mui-pull-left"><span class="color3">移动端H5&nbsp;</span>办事大厅自画像</h3>
+			</div>
+			<div class="gray-box">
+				<div class="mui-clearfix">
+					<div class="mui-pull-left mui-text-center">
+						<p>扫描二维码或点击二维码下载，可以在您的手机上体验</p>
+						<a href="https://dingjingjian.github.io/Resume/demo/swiper/swiper.html" target="view_window">
+							<img src="./img/code.png">
+						</a>
+						<h2>该项目主要结合了<span class="color3">Swiper&Echarts</span></h2>
+						<ul id="Sh_list" class="mui-list-inline">
+							<li class="active">
+								<h3>Swiper</h3>
+								<p>Swiper是纯javascript打造的滑动特效插件，作为项目主体。</p>
+							</li>
+							<li>
+								<h3>Echarts</h3>
+								<p>ECharts，一个使用 JavaScript 实现的开源可视化库，用于项目的数据可视化表现。</p>
+							</li>
+							<li>
+								<h3>数据与表现层</h3>
+								<p>表现层与数据分离，只需要修改对应数据即可完成表现层的更新。</p>
+							</li>
+						</ul>
+						<script>
+							$('#Sh_list li').hover(function () {
+								$(this).addClass('active').siblings().removeClass('active');
+							});
+						</script>
+					</div>
+					<div class="mui-pull-right">
+						<div class="phone">
+							<iframe src="swiper.html" frameborder="0" scrolling="no"></iframe>
+							<div class="statusbar"></div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+</body>
+</html>
