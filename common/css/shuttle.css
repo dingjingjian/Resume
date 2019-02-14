@@ -22,7 +22,7 @@
 #shuttle:hover .hover{
     display: inline;
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 550px) {
     #shuttle .hover{
         display: block;
     }
