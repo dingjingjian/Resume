@@ -14,8 +14,7 @@
 }
 
 .me-wrap{
-    margin-top: 60px;
-    padding:50px 0;
+    padding: 80px 0 60px;
     background: #e2e2e2;
 }
 
@@ -83,7 +82,9 @@
     .me-mobile-hide{
         display: none!important;
     }
-    .me-wrap{
-        margin-top: 30px;
+}
+@media screen and (max-width: 330px) {
+    .layui-nav{
+        padding: 0 10px;
     }
 }

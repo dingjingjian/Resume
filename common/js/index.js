@@ -42,3 +42,13 @@ layui.use(['element', 'code', 'layer','util'], function () {
         }
     });
 });
+//console 输出
+if (window.console) {
+    var cons = console;
+    if (cons) {
+        cons.log("%c\n       ", "font-size:100px;background:url('https://dingjingjian.github.io/Resume/common/images/me.jpg') no-repeat;background-size:100px;");
+        cons.log('我的名字是 %c丁璟剑', "font-weight:bold;");
+        cons.log("联系电话: %c13545171767", "color:#45B97C;font-weight:bold;");
+        cons.log("电子邮箱: %cdingjingjian@qq.com", "color:#45B97C;font-weight:bold;");
+    }
+}
