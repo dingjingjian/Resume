@@ -21,7 +21,7 @@
 .me-div{
     max-width: 1000px;
     margin:0 auto 20px;
-    padding: 30px;
+    padding: 10px 20px;
     overflow: hidden;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .me-bad{
-    color: #c00000;
+    color: #FFB800;
 }
 
 @media screen and (max-width: 450px) {
