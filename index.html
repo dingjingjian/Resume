@@ -77,7 +77,7 @@
     <!-- 主体内容 -->
     <div class="me-wrap"  name="top">
         <!-- 个人资料 -->
-        <div class="me-div">
+        <div class="me-div layui-card">
             <img class="me-img" src="common/images/me.jpg">
                 <div class="me-fr me-tr">
                     <h1 class="me-h1">丁璟剑</h1>
@@ -86,10 +86,9 @@
                     <p class="me-p">邮箱：dingjingjian@qq.com</p>
                 </div>
         </div>
-        <hr>
         <!-- 掌握技能 -->
-        <div class="me-div">
-            <h2 class="layui-elem-quote me-h2">掌握技能</h2>
+        <div class="me-div layui-card">
+            <h2 class="layui-elem-quote me-h2"><i class="layui-icon layui-icon-star"></i> 掌握技能</h2>
             <ul class="me-ul">
                 <li>精通HTML5、CSS3、JavaScript等Web前端开发技术，精通Web2.0标准，Ajax、DOM、XML、JSON等相关技术</li>                
                 <li>已熟练掌握的前端框架：VUE，Element，Bootstrap，Amaze UI，MUI，Layui，Echarts，Swiper；</li>
@@ -98,22 +97,49 @@
                 <li>保持着对前端技术的学习并关注着前端技术的发展，并已有三年开发经验。</li>
             </ul>        
         </div>
-        <hr>
         <!-- 自我评价 -->
-        <div class="me-div">
-            <h2 class="layui-elem-quote me-h2">自我评价</h2>
+        <div class="me-div layui-card">
+            <h2 class="layui-elem-quote me-h2"><i class="layui-icon layui-icon-face-smile"></i> 自我评价</h2>
             <p class="me-p me-good">
                 + 学习能力强，善于分析总结，遇到问题愿意花时间钻研解决；<br>
-                + 诚恳踏实，细心稳重，乐于助人，责任感强；<br>
+                + 有较丰富的项目经验，十分乐意帮助新人并在此过程中共同成长；<br>
+                + 诚恳踏实，细心稳重，诚信守时，责任感强；<br>
                 + 热爱前端行业，对新鲜事情总是充满好奇心。
             </p>
             <p class="me-p me-bad">- 有时过于专注一件事，导致忽视其他事情，强迫症晚期；</p>
         </div>
-        <hr>
         <!-- 项目经验 -->
-        <div class="me-div">
-            <h2 class="layui-elem-quote me-h2">项目经验</h2>
+        <div class="me-div layui-card">
+            <h2 class="layui-elem-quote me-h2"><i class="layui-icon layui-icon-log"></i> 项目经验</h2>
             <ul class="layui-timeline">
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                        <h3 class="layui-timeline-title">2019/06：华科知识答题系统 <span class="layui-badge layui-bg-blue">技术指导</span></h3>
+                        <p class="me-p">项目简述：知识答题H5，包含有单选、多选和填空三种题型，通过后台可以对题库进行管理。</p>
+                        <p class="me-p">职责描述：</p>
+                        <ol class="me-ol">
+                            <li>带领新人快速熟悉开发环境和开发规范；</li>                            
+                            <li>对技术选型和功能实现逻辑提出参考意见；</li>
+                            <li>解决新人在开发过程中遇到的有关技术问题；</li>
+                            <li>对项目进行审核测试，总结新人在项目中出现的问题并提出相关建议。</li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                        <h3 class="layui-timeline-title">2019/05：华科荣誉登记统计项目 <span class="layui-badge layui-bg-blue">框架重构</span></h3>
+                        <p class="me-p">项目简述：利用web端在线录入获奖荣誉信息，并做数据的处理和统计。</p>
+                        <p class="me-p">职责描述：</p>
+                        <ol class="me-ol">
+                            <li>该项目采用自己开发的框架进行快速开发；</li>                            
+                            <li>对框架前台部分进行重构优化；</li>
+                            <li>利用重构后的框架完成项目开发；</li>
+                            <li>编写新框架的技术说明文档。</li>
+                        </ol>
+                    </div>
+                </li>
                 <li class="layui-timeline-item">
                     <i class="layui-icon layui-timeline-axis"></i>
                     <div class="layui-timeline-content layui-text">
@@ -145,14 +171,15 @@
                 <li class="layui-timeline-item">
                     <i class="layui-icon layui-timeline-axis"></i>
                     <div class="layui-timeline-content layui-text">
-                        <h3 class="layui-timeline-title">2019/02：《记意》小程序开发 <span class="layui-badge layui-bg-blue">小程序·云开发</span></h3>
+                        <h3 class="layui-timeline-title">2019/02：《记意》小程序 <span class="layui-badge layui-bg-blue">小程序·云开发</span></h3>
                         <p class="me-p">项目简述：《记意》是一款记录日常生活的小程序，特点是快捷便利，同时支持对数据的图表展示。</p>
                         <p class="me-p">职责描述：</p>
                         <ol class="me-ol">
                             <li>《记意》小程序需求分析、页面操作逻辑设计</li>
                             <li>小程序前端代码编写；</li>
                             <li>小程序云开发服务器端代码编写；</li>
-                            <li>上线试运行与测试。</li>
+                            <li>上线试运行与测试；</li>
+                            <li>项目后期的运营维护。</li>
                         </ol>
                     </div>
                 </li>
@@ -375,10 +402,9 @@
                 </li>
             </ul>
         </div>
-        <hr>
         <!-- 学习经历 -->
-        <div class="me-div">
-            <h2 class="layui-elem-quote me-h2">学习经历</h2>
+        <div class="me-div layui-card">
+            <h2 class="layui-elem-quote me-h2"><i class="layui-icon layui-icon-read"></i> 学习经历</h2>
             <blockquote class="layui-elem-quote layui-quote-nm">
                 <h3 class="me-h3">2016/02 -- 2017/02 ：慕课网 | web前端工程师</h3>
                 <p class="me-p">HTML和CSS基础、JavaScript语言、jQuery、综合网站实践、优化及调试</p>
@@ -394,11 +420,10 @@
                 <h3 class="me-h3">2006/09 -- 2009/07 ： 湖北省武昌实验中学 | 高中</h3>
             </blockquote>
         </div>
-        <hr>
         <!-- 写在后面话 -->
-        <div class="me-div">
-            <h2 class="layui-elem-quote me-h2">写在后面的话</h2>
-            <a href="javascript:;" id="shuttle" style="color:#45B97C;font-size: 3rem;">Hello World <span class="layui-badge hover">Do not click it !!!</span></a>
+        <div class="me-div layui-card">
+            <h2 class="layui-elem-quote me-h2"><i class="layui-icon layui-icon-release"></i> 写在后面的话</h2>
+            <a href="javascript:;" id="shuttle" style="color:#45B97C;font-size: 2rem;">Hello World <span class="layui-badge hover">Do not click it !!!</span></a>
 <pre class="layui-code">
 <div style="color:#45B97C;font-size: 3rem;">
     Hello World

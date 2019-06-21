@@ -15,17 +15,13 @@
 
 .me-wrap{
     padding: 80px 0 60px;
-    background: #e2e2e2;
+    background: #f2f2f2;
 }
 
 .me-div{
     max-width: 1000px;
-    margin:0 auto;
+    margin:0 auto 20px;
     padding: 30px;
-    background: #fff;
-    -moz-box-shadow: 2px 2px 6px #000;
-    -webkit-box-shadow: 2px 2px 6px #000;
-    box-shadow: 2px 2px 6px #000;
     overflow: hidden;
 }
 
@@ -38,6 +34,7 @@
 
 .me-h2{
     font-weight: bold;
+    font-size: 18px;
 }
 
 .me-h3{
@@ -62,12 +59,7 @@
 }
 
 .me-img{
-    width: 145px;
-    border:solid 2px #fff; 
-    -moz-box-shadow: 0px 0px 6px #000;
-    -webkit-box-shadow: 0px 0px 6px #000;
-    box-shadow: 0px 0px 6px #000;
-
+    width: 150px;
 }
 
 .me-good{
