@@ -70,6 +70,10 @@
     color: #FFB800;
 }
 
+.me-timeline{
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 450px) {
     .me-mobile-hide{
         display: none!important;
