@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta title="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>水质结果输出</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+	<style>
+		/* 超标指示 */
+		.beyond_item>ul>li {
+			cursor: pointer;
+		}
+		.beyond_item>ul>li:hover {
+			color: #38688d;
+		}
+		.overproof0 {
+			background-color: #6FB33C;
+		}
+		.overproof1 {
+			background-color: #E3382F;
+		}
+		.unselected {
+			background-color: #c2c2c2;
+		}
+		.overproofTr,.overproofTr a {
+			color: #E3382F;
+		}
+		.overproof0,.overproof1{
+			top: -2px;
+		}
+		/* 主体部分 */
+		.beyond_box {
+			border: 1px solid #e6e6e6;
+			position: relative;
+			margin-bottom: 15px;
+		}
+		.beyond_form{
+			min-height: 40px;
+			line-height: 40px;
+			margin-bottom: 15px;
+		}
+		.beyond_item{
+			line-height: 40px;
+			text-align: center;
+			font-size: 16px;
+		}
+		.beyond_item>ul li{
+			width: 16%;
+			font-size: 16px;
+			float: left;
+		}
+		.beyond_item>.beyond_item_ul>li{
+			width: 20%;
+			font-size: 16px;
+		}
+		/* 表格剧中大标题 */
+		.beyond_box h3 {
+			font-weight: 700;
+			text-align: center;
+			height: 50px;
+			line-height: 50px;
+			background-color: #f2f2f2;
+		}
+		.beyond_box h3>button {
+			position: absolute;
+			right: 15px;
+			top: 10px;
+			font-weight: normal;
+		}
+		/* 表格样式 */
+		.beyond_box .layui-row{
+			border-top: 1px solid #e6e6e6;
+		}
+		.beyond_box .layui-row .layui-col-md6:first-child .layui-table-view{
+			border-left: none;
+			border-right: 1 solid #e6e6e6;
+		}
+		.beyond_box .layui-row .layui-col-md6:last-child .layui-table-view{
+			border-right: none;
+			border-left: 1 solid #e6e6e6;
+		}
+		.layui-card-body .layui-table-view {
+			margin: 0;
+		}
+		.layui-table-view .layui-table td, .layui-table-view .layui-table th{
+			text-align: center;
+		}
+		.layui-card-body .layui-table-view .layui-table-grid-down{
+			display: none!important;
+		}
+		.table_box .tips{
+			text-align: center;
+			font-size: 16px;
+			padding: 20px;
+			color: #999;
+		}
+		/* 超标样式 */
+		.overproofTr,.overproofTr a {
+			color: #E3382F;
+		}
+		/* 科学计数法样式 */
+		.nume>span{
+			position: relative;
+			top: -6px;
+			font-size: 12px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">数字河流分析查询</a>
+				<a href="#">成果输出</a>
+				<a><cite>水质结果输出</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>水质结果输出</h1>
+			</div>
+			<div class="layui-card-body">
+				<!-- 选项卡  通过'layui-this'属性设置当前选中项 'layui-show'设置相对应的展开项-->
+				<div class="layui-tab layui-tab-card" lay-filter="tab">
+					<ul class="layui-tab-title">
+						<li class="layui-this">地表水水质</li>
+						<li>水源地水质</li>
+					</ul>
+					<div class="layui-tab-content">
+						<div class="layui-tab-item layui-show">
+							<div class="layui-card">
+								<div class="layui-card-body">
+									<div class="layui-row">
+										<form class="layui-form beyond_form">
+											<div class="layui-form-item">
+												<div class="layui-inline">
+													<div class="layui-input-inline">
+														<select name="surfaceRiver" lay-verify="required"
+															lay-search="">
+															<option value="">请选择断面名称</option>
+															<option value="1">扎子沟</option>
+															<option value="2">黄羊水库</option>
+															<option value="3">红崖山水库</option>
+															<option value="4">西营水库</option>
+															<option value="5">南营水库</option>
+														</select>
+													</div>
+												</div>
+												<div class="layui-inline">
+													<div class="layui-input-inline">
+														<select name="level" lay-verify="required"
+															lay-search="">
+															<option value="">请选择水质指标</option>
+															<option value="1">I类</option>
+															<option value="2">II类</option>
+															<option value="3">III类</option>
+															<option value="4">IV类</option>
+															<option value="5">V类</option>
+														</select>
+													</div>
+												</div>
+												<div class="layui-inline">
+													<div class="layui-input-inline">
+														<input type="text" class="layui-input"
+															id="surfaceSelectDate" name="surfaceSelectDate" lay-verify="required" autocomplete="off"
+															placeholder="请选择日期">
+													</div>
+												</div>
+												<div class="layui-inline" style="margin-right: 0;">
+													<button class="layui-btn" style="width:90px" lay-submit
+														lay-filter="surfaceSubmit">查询</button>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="beyond_box">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="layui-card">
+								<div class="layui-card-body">
+									<div class="layui-row">
+										<form class="layui-form beyond_form">
+											<div class="layui-form-item">
+												<div class="layui-inline">
+													<div class="layui-input-inline">
+														<select name="sourceName" lay-verify="required"
+															lay-search="">
+															<option value="">请选择水源地</option>
+															<option value="1">扎子沟</option>
+															<option value="2">黄羊水库</option>
+															<option value="3">红崖山水库</option>
+															<option value="4">西营水库</option>
+															<option value="5">南营水库</option>
+														</select>
+													</div>
+												</div>
+												<div class="layui-inline">
+													<div class="layui-input-inline">
+														<select name="level" lay-verify="required"
+															lay-search="">
+															<option value="">请选择水质指标</option>
+															<option value="1">I类</option>
+															<option value="2">II类</option>
+															<option value="3">III类</option>
+															<option value="4">IV类</option>
+															<option value="5">V类</option>
+														</select>
+													</div>
+												</div>
+												<div class="layui-inline">
+													<div class="layui-input-inline">
+														<input type="text" class="layui-input"
+															id="sourceSelectDate" name="sourceSelectDate" lay-verify="required" autocomplete="off"
+															placeholder="请选择日期">
+													</div>
+												</div>
+												<div class="layui-inline" style="margin-right: 0;">
+													<button class="layui-btn" style="width:90px" lay-submit
+														lay-filter="sourceSubmit">查询</button>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="beyond_box">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+	<!--   水质结果输出.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table', 'laydate'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件,时间控件
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table,
+				laydate = layui.laydate;
+			element.render();
+			form.render();
+
+			//地表水-自定义格式日期格式
+			laydate.render({
+				elem: '#surfaceSelectDate',
+				format: 'yyyy年MM月dd日'
+			});
+			//水源地-自定义格式日期格式
+			laydate.render({
+				elem: '#sourceSelectDate',
+				format: 'yyyy年MM月dd日'
+			});
+			//筛选框交互
+			$('.beyond_box').on('click','.overproof',function(){
+				if($(this).find('.layui-badge-dot').hasClass('unselected')){
+					$(this).find('.layui-badge-dot').removeClass('unselected');
+				}else{
+					$(this).find('.layui-badge-dot').addClass('unselected');
+				}
+				//判断筛选框，并更新表格数据
+				if($(this).closest('.layui-tab-item').index()==0){
+					surfaceList(surfaceData)
+				}else{
+					sourceList(sourceData);
+				}
+			});
+			$('.beyond_box').on('click','.all2',function(){
+				$('.beyond_item').find('.layui-badge-dot').removeClass('unselected');
+				//判断筛选框，并更新表格数据
+				if($(this).closest('.layui-tab-item').index()==0){
+					surfaceList(surfaceData)
+				}else{
+					sourceList(sourceData);
+				}
+			});
+			//表格载入方法
+			var surfaceData=[]
+			function surfaceList(surfaceData){
+				//数据为空时的处理
+				if(surfaceData==''){
+					$('.layui-tab-item').eq(0).find('.beyond_box .table_box').html('<div class="tips">暂无数据</div>');
+				}else{
+					//数据处理
+					var leftData=[]
+					var rightData=[]
+					for(var i=0;i<surfaceData.length;i++){
+					if(i<15){
+							leftData.push(surfaceData[i]);
+							leftData[i].num=(i+1);
+						}else{
+							rightData.push(surfaceData[i]);
+							rightData[i-15].num=(i+1);
+						}
+					}
+					//表头配置
+					var cols = [[
+						{ field: 'num', title: '序号', width: 80 }
+						, { field: 'item', title: '监测项目', templet: function(d){
+								return '<a title="'+d.item+'" href="javascript:;">'+d.item+'</a>'
+							}
+						}
+						, { field: 'unit', title: '单位', width: 100}
+						, { field: 'standardValue', title: '标准值', templet: function(d){
+								//转化为科学计数法 需要后台将需要转为为科学计数法的 数据，转化为 1e+2、2e-2这样的形式
+								if(d.standardValue.split('e+').length==2){
+									return '<span class="nume">'+d.standardValue.split('e+')[0]+'x10<span>'+d.standardValue.split('e+')[1]+'</span>'+'</span>'
+								}else if(d.standardValue.split('e-').length==2){
+									return '<span class="nume">'+d.standardValue.split('e-')[0]+'x10<span>-'+d.standardValue.split('e-')[1]+'</span>'+'</span>'
+								}else{
+									return d.standardValue
+								}
+							}
+						}
+						, { field: 'testValue', title: '监测结果', templet: function(d){	
+								// 需要后台根据不同项目的 标准值，判断水质等级 使用overproof字段，0为未超标，1为超标
+
+								// 是否超标的显示隐藏由前端控制
+								if($('.layui-tab-item').eq(0).find('.beyond_item').find('.overproof'+d.overproof).hasClass('unselected')){
+									var levelSpan = 'unselectedSpan';
+								}else if((d.overproof==1)){
+									var levelSpan = 'overproofSpan';
+								}
+								//转化为科学计数法 需要后台将需要转为为科学计数法的 数据，转化为 1e+2、2e-2这样的形式
+								
+								if(d.testValue.split('e+').length==2){
+									return '<span class="'+levelSpan+' nume" value="'+d.level+'">'+d.testValue.split('e+')[0]+'x10<span>'+d.testValue.split('e+')[1]+'</span>'+'</span>'
+								}else if(d.testValue.split('e-').length==2){
+									return '<span class="'+levelSpan+' nume" value="'+d.level+'">'+d.testValue.split('e-')[0]+'x10<span>-'+d.testValue.split('e-')[1]+'</span>'+'</span>'
+								}else{
+									return '<span class="'+levelSpan+'" value="'+d.level+'">'+d.testValue+'</span>'
+								}
+							}
+						}
+						, { field: 'rate', title: '超标倍数', width: 80, templet: function(d){
+								if(d.rate!=0){
+									return d.rate
+								}else{
+									return '-'
+								}
+							}
+						}
+					]]
+					var surfaceTableLeft = table.render({
+						elem: '#surfaceTableLeft' //指向存放分页的容器
+						, cols:  cols //表头
+						, limit: 1000 //每页默认显示的数量
+						, data: leftData
+						, done: function(){
+							$('[lay-id="surfaceTableLeft"] .overproofSpan').each(function(index,item){
+								$(item).closest('tr').addClass('overproofTr');
+							});
+							$('[lay-id="surfaceTableLeft"] .unselectedSpan').each(function(index,item){
+								$(item).closest('tr').hide();
+							});
+						}
+					});
+					var surfaceTableRight = table.render({
+						elem: '#surfaceTableRight' //指向存放分页的容器
+						, cols:  cols //表头
+						, limit: 1000 //每页默认显示的数量
+						, data: rightData
+						, done: function(){
+							$('[lay-id="surfaceTableRight"] .overproofSpan').each(function(index,item){
+								$(item).closest('tr').addClass('overproofTr');
+							});
+							$('[lay-id="surfaceTableRight"] .unselectedSpan').each(function(index,item){
+								$(item).closest('tr').hide();
+							});
+						}
+					});
+				}
+			}
+
+			// 地表水-筛选框
+			form.on('submit(surfaceSubmit)', function (data) {
+				//获取ajax参数
+				console.log(data.field);
+				//通过ajax获取 地表水水质检测结果数据
+				surfaceData = [
+					{ item:'水温',name:'WT',unit:'℃',testValue:'30',standardValue:'27',rate:0,overproof:0 },
+					{ item:'PH',name:'PH',unit:'-',testValue:'7',standardValue:'6.8',rate:0,overproof:0 },
+					{ item:'溶解氧',name:'DO',unit:'毫克/升',testValue:'1000',standardValue:'1000',rate:1,overproof:1 },
+					{ item:'高锰酸盐指数',name:'CODMN',unit:'毫克/升',testValue:'1.2e-3',standardValue:'1.2e-3',rate:0,overproof:0 },
+					{ item:'化学需氧量',name:'COD',unit:'毫克/升',testValue:'5e+3',standardValue:'5e+3',rate:1,overproof:1 },
+					{ item:'生化需氧量',name:'BOD',unit:'毫克/升',testValue:'6.8e-3',standardValue:'6.8e-3',rate:1,overproof:1 },
+					{ item:'氨氮',name:'NH3N',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'总磷',name:'TP',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:1,overproof:1 },
+					{ item:'总氮',name:'TN',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:1,overproof:1 },
+					{ item:'铜',name:'CU',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'锌',name:'ZN',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'氟化物',name:'F',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'硒',name:'SE',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'砷',name:'ARS',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'汞',name:'HG',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'镉',name:'CD',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'六价铬',name:'CR6',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'铅',name:'PB',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'氰化物',name:'CN',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'挥发酚',name:'VLPH',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'石油类',name:'OIL',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:1,overproof:1 },
+					{ item:'阴离子表面活性剂',name:'LAS',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'硫化物',name:'S2',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:1,overproof:1 },
+					{ item:'粪大肠杆菌',name:'FCG',unit:'个/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'透明度',name:'CLARITY',unit:'厘米',testValue:'1e+10',standardValue:'1e+10',rate:1,overproof:1 },
+					{ item:'叶绿素a',name:'CHLA',unit:'毫克/升',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'电导率',name:'COND',unit:'西门子/米',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'水位',name:'WL',unit:'米',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 },
+					{ item:'流量',name:'FLOW',unit:'万立方米',testValue:'1e+10',standardValue:'1e+10',rate:0,overproof:0 }
+				]
+				//渲染表格头部
+				$('.layui-tab-item').eq(0).find('.beyond_box').html(
+					'<h3>地表水水质检测结果表</h3>'+
+					'<div class="layui-row beyond_item">'+
+						//这里写的测试数据，实际项目可改为后台返回的断面名称数据
+						'<div class="layui-col-md4">断面名称：'+$('[name="surfaceRiver"]').find('[value="'+data.field.surfaceRiver+'"]').text()+'</div>'+
+						'<div class="layui-col-md4">检测单位：武威市环境保护监测站</div>'+
+						'<div class="layui-col-md4">采样时间：'+data.field.surfaceSelectDate+'</div>'+
+					'</div>'+
+					//统计筛选框
+					'<div class="layui-row beyond_item">'+
+						//这里写的测试数据，实际项目可改为后台返回的统计数据
+						'<ul class="layui-col-xs12">'+
+							'<li class="all2"><span class="layui-icon layui-icon-app"></span><span style="font-weight: bold;"> 全选</span></li>'+
+							'<li class="overproof"><span class="layui-badge-dot overproof0"></span><span> 未超标  ('+21+'项)</span></li>'+
+							'<li class="overproof"><span class="layui-badge-dot overproof1"></span><span> 超标  ('+8+'项)</span></li>'+
+						'</ul>'+
+					'</div>'+
+					//统计筛选框 END
+					'<div class="layui-row table_box">'+
+						'<div class="layui-col-md6">'+
+							'<table id="surfaceTableLeft" lay-filter="surfaceTableLeft"></table>'+
+						'</div>'+
+						'<div class="layui-col-md6">'+
+							'<table id="surfaceTableRight" lay-filter="surfaceTableRight"></table>'+
+						'</div>'+
+					'</div>'
+				)
+				//渲染表格
+				surfaceList(surfaceData);
+				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			});
+
+			var sourceData=[]
+			function sourceList(sourceData){
+				//数据为空时的处理
+				if(sourceData==''){
+					$('.layui-tab-item').eq(1).find('.beyond_box .table_box').html('<div class="tips">暂无数据</div>');
+				}else{
+					//数据处理
+					var leftData=[]
+					var rightData=[]
+					for(var i=0;i<sourceData.length;i++){
+					if(i<31){
+							leftData.push(sourceData[i]);
+							leftData[i].num=(i+1);
+						}else{
+							rightData.push(sourceData[i]);
+							rightData[i-31].num=(i+1);
+						}
+					}
+					//表头配置
+					var cols = [[
+						{ field: 'num', title: '序号', width: 80 }
+						, { field: 'item', title: '监测项目', templet: function(d){
+								return '<a title="'+d.item+'" href="javascript:;">'+d.item+'</a>'
+							}
+						}
+						, { field: 'unit', title: '单位', width: 100}
+						, { field: 'standardValue', title: '标准值', templet: function(d){
+								//转化为科学计数法 需要后台将需要转为为科学计数法的 数据，转化为 1e+2、2.33e-2这样的形式
+								if(d.standardValue.split('e+').length==2){
+									return '<span class="nume">'+d.standardValue.split('e+')[0]+'x10<span>'+d.standardValue.split('e+')[1]+'</span>'+'</span>'
+								}else if(d.standardValue.split('e-').length==2){
+									return '<span class="nume">'+d.standardValue.split('e-')[0]+'x10<span>-'+d.standardValue.split('e-')[1]+'</span>'+'</span>'
+								}else{
+									return d.standardValue
+								}
+							}
+						}
+						, { field: 'testValue', title: '监测结果', templet: function(d){		
+								// 需要后台根据不同项目的 标准值，判断水质等级 使用overproof字段，0为未超标，1为超标
+
+								// 是否超标的显示隐藏由前端控制
+								if($('.layui-tab-item').eq(1).find('.beyond_item').find('.overproof'+d.overproof).hasClass('unselected')){
+									var levelSpan = 'unselectedSpan';
+								}else if((d.overproof==1)){
+									var levelSpan = 'overproofSpan';
+								}
+								//转化为科学计数法 需要后台将需要转为为科学计数法的 数据，转化为 1e+2、2e-2这样的形式
+								
+								if(d.testValue.split('e+').length==2){
+									return '<span class="'+levelSpan+' nume" value="'+d.level+'">'+d.testValue.split('e+')[0]+'x10<span>'+d.testValue.split('e+')[1]+'</span>'+'</span>'
+								}else if(d.testValue.split('e-').length==2){
+									return '<span class="'+levelSpan+' nume" value="'+d.level+'">'+d.testValue.split('e-')[0]+'x10<span>-'+d.testValue.split('e-')[1]+'</span>'+'</span>'
+								}else{
+									return '<span class="'+levelSpan+'" value="'+d.level+'">'+d.testValue+'</span>'
+								}
+							}
+						}
+						, { field: 'rate', title: '超标倍数', width: 80, templet: function(d){
+								if(d.rate!=0){
+									return d.rate
+								}else{
+									return '-'
+								}
+							}
+						}
+					]]
+					var sourceTableLeft = table.render({
+						elem: '#sourceTableLeft' //指向存放分页的容器
+						, cols:  cols //表头
+						, limit: 1000 //每页默认显示的数量
+						, data: leftData
+						, done: function(){
+							$('[lay-id="sourceTableLeft"] .overproofSpan').each(function(index,item){
+								$(item).closest('tr').addClass('overproofTr');
+							});
+							$('[lay-id="sourceTableLeft"] .unselectedSpan').each(function(index,item){
+								$(item).closest('tr').hide();
+							});
+						}
+					});
+					var sourceTableRight = table.render({
+						elem: '#sourceTableRight' //指向存放分页的容器
+						, cols:  cols //表头
+						, limit: 1000 //每页默认显示的数量
+						, data: rightData
+						, done: function(){
+							$('[lay-id="sourceTableRight"] .overproofSpan').each(function(index,item){
+								$(item).closest('tr').addClass('overproofTr');
+							});
+							$('[lay-id="sourceTableRight"] .unselectedSpan').each(function(index,item){
+								$(item).closest('tr').hide();
+							});
+						}
+					});
+				}
+			}
+			// 水源地-筛选框
+			form.on('submit(sourceSubmit)', function (data) {
+				//获取ajax参数
+				console.log(data.field);
+				//通过ajax获取 地表水水质检测结果数据
+				sourceData = [
+					{ item:'水温',name:'WT',unit:'℃',testValue:'30',standardValue:'27',rate:0,overproof:0 },
+					{ item:'水温',name:'WT',unit:'℃',testValue:'30',standardValue:'27',rate:0,overproof:0 },
+					{ item:'PH',name:'PH',unit:'-',testValue:'6.8',standardValue:'7',rate:0,overproof:0 },
+					{ item:'溶解氧',name:'DO',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'高锰酸盐指数',name:'CODMN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'五日生化需氧量',name:'BOD5',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'氨氮',name:'NH3N',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'总磷',name:'TP',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'总氮',name:'TN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'铜',name:'CU',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'锌',name:'ZN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'氟化物',name:'F',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'硒',name:'SE',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'砷',name:'ARS',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'汞',name:'HG',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'镉',name:'CD',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'六价铬',name:'CR6',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'铅',name:'PB',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'氰化物',name:'CN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'挥发酚',name:'VLPH',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'石油类',name:'OIL',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'阴离子表面活性剂',name:'LAS',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'硫化物',name:'S2',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'粪大肠杆菌',name:'FCG',unit:'个/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'硫酸盐',name:'SO4',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'氯化物',name:'CL',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'硝酸盐',name:'NO3',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'铁',name:'FE',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'锰',name:'MN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'三氯甲烷',name:'SLJW',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'四氯化碳',name:'SILHT',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'三氯乙烯',name:'SLYX',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'四氯乙烯',name:'SILYX',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'苯乙烯',name:'BENYX',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'甲醛',name:'JQUAN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'苯',name:'BEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'甲苯',name:'JBEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'乙苯',name:'YBEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'二甲苯',name:'ERJBEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'异丙苯',name:'YIBBEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'氯苯',name:'LBEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'1,2-二氯苯',name:'ERLB12',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'1,4-二氯苯',name:'ERLB14',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'三氯苯',name:'SLBEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'硝基苯',name:'XJBEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'二硝基苯',name:'ERXJBEN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'硝基氯苯',name:'XJLB',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'邻苯二甲酸二（2-乙基己基）脂',name:'LBEJSEDZH',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'邻苯二甲酸二丁酯',name:'LBEJSE2YYZ',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'滴滴涕',name:'DDT',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'林丹',name:'LINDAN',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'阿特拉津',name:'ATLJ',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'苯并[a]芘',name:'BBAB',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'钼',name:'MO',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'钴',name:'CO',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'铍',name:'BE',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:1,overproof:1 },
+					{ item:'硼',name:'B',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'锑',name:'SB',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'镍',name:'NI',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'钡',name:'BA',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'钒',name:'V',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 },
+					{ item:'铊',name:'TL',unit:'毫克/升',testValue:'1.0e3',standardValue:'1.0e3',rate:0,overproof:0 }
+				]
+				//渲染表格头部
+				$('.layui-tab-item').eq(1).find('.beyond_box').html(
+					'<h3>水源地水质检测结果表</h3>'+
+					'<div class="layui-row beyond_item">'+
+						//这里写的测试数据，实际项目可改为后台返回的断面名称数据
+					'<ul class="beyond_item_ul">'+
+						'<li>水源地名称：'+$('[name="sourceName"]').find('[value="'+data.field.sourceName+'"]').text()+'</li>'+
+						'<li>水源类型：地表饮用水</li>'+
+						'<li>所在地：武威西营镇</li>'+
+						'<li>采样时间：'+data.field.sourceSelectDate+'</li>'+
+						'<li>水质等级：二类水</li>'+
+					'</ul>'+
+					'</div>'+
+					//统计筛选框
+					'<div class="layui-row beyond_item">'+
+						//这里写的测试数据，实际项目可改为后台返回的统计数据
+						'<ul class="layui-col-xs12">'+
+							'<li class="all2"><span class="layui-icon layui-icon-app"></span><span style="font-weight: bold;"> 全选</span></li>'+
+							'<li class="overproof"><span class="layui-badge-dot overproof0"></span><span> 未超标  ('+51+'项)</span></li>'+
+							'<li class="overproof"><span class="layui-badge-dot overproof1"></span><span> 超标  ('+10+'项)</span></li>'+
+						'</ul>'+
+					'</div>'+
+					//统计筛选框 END
+					'<div class="layui-row table_box">'+
+						'<div class="layui-col-md6">'+
+							'<table id="sourceTableLeft" lay-filter="sourceTableLeft"></table>'+
+						'</div>'+
+						'<div class="layui-col-md6">'+
+							'<table id="sourceTableRight" lay-filter="sourceTableRight"></table>'+
+						'</div>'+
+					'</div>'
+				)
+				//渲染表格
+				sourceList(sourceData);
+				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			});
+		});
+	</script>
+</body>
+
+</html>

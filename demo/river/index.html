@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>数字河流信息系统</title>
+
+    <!-- 引入样式表 -->
+    <!-- layui.css为layui框架样式 -->
+    <link rel="stylesheet" href="./assets/layui/css/layui.css">
+    <!-- theme.css为主题颜色样式 -->
+    <link rel="stylesheet" href="./static/css/theme.css">
+    <!-- common.css为公共样式 -->
+    <link rel="stylesheet" href="./static/css/common.css">
+    <!-- iconfont.css为图标文件 -->
+    <link rel="stylesheet" href="./static/css/iconfont.css">
+    
+</head>
+
+<body>
+    <div class="layui-layout-admin">
+        <!-- 头部与侧边导航 -->
+        <div class="layui-header index-header">
+            <!-- logo和标题 实际项目需要替换为对应的静态图片资源 -->
+            <h1 class="title"><img class="logo" src="./static/images/logo.png">数字河流信息系统</h1>
+            <ul class="layui-nav">
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-username"></i> 用户名</a>
+                    <dl class="layui-nav-child">
+                        <!-- 退出系统 事件绑定统一使用了自定义"bind-event"属性 -->
+                        <dd lay-unselect><a href="javascript:;" bind-event="headExit">退出系统</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <!-- 左侧导航区域-->
+        <div class="layui-side index-side">
+            <div class="layui-side-scroll">
+                <!-- lay-shrink="all" 是否开启手风琴模式，去除可以关闭 -->
+                <ul class="layui-nav layui-nav-tree"  lay-shrink="all">
+                    <li class="menu-shrink">
+                        <a href="javascript:;"><i class="layui-icon layui-icon-shrink-right"></i></a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="my-icon nav-icon icon-xinxicaiji"></i> 河流信息采集处理</a>
+                        <dl class="layui-nav-child">
+                            <dd class="layui-nav-item">
+                                <a href="javascript:;">数据采集与入库</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="地表水水质采集.html" target="mainFrame">地表水水质采集</a></dd>
+                                    <dd><a href="水源地水质采集.html" target="mainFrame">水源地水质采集</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><a href="数据处理与分析.html" target="mainFrame">数据处理与分析</a></dd>
+                            <dd><a href="帮助功能.html" target="mainFrame">帮助功能</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="my-icon nav-icon icon-fangdajing"></i > 数字河流分析查询</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="信息查询.html" target="mainFrame">信息查询</a></dd>
+                            <dd><a href="水质分析.html" target="mainFrame">水质分析</a></dd>
+                            <dd class="layui-nav-item">
+                                <a href="javascript:;">成果输出</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="社会经济类数据输出.html" target="mainFrame">社会经济类数据输出</a></dd>
+                                    <dd>
+                                        <a href="水质结果输出.html" target="mainFrame">水质结果输出</a>
+                                        <!-- <dl class="layui-nav-child">
+                                            <dd><a href="水源地水质.html" target="mainFrame">水源地水质</a></dd>
+                                            <dd><a href="地表水水质.html" target="mainFrame">地表水水质</a></dd>
+                                        </dl> -->
+                                    </dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="my-icon nav-icon icon-globe_blue"></i> 河长制信息管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="信息查询.html" target="mainFrame">信息查询</a></dd>
+                            <dd class="layui-nav-item">
+                                <a href="javascript:;">河流管理</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="组织架构.html" target="mainFrame">组织架构</a></dd>
+                                    <dd><a href="河流管理规章法规.html" target="mainFrame">河流管理规章法规</a></dd>
+                                </dl>
+                            </dd>
+                            <dd class="layui-nav-item">
+                                <a href="javascript:;">“一河一策”</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="一河一策报告.html" target="mainFrame">“一河一策”报告</a></dd>
+                                    <dd><a href="任务清单.html" target="mainFrame">任务清单</a></dd>
+                                    <dd><a href="水质评价.html" target="mainFrame">水质评价</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><a href="巡河辅助管理.html" target="mainFrame">巡河辅助管理</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="my-icon nav-icon icon-diquhuafen"></i> 水域岸线确权划界辅助设计</a>
+                        <dl class="layui-nav-child">
+                            <dd class="layui-nav-item">
+                                <a href="javascript:;">河流数字高程模型</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="流域水系.html" target="mainFrame">流域水系</a></dd>
+                                    <dd><a href="三维地形.html" target="mainFrame">三维地形</a></dd>
+                                    <dd><a href="流域坡度.html" target="mainFrame">流域坡度</a></dd>
+                                    <dd><a href="等高线.html" target="mainFrame">等高线</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><a href="河流水域岸线确权划界.html" target="mainFrame">河流水域岸线确权划界</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="my-icon nav-icon icon-gonggao"></i> 数字河流信息发布</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="信息展示.html" target="mainFrame">信息展示</a></dd>
+                            <dd><a href="信息类别管理.html" target="mainFrame">信息类别管理</a></dd>
+                            <dd class="layui-nav-item">
+                                <a href="javascript:;">信息管理</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="信息添加.html" target="mainFrame">信息添加</a></dd>
+                                    <dd><a href="信息列表.html" target="mainFrame">信息列表</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><a href="信息评论管理.html" target="mainFrame">信息评论管理</a></dd>
+                            <dd><a href="友情链接管理.html" target="mainFrame">友情链接管理</a></dd>
+                        </dl>
+                    </li>
+                    <!-- 实际项目中 li标签上添加"layui-nav-itemed"类名 控制菜单的展开 -->
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;"><i class="my-icon nav-icon icon-banshou"></i> 维护与管理</a>
+                        <dl class="layui-nav-child">
+                            <!-- 实际项目时a标签的href替换为实际项目地址即可 需要选中某项菜单只需要在对应的 dd标签上添加"layui-this"类名 -->
+                            <dd class="layui-this"><a href="用户管理.html" target="mainFrame">用户管理</a></dd>
+                            <dd><a href="日志管理.html" target="mainFrame">日志管理</a></dd>
+                            <dd><a href="数据备份与恢复.html" target="mainFrame">数据备份与恢复</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 主体内容 -->
+        <div class="layui-main index-main">
+            <!-- iframe中的src属性可以填写初始页面地址 -->
+            <iframe id="mainFrame" name="mainFrame" src="用户管理.html" scrolling="yes" frameborder="no" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    <!-- JS引入 -->
+    <!-- layui.js为框架必需js -->
+    <script src="./assets/layui/layui.js"></script>
+    <!-- jquery.min.js layui依赖JQ -->
+    <script src="./assets/jquery.min.js"></script>
+    <!-- common.js 公共js -->
+    <script src="./static/js/common.js"></script>
+
+    <!-- //实际项目时，可将以下代码存入页面对应js文件 -->
+    <script>
+        // layui 基本组件
+        layui.use(['element', 'layer'], function () {
+            //按需载入layui组件
+            var element = layui.element
+            ,layer = layui.layer;
+            //退出系统
+            $('[bind-event="headExit"]').click(function(event) {
+                layer.confirm('您确认要退出系统吗？', {title:'退出系统'}, function(index){
+                    layer.close(index);
+                    layer.load(2, { shade: [0.001, '#fff'] });
+                    // window.location.href = "logout";
+                    window.location.href = "login.html";
+                });
+            });
+        });
+        //侧边栏动画
+        $('.index-side').on('click','.layui-nav-item>a',function(){
+            var _this = this
+            $(_this).parent()[0].tagName=='LI'?height=45:height=40;
+            if($(_this).parent().hasClass('layui-nav-itemed')){
+                $(_this).parent().css('height',height+'px');
+                $(_this).parent().css('height',(height+$(_this).next().height())+'px');
+                setTimeout(function() {
+                    $(_this).parent().removeAttr('style');
+                },400);
+            }
+        })
+        //侧边栏缩放
+        $('.index-side').on('click','.menu-shrink',function(){
+            if($(this).find('.layui-icon').hasClass('layui-icon-shrink-right')){
+                $('body').addClass('shrink');
+                $(this).find('.layui-icon').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left');
+            }else{
+                $('body').removeClass('shrink');
+                $(this).find('.layui-icon').addClass('layui-icon-shrink-right').removeClass('layui-icon-spread-left');
+            }
+        });
+    </script>
+
+</body>
+</html>

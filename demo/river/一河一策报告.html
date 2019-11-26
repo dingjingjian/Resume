@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>一河一策报告</title>
+<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+	<style>
+		/* 封面报告容器 */
+		.report-box{
+			text-align: center;
+    		margin: 20px 0;
+		}
+		/* 点击报告封面图片 */
+		.title_cover {
+			width: 160px;
+			height: 240px;
+			border: 1px solid #ccc;
+			text-align: center;
+			line-height: 160px;
+			writing-mode: vertical-lr;
+			overflow: hidden;
+			margin: 0 auto 15px;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			border-radius: 2px;
+			position: relative;
+		}
+		.title_cover a{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 160px;
+			height: 240px;
+			background-color: rgba(0, 0, 0, .3);
+			color: #ffffff;
+		}
+		.title_cover a:hover{
+			color: #ccc;
+		}
+		/* 上传按钮 */
+		.upload-btn{
+			background-color: #38688d;
+			display: inline-block;
+			height: 38px;
+			padding: 0 5px;
+			color: #fff;
+			white-space: nowrap;
+			text-align: center;
+			font-size: 14px;
+			border: none;
+			border-radius: 2px;
+		}
+		.upload-btn.layui-nav .layui-nav-item{
+			line-height: 38px;
+		}
+		.upload-btn.layui-nav .layui-nav-more{
+			display: none;
+		}
+		.upload-btn.layui-nav .layui-nav-child{
+			left: -20px;
+    		top: 45px;
+		}
+		.upload-btn.layui-nav .layui-icon-upload{
+			color: #ffffff;
+		}
+	</style>
+</head>
+<body>
+<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">河长制信息管理</a>
+				<a href="#">“一河一策”</a>
+				<a><cite>“一河一策”报告</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>“一河一策”报告</h1>
+			</div>
+			<div class="layui-card-body">
+				<div class="layui-row">
+					<div class="layui-col-xs12 layui-col-sm3 layui-col-md3">
+						<div class="report-box">
+							<div class="upload-file">
+								<!-- background-image背景图地址 -->
+								<div id="title1" class="title_cover" style="background:url(static/images/river1.png);">
+									<!-- href="报告地址" -->
+									<a href="${pageContext.request.contextPath}/rivermanagement/download?id=0">
+										红水河一河一策报告
+									</a>
+								</div>
+							</div>
+							<!-- href="任务清单文件地址" -->
+							<a class="layui-btn" href="${pageContext.request.contextPath}/rivermanagement/download?id=1">任务清单</a>
+							<ul class="layui-nav upload-btn" lay-filter="">
+								<li class="layui-nav-item">
+									<a href="javascript:;"><i class="layui-icon layui-icon-upload"></i></a>
+									<dl class="layui-nav-child">
+										<!-- data-id 上传参数设置 -->
+										<dd lay-unselect><a href="javascript:;" id="upfile0">上传报告</a></dd>
+										<dd lay-unselect><a href="javascript:;" id="upfile1">上传清单</a></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="layui-col-xs12 layui-col-sm3 layui-col-md3">
+						<div class="report-box">
+							<div class="upload-file">
+								<div id="title2" class="title_cover" style="background-image:url(static/images/river2.png)">
+									<a href="${pageContext.request.contextPath}/rivermanagement/download?id=2">
+										黄羊河一河一策报告
+									</a>
+								</div>
+							</div>
+							<!-- href="任务清单文件地址" -->
+							<a class="layui-btn" href="${pageContext.request.contextPath}/rivermanagement/download?id=3">任务清单</a>
+							<ul class="layui-nav upload-btn" lay-filter="">
+								<li class="layui-nav-item">
+									<a href="javascript:;"><i class="layui-icon layui-icon-upload"></i></a>
+									<dl class="layui-nav-child">
+										<dd lay-unselect><a href="javascript:;" id="upfile2">上传报告</a></dd>
+										<dd lay-unselect><a href="javascript:;" id="upfile3">上传清单</a></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="layui-col-xs12 layui-col-sm3 layui-col-md3">
+						<div class="report-box">
+							<div class="upload-file">
+								<div id="title3" class="title_cover" style="background-image:url(static/images/river3.png)">
+									<a href="${pageContext.request.contextPath}/rivermanagement/download?id=4">
+										金塔河一河一策报告
+									</a>
+								</div>
+							</div>
+							<!-- href="任务清单文件地址" -->
+							<a class="layui-btn" href="${pageContext.request.contextPath}/rivermanagement/download?id=5">任务清单</a>
+							<ul class="layui-nav upload-btn" lay-filter="">
+								<li class="layui-nav-item">
+									<a href="javascript:;"><i class="layui-icon layui-icon-upload"></i></a>
+									<dl class="layui-nav-child">
+										<dd lay-unselect><a href="javascript:;" id="upfile4">上传报告</a></dd>
+										<dd lay-unselect><a href="javascript:;" id="upfile5">上传清单</a></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="layui-col-xs12 layui-col-sm3 layui-col-md3">
+						<div class="report-box">
+							<div class="upload-file">
+								<div id="title4" class="title_cover" style="background-image:url(static/images/river4.png)">
+									<a href="${pageContext.request.contextPath}/rivermanagement/download?id=6">
+										马蹄河一河一策报告
+									</a>
+								</div>
+							</div>
+							<!-- href="任务清单文件地址" -->
+							<a class="layui-btn" href="${pageContext.request.contextPath}/rivermanagement/download?id=7">任务清单</a>
+							<ul class="layui-nav upload-btn" lay-filter="">
+								<li class="layui-nav-item">
+									<a href="javascript:;"><i class="layui-icon layui-icon-upload"></i></a>
+									<dl class="layui-nav-child">
+										<dd lay-unselect><a href="javascript:;" id="upfile6">上传报告</a></dd>
+										<dd lay-unselect><a href="javascript:;" id="upfile7">上传清单</a></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="layui-col-xs12 layui-col-sm3 layui-col-md3">
+						<div class="report-box">
+							<div class="upload-file">
+								<div id="title5" class="title_cover" style="background-image:url(static/images/river5.png)">
+									<a href="${pageContext.request.contextPath}/rivermanagement/download?id=8">
+										沙沟河一河一策报告
+									</a>
+								</div>
+							</div>
+							<!-- href="任务清单文件地址" -->
+							<a class="layui-btn" href="${pageContext.request.contextPath}/rivermanagement/download?id=9">任务清单</a>
+							<ul class="layui-nav upload-btn" lay-filter="">
+								<li class="layui-nav-item">
+									<a href="javascript:;"><i class="layui-icon layui-icon-upload"></i></a>
+									<dl class="layui-nav-child">
+										<dd lay-unselect><a href="javascript:;" id="upfile8">上传报告</a></dd>
+										<dd lay-unselect><a href="javascript:;" id="upfile9">上传清单</a></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="layui-col-xs12 layui-col-sm3 layui-col-md3">
+						<div class="report-box">
+							<div class="upload-file">
+								<div id="title6" class="title_cover" style="background-image:url(static/images/river6.png)">
+									<a href="${pageContext.request.contextPath}/rivermanagement/download?id=10">
+										西营河一河一策报告
+									</a>
+								</div>
+							</div>
+							<!-- href="任务清单文件地址" -->
+							<a class="layui-btn" href="${pageContext.request.contextPath}/rivermanagement/download?id=11">任务清单</a>
+							<ul class="layui-nav upload-btn" lay-filter="">
+								<li class="layui-nav-item">
+									<a href="javascript:;"><i class="layui-icon layui-icon-upload"></i></a>
+									<dl class="layui-nav-child">
+										<dd lay-unselect><a href="javascript:;" id="upfile10">上传报告</a></dd>
+										<dd lay-unselect><a href="javascript:;" id="upfile11">上传清单</a></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="layui-col-xs12 layui-col-sm3 layui-col-md3">
+						<div class="report-box">
+							<div class="upload-file">
+								<div id="title7" class="title_cover" style="background-image:url(static/images/river7.png)">
+									<a href="${pageContext.request.contextPath}/rivermanagement/download?id=12">
+										小沙河一河一策报告
+									</a>
+								</div>
+							</div>
+							<!-- href="任务清单文件地址" -->
+							<a class="layui-btn" href="${pageContext.request.contextPath}/rivermanagement/download?id=13">任务清单</a>
+							<ul class="layui-nav upload-btn" lay-filter="">
+								<li class="layui-nav-item">
+									<a href="javascript:;"><i class="layui-icon layui-icon-upload"></i></a>
+									<dl class="layui-nav-child">
+										<dd lay-unselect><a href="javascript:;" id="upfile12">上传报告</a></dd>
+										<dd lay-unselect><a href="javascript:;" id="upfile13">上传清单</a></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="layui-col-xs12 layui-col-sm3 layui-col-md3">
+						<div class="report-box">
+							<div class="upload-file">
+								<div id="title8" class="title_cover" style="background-image:url(static/images/river8.png)">
+									<a href="${pageContext.request.contextPath}/rivermanagement/download?id=14">
+										杂木河一河一策报告
+									</a>
+								</div>
+							</div>
+							<!-- href="任务清单文件地址" -->
+							<a class="layui-btn" href="${pageContext.request.contextPath}/rivermanagement/download?id=15">任务清单</a>
+							<ul class="layui-nav upload-btn" lay-filter="">
+								<li class="layui-nav-item">
+									<a href="javascript:;"><i class="layui-icon layui-icon-upload"></i></a>
+									<dl class="layui-nav-child">
+										<dd lay-unselect><a href="javascript:;" id="upfile14">上传报告</a></dd>
+										<dd lay-unselect><a href="javascript:;" id="upfile15">上传清单</a></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+	<!--   河流管理规章法规.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'upload'], function () {
+			//引入框架所需组件 基础组件、文件上传
+			var element = layui.element,
+				upload = layui.upload;
+			element.render();
+
+			// 文件上传
+			upload.render({
+				elem: '#upfile0', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:0}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				before: function (obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function (index, file, result) {
+						//$('#title1').text(file.name);
+					});
+					//$("#upfile1").prev().find('a').attr('href', 'D://Documents//eclipse-workspace//文件系统//红水河一河一策报告.docx'); // 下载测试，真实项目-删除
+					//$("#upfile1").prev().find('a').attr('download',"/红水河一河一策报告.docx");
+				},
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+					//$("#upfile1").prev().find('a').attr('href', 'F://项目测试.doc'); // 上传文件成功，添加相对应的下载地址
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile1', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:1}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile2', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:2}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile3', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:3}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile4', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:4}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile5', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:5}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile6', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:6}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile7', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:7}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile8', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:8}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile9', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:9}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile10', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:10}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile11', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:11}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile12', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:12}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile13', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:13}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile14', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:14}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+			// 文件上传
+			upload.render({
+				elem: '#upfile15', // 绑定元素
+				url: '${pageContext.request.contextPath}/rivermanagement/upload', // 上传接口
+				method: 'post', //可选项。HTTP类型，默认post
+				data: {id:15}, //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+				exts: 'pdf|doc|docx', // 限定上传文件类型
+				done: function (res) {
+					//上传完毕回调
+					layer.msg('文件上传成功！')
+				},
+				error: function () {
+					//请求异常回调
+					layer.msg('文件上传失败，请联系系统管理员')
+				}
+			});
+		});
+	</script>
+</body>
+</html>

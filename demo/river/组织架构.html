@@ -1,0 +1,360 @@
+<!-- 四、“一河一策”数字河流子系统--组织架构 -->
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>“一河一策”数字河流子系统--组织架构</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">河长制信息管理</a>
+				<a href="#">合理管理</a>
+				<a><cite>组织架构</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>组织架构</h1>
+			</div>
+			<div class="layui-card-body">
+				<table id="organizationChartTable" lay-filter="table">
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 组织架构.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table;
+			element.render();
+			form.render();
+
+			// 模拟数据 真实项目时删除
+			var organizationChartJson = [{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				},
+				{
+					"name": "姓名1",
+					"duty": "职务1",
+					"mobile": "17355668899",
+				}
+			]
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [
+				[{
+					type: 'checkbox',
+					fixed: 'left'
+				}, {
+					field: 'name',
+					title: '姓名',
+					minWidth: 80
+				}, {
+					field: 'duty',
+					title: '职务',
+					minWidth: 80
+				}, {
+					field: 'mobile',
+					title: '电话',
+					minWidth: 80
+				}, {
+					title: '操作',
+					width: 180,
+					fixed: 'right',
+					templet: function (d) {
+						return '<a class="layui-btn layui-btn-xs" lay-event="edit" href="javascript:;"><i class="layui-icon">&#xe642;</i>编辑</a><a class="layui-btn layui-btn-xs layui-btn-danger" style="background:#FF5722;" lay-event="del" href="javascript:;"><i class="layui-icon">&#xe640;</i>删除</a>'
+					}
+				}]
+			]
+			// 列表配置
+			window.tableList = table.render({
+				elem: '#organizationChartTable' //指向存放分页的容器
+				,cols: cols //表头
+				,page: true //是否显示分页
+				,toolbar: '<div><button type="button" class="layui-btn layui-btn-sm" lay-event="adds">新增用户</button><button type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="dels">批量删除</button></div>',
+				limit: 10 //每页默认显示的数量
+				,limits: [10, 20, 50, 100] //每页条数的选择项
+				,defaultToolbar: [] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+				,data: organizationChartJson //直接赋值数据 实际项目请删除
+				// AJAX请求下的配置分页
+				/* ,url:'' //列表数据接口地址
+				,method:'POST'//请求方式
+				,request: {
+				pageName: 'pageNo' //页码的参数名称，默认：page
+				,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				}
+				,parseData: function(res){ //res 即为原始返回的数据
+				return {
+				"code": res.code, //解析接口状态
+				"msg": res.msg, //解析提示文本
+				"count": res.data.count, //解析数据长度
+				"data": res.data.list //解析数据列表
+				};
+				} */
+			});
+
+			//监听头工具栏事件
+			// obj 对象，包含event元素 和 table 配置
+			table.on('toolbar(table)', function (obj) {
+				var checkStatus = table.checkStatus(obj.config.id);
+				var arr = []
+				$.each(checkStatus.data, function (index, value) {
+					arr.push(value.id)
+				})
+				switch (obj.event) {
+					case 'adds': // 新增用户
+						addOrUpdate(null, 'add');
+						break;
+					case 'dels': // 批量删除
+						if (arr.length === 0) {
+							layer.msg('请先勾选数据'); //提示框
+						} else {
+							layer.confirm('确认要删除这些数据吗？', {
+								title: '提示'
+							}, function (index) {
+								$.ajax({
+									url:""+arr.join('-'),//批量删除接口地址 id直接用-分隔，arr为勾选id的数组合集
+									type:"DELETE",
+									success:function(result){            
+										layer.msg('批量删除成功', { time: 1000 }); //提示框
+										tableList.reload(); // 表格重载
+									},
+									error: function (xhr) {
+										layer.close(llo);
+										layer.msg('系统错误，请联系管理员');
+									}
+								});
+								layer.close(index);
+							});
+						}
+						break;
+				};
+			});
+			//监听行工具事件
+			table.on('tool(table)', function (obj) {
+				//obj.data 可获取当前行的数据
+				var data = obj.data;
+				if (obj.event === 'edit') { // 修改当前行数据
+					addOrUpdate(data, 'update')
+				} else if (obj.event === 'del') { // 删除单条行数据
+					layer.confirm('确认要删除该条数据吗？', {
+						title: '提示'
+					}, function (index) {
+						$.ajax({
+							url:""+data.id,//删除接口地址
+							type:"DELETE",
+							success:function(result){            
+								layer.msg('删除成功', { time: 1000 }); //提示框
+								tableList.reload(); // 表格重载
+							},
+							error: function (xhr) {
+								layer.close(llo);
+								layer.msg('系统错误，请联系管理员');
+							}
+						});
+						layer.close(index);
+					});
+				}
+			});
+			//添加与修改
+			function addOrUpdate(data, addOrUpdate) {
+				var title = '新增';
+				var formId = '';
+				if (addOrUpdate == 'update') {
+					title = '修改';
+					if (data) formId = data.id;
+				}
+				layer.open({
+					type: 1,//弹窗类型
+					resize: false,//弹窗是否允许拉伸
+					title: title + '用户',//标题设置
+					area: ['480px'],//弹窗大小设置
+					content: '<form class="layui-form" style="padding:20px;" lay-filter="layer">'
+						+'<div class="layui-form-item">'
+						+'<label class="layui-form-label">姓名</label>'
+						+'<div class="layui-input-block">'
+						+'<input type="text" id="name" name="name" placeholder="请输入姓名" autocomplete="off" class="layui-input" required lay-verify="required">'
+						+'</div>'
+						+'</div>'
+						+'<div class="layui-form-item">'
+						+'<label class="layui-form-label">职务</label>'
+						+'<div class="layui-input-block">'
+						+'<input type="text" id="duty" name="duty" placeholder="请输入职务" autocomplete="off" class="layui-input" required lay-verify = "required" > '
+						+'</div>'
+						+'</div>'
+						+'<div class="layui-form-item">'
+						+'<label class="layui-form-label">电话</label>'
+						+'<div class="layui-input-block">'
+						+'<input type="text" id="mobile" name="mobile" placeholder="请输入电话" autocomplete="off" class="layui-input" required lay-verify="required">'
+						+'</div>'
+						+'</div>'
+						+'<div class="layui-form-item">'
+						+'<div class="layui-input-block">'
+						+'<button class="layui-btn" lay-submit lay-filter="submit">提交</button>'
+						+'<button type="button" class="layui-btn layui-btn-primary colse-btn">关闭</button>'
+						+'</div>'
+						+'</div>'
+						+'</form>',
+					success: function (layero, index) {
+						//关闭弹窗
+						$('.colse-btn').click(function () {
+							layer.close(index);
+						})
+						//弹窗如果为新增
+						if (addOrUpdate == 'update') {
+							$('#id').val(data.id);
+							$('#name').val(data.name);
+							$('#duty').val(data.duty);
+							$('#mobile').val(data.mobile);
+							form.val("layer", { //layer 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+								// "ID": data.id, // "name": "value"
+								"name": data.name
+								,"duty": data.duty
+								,"mobile": data.mobile
+							});
+						} 
+						form.render(null, 'layer');
+						//表单提交回调
+						form.on('submit(submit)', function (data) {
+							//提交地址 通过判断设置不同的提交地址
+							if (addOrUpdate == 'add') {
+								//新增提交地址
+								var ajaxUrl = ""
+							}else{
+								//编辑提交地址 formId 为该条数觉得id
+								var ajaxUrl = "" + formId
+							}
+							var llo = layer.load(2, {
+								shade: [0.001, '#fff']
+							});
+							$.ajax({
+								url: ajaxUrl,
+								cache: false,
+								type: "POST",
+								dataType: "json",
+								data: data.field,
+								success: function (data) {
+									layer.close(llo);
+									layer.msg('操作成功', {
+										time: 1000
+									});
+									tableList.reload(); //更新表格
+									layer.close(index);
+								},
+								error: function (xhr) {
+									layer.close(llo);
+									layer.msg('系统错误，请联系管理员');
+								}
+							});
+							return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+						});
+					}
+				});
+			}
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,237 @@
+/* 公共样式 */
+html,body{
+  height: 100%;
+  background-color: #f5f7f7;
+  overflow-x: hidden;
+  position: relative;
+}
+.layui-btn, .layui-input, .layui-select, .layui-textarea, .layui-upload-button{
+  transition: none;
+}
+/* 顶部导航 */
+.index-header .title{
+  display: inline;
+  line-height: 60px;
+  color: #fff;
+  font-size: 22px;
+  margin-left: 20px;
+}
+.index-header .layui-nav{
+  float: right;
+}
+.index-header .layui-nav .layui-nav-item a
+,.index-header .layui-nav .layui-nav-item a{
+  transition: none;
+}
+/* logo样式 */
+.index-header .logo{
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+/* 侧边导航样式 */
+.layui-layout-admin .index-side {
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+  margin: 10px 20px;
+  width: 250px;
+}
+.layui-layout-admin .index-side .layui-side-scroll{
+  width: 270px;
+}
+.layui-layout-admin .index-side .layui-nav-tree{
+  width: 250px;
+}
+.layui-layout-admin .index-side .layui-nav .layui-nav-item>a{
+  font-size: 15px;
+}
+.layui-layout-admin .index-side .layui-nav>.layui-nav-item>a{
+  font-weight: bold;
+}
+.layui-layout-admin .index-side .layui-nav-itemed > .layui-nav-child a{
+  padding-left: 40px;
+}
+.layui-layout-admin .index-side .layui-nav-child .layui-nav-child a {
+  padding-left: 60px;
+}
+.layui-layout-admin .index-side .layui-nav-child .layui-nav-child .layui-nav-child a {
+  padding-left: 80px;
+}
+.layui-layout-admin .index-side .layui-nav-bar{
+  display: none;
+}
+.layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item:hover:after{
+  content: "";
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  width: 5px;
+  height: 45px;
+}
+.layui-layout-admin .index-side .layui-nav-item{
+  overflow: hidden;
+  transition: all 0.4s;
+}
+/* 侧边栏收缩 */
+.menu-shrink{
+  display: block;
+  width: 100%;
+  line-height: 45px;
+  background-color: #2691cd !important;
+}
+.menu-shrink a{
+  padding: 0 20px;
+  display: block;
+  color: #fff;
+}
+.menu-shrink .layui-icon{
+  font-size: 18px;
+}
+
+.shrink .layui-layout-admin .layui-main.index-main{
+  left: 78px;
+  transition: all 0.4s;
+}
+.shrink .menu-shrink{
+  width: 58px;
+  transition: all 0.4s;
+}
+.shrink .layui-layout-admin .index-side .layui-side-scroll{
+  width: 58px;
+  overflow: hidden;
+}
+.shrink .layui-layout-admin .index-side:hover .layui-side-scroll{
+  overflow: visible;
+}
+.shrink .layui-layout-admin .index-side{
+  width: 58px;
+  overflow: hidden;
+  z-index: 9999;
+  transition: all 0.4s;
+}
+.shrink .layui-layout-admin .index-side:hover{
+  overflow: visible;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-tree{
+  width: 58px;
+  padding-right: 1px;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item{
+  width: 58px;
+  overflow: hidden;
+}
+.shrink .layui-layout-admin .index-side:hover .layui-side-scroll{
+  overflow: visible;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item>a{
+  font-size: 0;
+  text-overflow:clip;
+  transition: none;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item>a>.layui-nav-more{
+  display: none;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item:hover{
+  width: 269px;
+  z-index: 1000;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+}
+.shrink .layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item:hover>a{
+  font-size: 15px;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item:hover>a>.layui-nav-more{
+  display: block;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-item > .layui-nav-child{
+  height: 0;
+  width: 240px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item:hover .layui-nav-child{
+  height: auto;
+}
+.shrink .layui-layout-admin .index-side .my-icon{
+  font-size: 20px;
+  margin-right: 10px;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-itemed > .layui-nav-child a{
+  padding-left: 60px;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-child .layui-nav-child a{
+  padding-left: 80px;
+}
+.shrink .layui-layout-admin .index-side .layui-nav-item>.layui-nav-child>.layui-nav-item{
+  transition: none;
+}
+/* 主体内容部分 */
+.layui-layout-admin .layui-main.index-main{
+  position: fixed;
+  left: 270px;
+  right: 0;
+  top: 70px;
+  bottom: 40px;
+  z-index: 999;
+  overflow: hidden;
+  margin: 0;
+}
+/* 底部版权信息 */
+.layui-layout-admin .layui-footer.index-footer{
+  text-align: center;
+  left: 270px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #f5f7f7;
+}
+/* 面包屑导航 */
+.main-breadcrumb{
+  padding: 20px 12px;
+}
+.main-breadcrumb .layui-breadcrumb a,
+.main-breadcrumb .layui-breadcrumb a cite{
+  color: #333!important;
+  font-weight: normal;
+}
+/* card头部样式 */
+.layui-card-header{
+  height: 58px;
+  line-height: 58px;
+}
+.layui-card-header h1{
+  font-size: 18px;
+  font-weight: bold;
+  border-left: 5px solid #2691cd;
+  padding-left: 12px;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  top: 20px;
+}
+/* 表格样式 */
+.layui-table th span{
+  font-weight: bold;
+  font-size: 16px;
+}
+.layui-table-page{
+  text-align: right;
+}
+/* 弹窗样式 */
+.layui-layer-page .layui-layer-content{
+  overflow: visible!important;
+}
+/* 表单验证 */
+.form-tips{
+  margin-left: 110px;
+  line-height: 30px;
+  padding-left: 10px;
+  color: #999;
+}
+.form-tips.warnning{
+  color: #C71D23;
+}
+.input-green{
+  border-color: #5FB878;
+}
+/* textarea样式 */
+.layui-form textarea{
+  resize:none;
+}

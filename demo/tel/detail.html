@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>华中大各部门电话汇总</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!--标准mui.css-->
+	<link rel="stylesheet" href="./css/mui.min.css">
+
+	<link rel="stylesheet" href="./css/main.css">
+
+</head>
+
+<body>
+	<div class="mui-content mui-scroll-wrapper">
+		<div class="mui-scroll">
+			<div class="title">
+			</div>
+			<ul id="detail" class="mui-table-view">
+
+			</ul>
+		</div>
+	</div>
+	<!-- 底栏 -->
+	<div class="foot"><span class="footer_icon"></span> 智慧华中大</div>
+</body>
+<script src="./js/mui.min.js"></script>
+<script>
+	var detailData = JSON.parse(sessionStorage.getItem("detail"));
+	var phoneList = '';
+	if (detailData.data.length > 0) {
+		mui.each(detailData.data, function (index, item) {
+			phoneList += '<li class="mui-table-view-cell mui-media">' +
+			'<a href="tel:' + item.phoneNum + '">' +
+			'<img style="margin-left: 26px;" class="mui-media-object mui-pull-right" src="./images/phone.png">' +
+			'<div class="mui-media-body">' + item.department +
+			'<p class="mui-ellipsis">' + item.phoneNum + '</p>' +
+			'</div>' +
+			'</a>' +
+			'</li>'
+		});
+	} else {
+		phoneList += '<li class="mui-table-view-cell mui-media">暂无数据</li>'
+	}
+	mui("#detail")[0].innerHTML=phoneList;
+	mui(".title")[0].innerHTML=detailData.name;
+	mui(".mui-content")[0].setAttribute('style', 'display: block;');
+	mui(".mui-scroll-wrapper").scroll({
+		bounce: false,//滚动条是否有弹力默认是true
+		indicators: false, //是否显示滚动条,默认是true
+	});
+	mui.init();
+</script>
+
+</html>

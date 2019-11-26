@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>分页模块文档 - layui.laypage</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+	<!-- new.css为信息展示样式 -->
+	<link rel="stylesheet" href="./static/css/new.css">
+	<link rel="stylesheet" href="./static/css/newDetail.css">
+</head>
+
+<body style="overflow-x: auto;">
+		<div class="layui-fluid" style="min-width: 1120px;">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">数字河流信息发布</a>
+				<a><cite>信息类别管理</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>信息类别管理</h1>
+			</div>
+			<div class="layui-card-body" style="overflow: hidden;">
+				<ul class="protogenesis-nav">
+					<li><a href="javascript:;">首页</a></li>
+					<li><a href="javascript:;">政策法规</a></li>
+					<li class="this"><a href="javascript:;">问题清单</a></li>
+					<li><a href="javascript:;">目标清单</a></li>
+					<li><a href="javascript:;">措施清单</a></li>
+					<li><a href="javascript:;">负面清单</a></li>
+					<li><a href="javascript:;">责任清单</a></li>
+				</ul>
+				<!-- 主体部分 -->
+				<div class="box">
+					<div class="box-left" style="width:60%;float: left; padding: 10px; margin-top: 10px;">
+						当前位置：
+						<span class="layui-breadcrumb" lay-separator=">">
+							<a href="#">首页</a>
+							<a href="#">问题清单</a>
+							<a><cite>分页模块文档 - layui.laypage</cite></a>
+						</span>
+						<hr />
+						<div class="article">
+							<h1>分页模块文档 - layui.laypage</h1>
+							<div class="article-msg">
+								<strong>发布时间：<span>2019-03-12</span></strong>
+								<strong>作者：<span>闲心</span></strong>
+								<strong>新闻类别：<span>问题清单</span></strong>
+								<strong>阅读次数：<span>926</span></strong>
+							</div>
+							<hr />
+							<p class="article-text">layui（谐音：类UI) 是一款采用自身模块规范编写的前端 UI 框架，遵循原生 HTML/CSS/JS
+								的书写与组织形式，门槛极低，拿来即用。其外在极简，却又不失饱满的内在，体积轻盈，组件丰盈，从核心代码到 API
+								的每一处细节都经过精心雕琢，非常适合界面的快速开发。layui 首个版本发布于 2016 年金秋，她区别于那些基于 MVVM 底层的 UI
+								框架，却并非逆道而行，而是信奉返璞归真之道。准确地说，她更多是为服务端程序员量身定做，你无需涉足各种前端工具的复杂配置，只需面对浏览器本身，让一切你所需要的元素与交互，从这里信手拈来。
+								layui（谐音：类UI) 是一款采用自身模块规范编写的前端 UI 框架，遵循原生 HTML/CSS/JS
+								的书写与组织形式，门槛极低，拿来即用。其外在极简，却又不失饱满的内在，体积轻盈，组件丰盈，从核心代码到 API
+								的每一处细节都经过精心雕琢，非常适合界面的快速开发。layui 首个版本发布于 2016 年金秋，她区别于那些基于 MVVM 底层的 UI
+								框架，却并非逆道而行，而是信奉返璞归真之道。准确地说，她更多是为服务端程序员量身定做，你无需涉足各种前端工具的复杂配置，只需面对浏览器本身，让一切你所需要的元素与交互，从这里信手拈来。
+								layui（谐音：类UI) 是一款采用自身模块规范编写的前端 UI 框架，遵循原生 HTML/CSS/JS
+								的书写与组织形式，门槛极低，拿来即用。其外在极简，却又不失饱满的内在，体积轻盈，组件丰盈，从核心代码到 API
+								的每一处细节都经过精心雕琢，非常适合界面的快速开发。layui 首个版本发布于 2016 年金秋，她区别于那些基于 MVVM 底层的 UI
+								框架，却并非逆道而行，而是信奉返璞归真之道。准确地说，她更多是为服务端程序员量身定做，你无需涉足各种前端工具的复杂配置，只需面对浏览器本身，让一切你所需要的元素与交互，从这里信手拈来。
+								layui（谐音：类UI) 是一款采用自身模块规范编写的前端 UI 框架，遵循原生 HTML/CSS/JS
+								的书写与组织形式，门槛极低，拿来即用。其外在极简，却又不失饱满的内在，体积轻盈，组件丰盈，从核心代码到 API
+								的每一处细节都经过精心雕琢，非常适合界面的快速开发。layui 首个版本发布于 2016 年金秋，她区别于那些基于 MVVM 底层的 UI
+								框架，却并非逆道而行，而是信奉返璞归真之道。准确地说，她更多是为服务端程序员量身定做，你无需涉足各种前端工具的复杂配置，只需面对浏览器本身，让一切你所需要的元素与交互，从这里信手拈来。
+								layui（谐音：类UI) 是一款采用自身模块规范编写的前端 UI 框架，遵循原生 HTML/CSS/JS
+								的书写与组织形式，门槛极低，拿来即用。其外在极简，却又不失饱满的内在，体积轻盈，组件丰盈，从核心代码到 API
+								的每一处细节都经过精心雕琢，非常适合界面的快速开发。layui 首个版本发布于 2016 年金秋，她区别于那些基于 MVVM 底层的 UI
+								框架，却并非逆道而行，而是信奉返璞归真之道。准确地说，她更多是为服务端程序员量身定做，你无需涉足各种前端工具的复杂配置，只需面对浏览器本身，让一切你所需要的元素与交互，从这里信手拈来。
+							</p>
+							<hr />
+							<p class="article-page">
+								<strong class="top-page" style="float: left;">
+									<a href="">
+										<span>&lt; 上一篇：</span>
+										<span>XXXXXX</span>
+									</a>
+								</strong>
+								<strong class="bottom-page" style="float: right;">
+									<a href="">
+										<span>下一篇 &gt;：</span>
+										<span>已是最新内容</span>
+									</a>
+								</strong>
+							</p>
+							<div class="" style="margin-top:10px;">
+								<form class="layui-form" action="">
+									<div class="layui-form-item layui-form-text">
+										<h3 class="">用户评论：</h3>
+										<div class="layui-input-block" style="margin-left: 0;">
+											<textarea placeholder="请输入内容" name="textarea" class="layui-textarea"></textarea>
+										</div>
+									</div>
+								</form>
+								<div class="layui-form-item">
+									<button class="layui-btn" lay-submit="" lay-filter="filterSubmit">发表评论</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class=" box-right" style="width: 28%; float: left; padding: 10px; margin-left: 4%;">
+						<div class="news">
+							<div class="module">
+								<span class="box-title">最近新闻</span>
+								<span class="box-msg"><a href="信息发布列表页.html">查看更多></a></span>
+							</div>
+							<ul class="module-ul">
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="hot-news" style="margin-top: 20px;">
+							<div class="module">
+								<span class="box-title">热门新闻</span>
+								<span class="box-msg"><a href="信息发布列表页.html">查看更多></a></span>
+							</div>
+							<ul class="module-ul">
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+								<li>
+									<a href=""
+										title="徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持">
+										<p>
+											<span class="layui-badge-dot"></span>
+											徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持,徽章主要是修饰作用，因此必不可少要与几乎所有的元素搭配。我们目前对以下元素内置了徽章的排版支持
+										</p>
+										<span>2019-09-30</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 维护管理子系统.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table', 'laypage', 'layer'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table,
+				laypage = layui.laypage,
+				layer = layui.layer;
+			element.render();
+			form.render();
+
+
+			//监听提交
+			form.on('submit(filterSubmit)', function (data) {
+				layer.alert(JSON.stringify(data.field), {
+					title: '最终的提交信息'
+				})
+				return false;
+			});
+
+		});
+	</script>
+</body>
+
+</html>

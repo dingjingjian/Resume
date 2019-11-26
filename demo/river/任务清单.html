@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta title="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>任务清单</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+	<style>
+		.layer-table{
+			padding: 20px;
+		}
+		.layer-table tbody tr td:first-child{
+			background-color: #eee;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">河长制信息管理</a>
+				<a href="#">“一河一策”</a>
+				<a><cite>任务清单</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>任务清单</h1>
+			</div>
+			<div class="layui-card-body">
+				<form class="layui-form" lay-filter="form">
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<!-- lay-filter 事件过滤器 lay-search开启搜索 -->
+							<select name="river" lay-filter="river" lay-search="">
+								<option value="1">河流1</option>
+								<option value="2">河流2</option>
+								<option value="3">河流3</option>
+								<option value="4">河流4</option>
+								<option value="5">河流5</option>
+								<option value="6">河流6</option>
+								<option value="7">河流7</option>
+								<option value="8">河流8</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<select name="inventory" lay-filter="inventory" lay-search="">
+								<option value="1">河段1</option>
+								<option value="2">河段2</option>
+								<option value="3">河段3</option>
+								<option value="4">河段4</option>
+								<option value="5">河段5</option>
+								<option value="6">河段6</option>
+								<option value="7">河段7</option>
+								<option value="7">河段8</option>
+							</select>
+						</div>
+					</div>
+				</form>
+				<table id="taskListTable" lay-filter="table">
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+	<!--   河流管理规章法规.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table', 'upload', 'layedit', 'laydate'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件、文件上传
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table,
+				upload = layui.upload,
+				layedit = layui.layedit,
+				laydate = layui.laydate;
+
+			element.render();
+			form.render();
+			//选择框值变化监控
+			//如果选择框 通过后期ajax获取选项值，需要使用form.render('select');方法更新下拉选择框组件
+
+			form.on('select(river)', function (data) {
+				console.log(data.elem); //得到select原始DOM对象
+				console.log(data.value); //得到被选中的值
+				console.log(data.othis); //得到美化后的DOM对象
+				//通过接口获取河流对应的河道信息，拼接字符串后，重新渲染河段下拉框，同时执行载入表格方法
+				$('[name="inventory"]').html('<option value="1">新河段1</option><option value="1">新河段1</option><option value="1">新河段1</option>');
+				form.render('select', 'form');
+				//通过监听选择框变化，调用表格重载接口，可以更新表格数据
+				updateTable()
+			});
+			form.on('select(inventory)', function (data) {
+				console.log(data.elem); //得到select原始DOM对象
+				console.log(data.value); //得到被选中的值
+				console.log(data.othis); //得到美化后的DOM对象
+				//通过监听选择框变化，调用表格重载接口，可以更新表格数据
+				updateTable()
+			});
+
+			// 模拟数据 真实项目时删除
+			var testData = [{
+					"title": "关于2019年国庆节放假安排通知",
+					"date": "2019-09-16",
+				},
+				{
+					"title": "关于举行2019年华中科技大学运动会的通知",
+					"date": "2019-09-23",
+				},
+				{
+					"title": "校领导接待日工作预告（128）",
+					"date": "2019-09-23",
+				},
+				{
+					"title": "华中科技大学秋季作息时间表",
+					"date": "2019-09-16",
+				},
+				{
+					"title": "校领导接待日工作预告（127）",
+					"date": "2019-09-16",
+				}
+			]
+
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [
+				[{
+					type: 'checkbox',
+					fixed: 'left'
+				}, {
+					field: 'title',
+					title: '标题',
+					minWidth: 80,
+					templet: function (d) {
+						return '<a lay-event="view"" href="javascript:;">'+d.title+'</a>'
+					}
+				}, {
+					field: 'date',
+					title: '日期',
+					width: 120
+				}, {
+					title: '操作',
+					width: 180,
+					fixed: 'right',
+					templet: function (d) {
+						return '<a class="layui-btn layui-btn-xs" lay-event="download" href="javascript:;"><i class="layui-icon layui-icon-table"></i>下载</a><a class="layui-btn layui-btn-xs layui-btn-danger" style="background:#FF5722;" lay-event="del" href="javascript:;"><i class="layui-icon">&#xe640;</i>删除</a>'
+					}
+				}]
+			]
+
+			// 列表配置
+			window.tableList = table.render({
+				elem: '#taskListTable' //指向存放分页的容器
+				, cols: cols //表头
+				, page: true //是否显示分页
+				, toolbar: '<div><button type="button" class="layui-btn layui-btn-sm" lay-event="adds">添加清单</button><button type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="dels">批量删除</button></div>'
+				, limit: 10 //每页默认显示的数量
+				, limits: [10, 20, 50, 100] //每页条数的选择项
+				, defaultToolbar: [] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+				, data: testData //直接赋值数据 实际项目请删除
+				// AJAX请求下的配置分页
+				/* ,url:'' //列表数据接口地址
+				,method:'POST'//请求方式
+				,request: {
+				pageName: 'pageNo' //页码的参数名称，默认：page
+				,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				}
+				,parseData: function(res){ //res 即为原始返回的数据
+				return {
+				"code": res.code, //解析接口状态
+				"msg": res.msg, //解析提示文本
+				"count": res.data.count, //解析数据长度
+				"data": res.data.list //解析数据列表
+				};
+				} */
+			});
+
+			//监听头工具栏事件
+			// obj 对象，包含event元素 和 table 配置
+			table.on('toolbar(table)', function (obj) {
+				var checkStatus = table.checkStatus(obj.config.id);
+				var arr = []
+				$.each(checkStatus.data, function (index, value) {
+					arr.push(value.id)
+				})
+				switch (obj.event) {
+					case 'adds': // 添加巡河记录清单表
+						layer.open({
+							type: 1,
+							resize: false,
+							title: '添加巡河记录清单表',
+							area: ['480px', '680px'],
+							content: '<form class="layui-form" style="padding:20px;" lay-filter="layer">' +
+								/* 天气-选择 */
+								'<div class="layui-form-item">' +
+								'<label class="layui-form-label">天气</label>' +
+								'<div class="layui-input-block">' +
+								'<input type="radio" name="weather" value="晴" title="晴" checked="">' +
+								'<input type="radio" name="weather" value="阴" title="阴">' +
+								'<input type="radio" name="weather" value="雨" title="雨">' +
+								'<input type="radio" name="weather" value="雪" title="雪">' +
+								'</div>' +
+								'</div>' +
+								/* 巡河时间-选择 */
+								'<div class="layui-form-item">' +
+								'<label class="layui-form-label">寻河时间</label>' +
+								'<div class="layui-input-block">' +
+								'<input type="text" class="layui-input" id="riverDate" name="riverDate" placeholder="请选择寻河时间" autocomplete="off">' +
+								'</div>' +
+								'</div>' +
+								/* 寻河人姓名 */
+								'<div class="layui-form-item">' +
+								'<label class="layui-form-label">寻河人姓名</label>' +
+								'<div class="layui-input-block">' +
+								'<input type="text" class="layui-input" id="riverNmae" name="riverNmae" placeholder="请填写寻河人姓名" autocomplete="off">' +
+								'</div>' +
+								'</div>' +
+								/* 巡查重点-选择 */
+								'<div class="layui-form-item">' +
+								'<label class="layui-form-label">巡查重点</label>' +
+								'<div class="layui-input-block">' +
+								'<input type="radio" name="key" value="水资源保护" title="水资源保护" checked="">' +
+								'<input type="radio" name="key" value="水污染防治" title="水污染防治">' +
+								'<input type="radio" name="key" value="水域岸线管理保护" title="水域岸线管理保护">' +
+								'<input type="radio" name="key" value="水生态修复" title="水生态修复">' +
+								'<input type="radio" name="key" value="水环境治理" title="水环境治理">' +
+								'<input type="radio" name="key" value="执法监管" title="执法监管">' +
+								'<input type="radio" name="key" value="其他" title="其他">' +
+								'</div>' +
+								'</div>' +
+								/* 存在问题 */
+								'<div class="layui-form-item">' +
+								'<label class="layui-form-label">存在问题</label>' +
+								'<div class="layui-input-block">' +
+								'<textarea placeholder="请填写存在问题" name="issue" class="layui-textarea"></textarea>' +
+								'</div>' +
+								'</div>' +
+								/* 治理措施 */
+								'<div class="layui-form-item">' +
+								'<label class="layui-form-label">治理措施</label>' +
+								'<div class="layui-input-block">' +
+								'<textarea placeholder="请填写治理措施" name="step" class="layui-textarea"></textarea>' +
+								'</div>' +
+								'</div>' +
+								/* 附件上传 */
+								'<div class="layui-form-item">' +
+								'<label class="layui-form-label">附件上传</label>' +
+								'<div class="layui-input-block">' +
+								'<input type="text" id="title" name="title" placeholder="附件名称" autocomplete="off" class="layui-input" required lay-verify="required" readonly style="width: 212px;display: inline-block;"> ' +
+								'<button type="button" class="layui-btn" id="upload" style="position: relative;top: -1px;">' +
+								'<i class="layui-icon">&#xe67c;</i>上传文件' +
+								'</button>' +
+								'</div>' +
+								'</div>' +
+								'<div class="layui-form-item">' +
+								'<div class="layui-input-block">' +
+								'<button class="layui-btn" lay-submit lay-filter="submit">提交</button>' +
+								'<button type="button" class="layui-btn layui-btn-primary colse-btn">关闭</button>' +
+								'</div>' +
+								'</div>' +
+								'</form>',
+							success: function (layero, index) {
+								/* 时间控件-重渲 */
+								laydate.render({
+									elem: '#riverDate'
+								});
+								//关闭弹窗
+								$('.colse-btn').click(function () {
+									layer.close(index); //
+								})
+								form.render(null, 'layer');
+								//执行文件上传实例
+								var uploadInst = upload.render({
+									elem: '#upload' //绑定元素
+									,url: '' //上传接口
+									,accept:'file'
+									,before: function (obj) {
+										//预读本地文件示例，不支持ie8
+										obj.preview(function (index, file, result) {
+											$('#title').val(file.name);
+										});
+									},done: function (res) {
+										//上传完毕回调
+										layer.msg('文件上传成功！')
+									},error: function () {
+										//请求异常回调
+										layer.msg('文件上传失败！')
+									}
+								});
+								form.on('submit(submit)', function (data) { // 弹出层表单提交
+									var llo = layer.load(2, {
+										shade: [0.001, '#fff']
+									});
+									$.ajax({
+										url: '',
+										cache: false,
+										type: "POST",
+										dataType: "json",
+										data: data.field,
+										success: function (data) {
+											layer.close(llo);
+											layer.msg('操作成功', {
+												time: 1000
+											});
+											tableList.reload({}, 'data'); //只重载数据
+											layer.close(index);
+										},
+										error: function (xhr) {
+											layer.close(llo);
+											layer.msg('系统错误，请联系管理员');
+										}
+									});
+									return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+								});
+							}
+						});
+						break;
+					case 'dels': // 批量删除
+						if (arr.length === 0) {
+							layer.msg('请先勾选数据'); //提示框
+						} else {
+							layer.confirm('确认要删除这些数据吗？', {
+								title: '提示'
+							}, function (index) {
+								$.post('', { // 批量删除地址
+									ids: arr.toString() // 参数
+								}, function (data) {
+									layer.msg('批量删除成功', {
+										time: 1000
+									}); //提示框
+									tableList.reload(); // 表格重载
+								})
+								layer.close(index);
+							});
+						}
+						break;
+				};
+			});
+			//监听行工具事件
+			table.on('tool(table)', function (obj) {
+				//obj.data 可获取当前行的数据
+				var data = obj.data;
+				if (obj.event === 'download') { // 下载文件
+					$.post('', { // 下载单条文件地址
+						id: data.id
+					}, function (data) {
+						layer.msg('下载成功', {
+							time: 1000
+						}); //提示框
+						tableList.reload(); // 表格重载
+					})
+				} else if (obj.event === 'del') { // 删除单条行数据
+					layer.confirm('确认要删除该条数据吗？', {
+						title: '提示'
+					}, function (index) {
+						$.post('', { // 单条删除地址
+							id: data.id
+						}, function (data) {
+							layer.msg('删除成功', {
+								time: 1000
+							}); //提示框
+							tableList.reload(); // 表格重载
+						})
+						layer.close(index);
+					});
+				} else if (obj.event === 'view') { // 数据预览
+					//可将数据通过 表格显示接口，传到每行对应数据中，使用 data 即可取到。
+					//然后通过拼接字符串生成 layer的content进行数据显示
+				
+					console.log(data) //得到当前行数据
+					layer.open({
+						type: 1,
+						resize: false,
+						title: data.title,
+						area: ['480px'],
+						content: '<div class="layer-table">'
+						+'<table class="layui-table">'
+						+'<colgroup>'
+						+'<col width="120">'
+						+'<col>'
+						+'</colgroup>'
+						+'<tbody>'
+						//这是一个例子
+						+'<tr><td>巡河时间</td><td>'+data.date+'</td></tr>'
+						+'<tr><td>巡河人姓名</td><td>张三</td></tr>'
+						+'<tr><td>本次巡查重点</td><td>水资源保护</td></tr>'
+						+'<tr><td>存在问题</td><td>存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题存在问题</td></tr>'
+						+'<tr><td>治理措施</td><td>治理措施治理措施治理措施治理措施治理措施治理措施治理措施</td></tr>'
+						+'<tr><td>附件下载</td><td><a href="javascript:;" download>附件名称</a></td></tr>'
+						+'</tbody>'
+						+'</table>'
+						+'</div>',
+						success: function (layero, index) {
+							/* 时间控件-重渲 */
+							laydate.render({
+								elem: '#riverDate'
+							});
+							//关闭弹窗
+							$('.colse-btn').click(function () {
+								layer.close(index); //
+							})
+							form.render(null, 'layer');
+							//执行文件上传实例
+							var uploadInst = upload.render({
+								elem: '#upload' //绑定元素
+								,url: '' //上传接口
+								,accept:'file'
+								,before: function (obj) {
+									//预读本地文件示例，不支持ie8
+									obj.preview(function (index, file, result) {
+										$('#title').val(file.name);
+									});
+								},done: function (res) {
+									//上传完毕回调
+									layer.msg('文件上传成功！')
+								},error: function () {
+									//请求异常回调
+									layer.msg('文件上传失败！')
+								}
+							});
+							form.on('submit(submit)', function (data) { // 弹出层表单提交
+								var llo = layer.load(2, {
+									shade: [0.001, '#fff']
+								});
+								$.ajax({
+									url: '',
+									cache: false,
+									type: "POST",
+									dataType: "json",
+									data: data.field,
+									success: function (data) {
+										layer.close(llo);
+										layer.msg('操作成功', {
+											time: 1000
+										});
+										tableList.reload({}, 'data'); //只重载数据
+										layer.close(index);
+									},
+									error: function (xhr) {
+										layer.close(llo);
+										layer.msg('系统错误，请联系管理员');
+									}
+								});
+								return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+							});
+						}
+					});
+				}
+			});
+
+			//表格数据更新方法
+			function updateTable() {
+				//方法设置可以参考文档 https://www.layui.com/doc/modules/table.html#reload
+				tableList.reload({
+					where: { //设定异步数据接口的额外参数，任意设
+						river: $('[name="river"]').val(),
+						inventory: $('[name="inventory"]').val()
+						//…
+					},
+					page: {
+						curr: 1 //重新从第 1 页开始
+					}
+				});
+			}
+		});
+	</script>
+</body>
+
+</html>

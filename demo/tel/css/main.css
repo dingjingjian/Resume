@@ -1,0 +1,195 @@
+
+body{
+    background-color: #fff;
+}
+.mui-content{
+    background-color: #fff;
+    display: none;
+}
+/* 部门分类列表 */
+.department-list{
+    margin-top: 0!important;
+}
+.department-list>li{
+    line-height: 34px;
+}
+.department-list>li>a:after{
+    background-color: #ccc;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    line-height: 21px;
+    border-radius: 50%;
+    text-align: center;
+}
+.department-list>li.mui-active>a:after{
+    line-height: 20px;
+}
+.department-list>li.mui-active{
+    margin-top: 0px!important;
+}
+.department-list>li.mui-active>a{
+    background-color: #fff;
+    box-shadow: 0 10px 20px #eee;
+    z-index: 1;
+}
+.department-list>li li{
+    line-height: 24px;
+    font-size: 14px;
+}
+
+/* icon样式 */
+.icon{
+    background-repeat: no-repeat;
+    float: left;
+    width: 34px;
+    height: 34px;
+    background-size: 100%;
+    margin-right: 15px;
+}
+
+/* 搜索按钮 */
+.search{
+    display: block;
+    width: 140px;
+    height: 40px;
+    margin: 12px auto 12px;
+    font-size: 17px;
+    color: #006aba!important;
+    border-color: #006aba!important;
+}
+
+/*底部固定标识*/
+.foot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: #cbcbcb;
+    height: 28px;
+    line-height: 28px;
+    width: 100%;
+    background-color: #f8f8f8;
+    font-size: 14px;
+}
+.footer_icon {
+    display: inline-block;
+    background-image: url(../images/footer_logo_01.png);
+    background-repeat: no-repeat;
+    width: 21px;
+    height: 18px;
+    background-size: 100%;
+    vertical-align: middle;
+}
+
+/* 电话详情页样式 */
+.title {
+    padding: 20px 15px 10px;
+    color: #6d6d72;
+    font-size: 17px;
+    background-color: #efeff4;
+}
+#detail {
+    padding: 5px 0px 5px 0px;
+}
+#detail:after,#detail:before{
+    display: none;
+}
+#detail .mui-media {
+    margin: 15px 20px 10px 20px;
+    font-size: 14px;
+}
+#detail .mui-media>a {
+    background-color: #f8f8f8;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+}
+#detail .mui-media:after{
+    display: none;
+}
+#detail .mui-media-body{
+    white-space: normal;
+}
+
+/* 搜索框样式 */
+.mui-indexed-list-search{
+    height: 48px;
+    line-height: 48px;
+    border-bottom: none;
+    clear: both;
+    width: calc(100% - 40px);
+    display: inline-block;
+}
+.mui-indexed-list-search input{
+    margin: 10px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 20px;
+    padding: 0 30px;
+    width: calc(100% - 20px);
+    border: 1px solid #006aba;
+    background-color: #fff;
+}
+.mui-indexed-list-search .mui-placeholder{
+    background-color: #fff;
+    margin: 10px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 20px;
+    border: 1px solid #006aba;
+}
+.mui-indexed-list-search.mui-search:before {
+    margin-top: -24px;
+    left: 15px;
+}
+.mui-input-row.mui-search .mui-icon-clear{
+    top: 14px;
+    right: 5px;
+}
+
+/* 电话列表样式 */
+#list{
+    height: calc(100vh - 28px)!important;
+}
+#indexedList{
+    height: calc(100vh - 76px)!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#list .mui-indexed-list-inner{
+    height: calc(100vh - 76px)!important;
+}
+#indexedList>a{
+    height: auto!important;
+    line-height: 1em!important;
+    flex-grow: 1;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    padding: 0 5px;
+}
+#telView{
+    position: relative;
+    height: 30px;
+    width: 24px;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    padding: 0;
+    float: right;
+    border: none;
+    background: transparent;
+}
+#telView .mui-icon-bars{
+    position: relative;
+    top: -5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #006aba;
+}
+#telView .icon-text{
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+}

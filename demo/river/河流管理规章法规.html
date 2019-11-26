@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta title="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>河流管理规章法规</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">河长制信息管理</a>
+				<a href="#">合理管理</a>
+				<a><cite>河流管理规章法规</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>河流管理规章法规</h1>
+			</div>
+			<div class="layui-card-body">
+				<table id="riverRegulationsTable" lay-filter="table">
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+	<!--   河流管理规章法规.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table', 'upload', 'laydate', 'layer'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件、文件上传、时间选择
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table,
+				upload = layui.upload,
+				laydate = layui.laydate,
+				layer = layui.layer;
+
+			element.render();
+			form.render();
+
+			// 模拟数据 真实项目时删除
+			var riverRegulationsJson = [{
+					"title": "关于2019年国庆节放假安排通知",
+					"date": "2019-09-16",
+				},
+				{
+					"title": "关于举行2019年华中科技大学运动会的通知",
+					"date": "2019-09-23",
+				},
+				{
+					"title": "校领导接待日工作预告（128）",
+					"date": "2019-09-23",
+				},
+				{
+					"title": "华中科技大学秋季作息时间表",
+					"date": "2019-09-16",
+				},
+				{
+					"title": "校领导接待日工作预告（127）",
+					"date": "2019-09-16",
+				}
+			]
+
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [
+				[{
+					type: 'checkbox',
+					fixed: 'left'
+				}, {
+					field: 'title',
+					title: '标题',
+					minWidth: 80,
+					templet: function (d) {
+						return '<a lay-event="view"" href="javascript:;">' + d.title + '</a>'
+					}
+				}, {
+					field: 'date',
+					title: '日期',
+					width: 120
+				}, {
+					title: '操作',
+					width: 180,
+					fixed: 'right',
+					templet: function (d) {
+						return '<a class="layui-btn layui-btn-xs" lay-event="download" href="javascript:;"><i class="layui-icon">&#xe656;</i>下载</a><a class="layui-btn layui-btn-xs layui-btn-danger" style="background:#FF5722;" lay-event="del" href="javascript:;"><i class="layui-icon">&#xe640;</i>删除</a>'
+					}
+				}]
+			]
+
+			// 列表配置
+			window.tableList = table.render({
+				elem: '#riverRegulationsTable' //指向存放分页的容器
+				, cols: cols //表头
+				, page: true //是否显示分页
+				, toolbar: '<div><button type="button" class="layui-btn layui-btn-sm" lay-event="adds">新增公告</button><button type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="dels">批量删除</button></div>'
+				, limit: 10 //每页默认显示的数量
+				, limits: [10, 20, 50, 100] //每页条数的选择项
+				, defaultToolbar: [] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+				, data: riverRegulationsJson //直接赋值数据 实际项目请删除
+				// AJAX请求下的配置分页
+				/* ,url:'' //列表数据接口地址
+				,method:'POST'//请求方式
+				,request: {
+				pageName: 'pageNo' //页码的参数名称，默认：page
+				,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				}
+				,parseData: function(res){ //res 即为原始返回的数据
+				return {
+				"code": res.code, //解析接口状态
+				"msg": res.msg, //解析提示文本
+				"count": res.data.count, //解析数据长度
+				"data": res.data.list //解析数据列表
+				};
+				} */
+			});
+
+			//监听头工具栏事件
+			// obj 对象，包含event元素 和 table 配置
+			table.on('toolbar(table)', function (obj) {
+				var checkStatus = table.checkStatus(obj.config.id);
+				var arr = []
+				$.each(checkStatus.data, function (index, value) {
+					arr.push(value.id)
+				})
+				switch (obj.event) {
+					case 'adds': // 新增公告
+						layer.open({
+							type: 2, //iframe层
+							resize: false,
+							title: '新增公告',
+							area: ['100%','100%'],
+							//content中填写新建公告的jsp页面地址
+							content:'新增公告.html'
+						});
+						break;
+					case 'dels': // 批量删除
+						if (arr.length === 0) {
+							layer.msg('请先勾选数据'); //提示框
+						} else {
+							layer.confirm('确认要删除这些数据吗？', {
+								title: '提示'
+							}, function (index) {
+								$.post('', { // 批量删除地址
+									ids: arr.toString() // 参数
+								}, function (data) {
+									layer.msg('批量删除成功', {
+										time: 1000
+									}); //提示框
+									tableList.reload(); // 表格重载
+								})
+								layer.close(index);
+							});
+						}
+						break;
+				};
+			});
+
+			//监听行工具事件
+			table.on('tool(table)', function (obj) {
+				//obj.data 可获取当前行的数据
+				var data = obj.data;
+				if (obj.event === 'download') { // 下载文件
+					$.post('', { // 下载单条文件地址
+						id: data.id
+					}, function (data) {
+						layer.msg('下载成功', {
+							time: 1000
+						}); //提示框
+						tableList.reload(); // 表格重载
+					})
+				} else if (obj.event === 'del') { // 删除单条行数据
+					layer.confirm('确认要删除该条数据吗？', {
+						title: '提示'
+					}, function (index) {
+						$.post('', { // 单条删除地址
+							id: data.id
+						}, function (data) {
+							layer.msg('删除成功', {
+								time: 1000
+							}); //提示框
+							tableList.reload(); // 表格重载
+						})
+						layer.close(index);
+					});
+				} else if (obj.event === 'view') { // 数据预览
+					layer.open({
+						type: 2, // iframe层
+						title: ['文档预览'], // 标题
+						content: '信息发布详情页.html',
+						//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+						area: ['100%', '100%'] // 设置弹窗大小，默认“auto”
+					});
+					console.log(data) //得到当前行数据
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

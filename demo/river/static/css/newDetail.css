@@ -1,0 +1,148 @@
+/* 左半部分 */
+.box-left ul li {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #eeeeee;
+    padding-left: 10px;
+}
+
+.box-left ul li p {
+    display: inline-block;
+    width: 70%;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    /*自动隐藏文字*/
+    text-overflow: ellipsis;
+    /*文字隐藏后添加省略号*/
+    white-space: nowrap;
+    /*强制不换行*/
+}
+
+.box-left ul li p span {
+    margin-right: 10px;
+    background-color: #999999;
+}
+
+.box-left ul li a>span {
+    float: right;
+}
+/* 部分内容 a 标签加下划线 */
+.news a :hover,
+.hot-news a :hover{
+    text-decoration: underline;
+}
+/* module */
+div.module {
+    width: 100%;
+    height: 40px;
+    border-top: 2px solid #38688c;
+    line-height: 40px;
+}
+
+div.module span {
+    float: left;
+}
+
+.box-title {
+    width: 88px;
+    height: 40px;
+    background-color: #38688c;
+    text-align: center;
+    color: #fff;
+}
+
+div.module span.box-msg {
+    float: right;
+    color: #999999;
+    padding: 0 10px;
+}
+
+div.module span.box-msg a {
+    color: #999999;
+}
+
+/* news */
+.news,
+.hot-news {
+    border: 1px solid #eeeeee;
+}
+
+.layui-badge-dot {
+    background-color: #999999;
+}
+
+.module-ul {
+    border-top: 1px solid #eeeeee;
+    padding-top: 10px;
+}
+
+.module-ul li {
+    margin: 0 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.module-ul li:last-child {
+    margin: 0 20px;
+    border-bottom: none;
+}
+
+.module-ul p {
+    display: inline-block;
+    width: 70%;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    /*自动隐藏文字*/
+    text-overflow: ellipsis;
+    /*文字隐藏后添加省略号*/
+    white-space: nowrap;
+    /*强制不换行*/
+}
+
+.module-ul li a>span {
+    float: right;
+}
+
+/* article */
+.article {
+    width: 100%;
+}
+
+.article h1 {
+    text-align: center;
+    margin-top: 30px;
+    color: #333333;
+}
+
+.article-msg {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #8f8f8f;
+}
+
+.article-msg strong {
+    margin: 0 20px;
+    font-weight: 400;
+}
+
+.article-text {
+    color: #666666;
+    text-indent: 30px;
+}
+
+.article-page {
+    color: #666666;
+    overflow: hidden;
+}
+
+/* 上一页 */
+.top-page a {
+    color: #666666;
+}
+
+/* 下一页 */
+.bottom-page a {
+    color: #666666;
+}

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>信息列表</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">数字河流信息发布</a>
+				<a href="#">信息管理</a>
+				<a><cite>信息列表</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>信息列表</h1>
+			</div>
+			<div class="layui-card-body">
+				<form class="layui-form">
+					<div class="layui-form-item" style="margin-bottom: -10px;">
+						<!-- 新闻标题-搜索 -->
+						<div class="layui-inline">
+							<label class="layui-form-label" style="width: 120px;">新闻标题</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input"
+									placeholder="请输入新闻标题">
+							</div>
+						</div>
+						<!-- 发布日期范围-搜索 -->
+						<div class="layui-inline">
+							<div class="layui-inline">
+								<label class="layui-form-label">发布时间</label>
+								<div class="layui-input-inline">
+									<input type="text" class="layui-input" id="newsDate" name="newsDate"
+										placeholder="请选择发布时间范围" autocomplete="off">
+								</div>
+							</div>
+						</div>
+						<!-- 点击搜索按钮 -->
+						<div class="layui-inline" style="margin-right: 20px;">
+							<button class="layui-btn" lay-submit lay-filter="filterSubmit">搜索</button>
+						</div>
+					</div>
+				</form>
+				<table id="newsListTable" lay-filter="table">
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 维护管理子系统.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table', 'layedit', 'laydate'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table,
+				layer = layui.layer,
+				layedit = layui.layedit,
+				laydate = layui.laydate;
+
+			//发布时间-范围-搜索
+			laydate.render({
+				elem: '#newsDate',
+				range: true
+			});
+			/* 表单中-发布时间选择 */
+			laydate.render({
+				elem: '#ISSUEDATE'
+			});
+			element.render();
+			form.render();
+			//模拟数据实际项目删除
+			var testData = [{
+				'id':1,
+				'name': '新闻标题',
+				'author': '作者',
+				'type': '新闻类别',
+				'property': '属性',
+				'issueDate': '发布时间'
+			}, {
+				'id':1,
+				'name': '新闻标题',
+				'author': '作者',
+				'type': '新闻类别',
+				'property': '属性',
+				'issueDate': '发布时间'
+			}, {
+				'id':1,
+				'name': '新闻标题',
+				'author': '作者',
+				'type': '新闻类别',
+				'property': '属性',
+				'issueDate': '发布时间'
+			}, {
+				'id':1,
+				'name': '新闻标题',
+				'author': '作者',
+				'type': '新闻类别',
+				'property': '属性',
+				'issueDate': '发布时间'
+			}, {
+				'id':1,
+				'name': '新闻标题',
+				'author': '作者',
+				'type': '新闻类别',
+				'property': '属性',
+				'issueDate': '发布时间'
+			}, {
+				'id':1,
+				'name': '新闻标题',
+				'author': '作者',
+				'type': '新闻类别',
+				'property': '属性',
+				'issueDate': '发布时间'
+			}, {
+				'id':1,
+				'name': '新闻标题',
+				'author': '作者',
+				'type': '新闻类别',
+				'property': '属性',
+				'issueDate': '发布时间'
+			}, {
+				'id':1,
+				'name': '新闻标题',
+				'author': '作者',
+				'type': '新闻类别',
+				'property': '属性',
+				'issueDate': '发布时间'
+			}]
+
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [
+				[{
+					type: 'checkbox',
+					fixed: 'left'
+				}, {
+					type: 'numbers',
+					title: '编号'
+				}, {
+					field: 'name',
+					title: '标题',
+					minWidth: 80
+				}, {
+					field: 'author',
+					title: '作者',
+					width: 120
+				}, {
+					field: 'type',
+					title: '类别',
+					width: 120
+				}, {
+					field: 'property',
+					title: '属性',
+					width: 120
+				}, {
+					field: 'issueDate',
+					title: '发布时间',
+					width: 120
+				}, {
+					title: '操作',
+					width: 180,
+					fixed: 'right',
+					templet: function (d) {
+						return '<a class="layui-btn layui-btn-xs" lay-event="edit" href="javascript:;"><i class="layui-icon">&#xe642;</i>编辑</a><a class="layui-btn layui-btn-xs layui-btn-danger" style="background:#FF5722;" lay-event="del" href="javascript:;"><i class="layui-icon">&#xe640;</i>删除</a>'
+					}
+				}]
+			]
+			// 列表配置
+			window.tableList = table.render({
+				elem: '#newsListTable' //指向存放分页的容器
+					,
+				cols: cols //表头
+					,
+				page: true //是否显示分页
+					,
+				toolbar: '<div><button type="button" class="layui-btn layui-btn-sm" lay-event="adds">新增信息</button><button type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="dels">批量删除</button></div>',
+				limit: 10 //每页默认显示的数量
+					,
+				limits: [10, 20, 50, 100] //每页条数的选择项
+					,
+				defaultToolbar: ['filter'] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+					,
+				data: testData //加载测试数据实际项目删除
+				// AJAX请求下的配置分页
+				// ,url:'${pageContext.request.contextPath}/user/selectAllUsers' //列表数据接口地址
+				// ,method:'GET'//请求方式
+				// ,request: {
+				// 	pageName: 'pn' //页码的参数名称，默认：page
+				// 	,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				// }
+				// ,parseData: function(res){ //res 即为原始返回的数据
+				// 	return {
+				// 		"code": res.code, //解析接口状态
+				// 		"msg": res.msg, //解析提示文本
+				// 		"count": res.data.count, //解析数据长度
+				// 		"data": res.data.list //解析数据列表
+				// 	};
+				// }
+			});
+
+			//监听头工具栏事件
+			//  obj 对象，包含event元素 和 table 配置
+			table.on('toolbar(table)', function (obj) {
+				var checkStatus = table.checkStatus(obj.config.id);
+				var arr = []
+				$.each(checkStatus.data, function (index, value) {
+					arr.push(value.id)
+				})
+				switch (obj.event) {
+					case 'adds': // 新增用户
+						addOrUpdate(null, 'add');
+						break;
+					case 'dels': // 批量删除
+						if (arr.length === 0) {
+							layer.msg('请先勾选数据'); //提示框
+						} else {
+							layer.confirm('确认要删除这些数据吗？', {
+								title: '提示'
+							}, function (index) {
+								$.ajax({
+									url: "${pageContext.request.contextPath}/user/deleteUser/" +
+										arr.join('-'),
+									type: "DELETE",
+									success: function (result) {
+										layer.msg('批量删除成功', {
+											time: 1000
+										}); //提示框
+										tableList.reload(); // 表格重载
+									},
+									error: function (xhr) {
+										layer.close(llo);
+										layer.msg('系统错误，请联系管理员');
+									}
+								});
+								layer.close(index);
+							});
+						}
+						break;
+				};
+			});
+			//监听行工具事件
+			table.on('tool(table)', function (obj) {
+				console.log(obj.data);
+				//obj.data 可获取当前行的数据
+				var data = obj.data;
+				if (obj.event === 'edit') { // 修改当前行数据
+					addOrUpdate(data, 'update')
+				} else if (obj.event === 'del') { // 删除单条行数据
+					layer.confirm('确认要删除该条数据吗？', {
+						title: '提示'
+					}, function (index) {
+						$.ajax({
+							url: "${pageContext.request.contextPath}/user/deleteUser/" + data
+								.id,
+							type: "DELETE",
+							success: function (result) {
+								layer.msg('删除成功', {
+									time: 1000
+								}); //提示框
+								tableList.reload(); // 表格重载
+							},
+							error: function (xhr) {
+								layer.close(llo);
+								layer.msg('系统错误，请联系管理员');
+							}
+						});
+						layer.close(index);
+					});
+				}
+			});
+
+			// 筛选框
+			form.on('submit(filterSubmit)', function (data) {
+				var where = {}
+				/* 新闻标题-搜索 */
+				if (data.field.name) {
+					where.name = data.field.name;
+				} else {
+					where.name = "";
+				}
+				/* 发布时间-搜索 */
+				if (data.field.newsDate) {
+					where.newsDate = data.field.newsDate;
+				} else {
+					where.newsDate = "";
+				}
+				// 搜索方法
+				tableList.reload({
+					where: where, // 设定异步数据接口的额外参数，任意设
+					page: {
+						curr: 1
+						// 重新从第 1 页开始
+					}
+				}, 'data'); //只重载数据
+				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			});
+
+			//添加或修改
+			function addOrUpdate(data, addOrUpdate) {
+				if (addOrUpdate == 'update') {
+					layer.open({
+						type: 2, //弹窗类型
+						resize: false, //弹窗是否允许拉伸
+						title: '修改信息', //标题设置
+						area: ['100%','100%'],
+						content: '信息编辑.html'+'?layer=true'+'&id='+data.id // iframe 页面 通过地址传值 layer=true 表明是弹窗
+					});
+				}else{
+					layer.open({
+						type: 2, //弹窗类型
+						resize: false, //弹窗是否允许拉伸
+						title: '新增信息', //标题设置
+						area: ['100%','100%'],
+						content: '信息添加.html'+'?layer=true' // iframe 页面 layer=true 表明是弹窗
+					});
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

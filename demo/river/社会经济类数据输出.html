@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>社会经济类数据输出</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+	<style>
+		/* 导航菜单样式 */
+        .tool-nav{
+            padding: 0;
+		}
+		.tool-nav.layui-nav>.layui-nav-item{
+			margin:0 15px;
+		}
+        .tool-nav.layui-nav>.layui-nav-item>a{
+            color: #757575;
+        }
+        .tool-nav.layui-nav .layui-nav-more {
+            border-top-color: #757575;
+        }
+        .tool-nav.layui-nav .layui-nav-mored {
+            border-top-color: transparent;
+        }
+		#chart{
+			height: 0;
+			transition: all .3s;
+    		-webkit-transition: all .3s;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">数字河流分析查询</a>
+				<a href="#">成果输出</a>
+				<a><cite>社会经济类数据输出</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>社会经济类数据输出</h1>
+			</div>
+		</div>
+		<div class="layui-card" style="padding: 0 20px;">
+			<!-- 数据精确查询 -->
+			<div class="layui-card-body">
+				<form class="layui-form">
+					<h3 style="padding: 10px; padding-left: 0px;">数据精确查询</h3>
+					<!-- 选择年份 -->
+					<div class="layui-form-item" style="margin-bottom: 5px;">
+						<div class="layui-inline" style="margin-right: 20px;">
+							<div class="layui-input-inline" style="width: 100px;">
+								<input type="text" class="layui-input" id="yearSelector" name="yearSelector" autocomplete="off" placeholder="请选择年份" lay-verify="required">
+							</div>
+						</div>
+						<!-- 查询类型 -->
+						<div class="layui-inline" style="margin-right: 20px;">
+							<div class="layui-input-inline">
+								<select name="plough" lay-verify="required" lay-search="">
+									<option value="">请选择查询类型</option>
+									<option value="FARMLAND">年末常用耕地</option>
+									<option value="RURP">农村人口</option>
+									<option value="GDP">GDP</option>
+									<option value="PRIND">第一产业</option>
+									<option value="SECIND">第二产业</option>
+									<option value="TERIND">第三产业</option>
+									<option value="INDVA">工业增加值</option>
+									<option value="CONB">建筑业</option>
+									<option value="DISPINC">可支配收入</option>
+									<option value="CROPTOTA">农作物总播种面积</option>
+									<option value="GRTOTA">粮食播种面积</option>
+									<option value="GRTOT">粮食总产量</option>
+									<option value="VEGTOTA">蔬菜总面积</option>
+									<option value="VEGTOT">蔬菜总产量</option>
+									<option value="HOGPROD">猪出栏数量</option>
+									<option value="CATTLEPROD">牛出栏数量</option>
+									<option value="SHEEPPROD">羊出栏数量</option>
+									<option value="FOWLPROD">家禽出栏数量</option>
+									<option value="ORCHA">果园面积</option>
+									<option value="FRUITPROD">园林水果产量</option>
+									<option value="URBPDINC">城镇居民人均可支配收入</option>
+									<option value="URBRT">城镇化率</option>
+								</select>
+							</div>
+						</div>
+						<!-- 地点名搜索 -->
+						<div class="layui-inline" style="margin-right: 20px;">
+							<div class="layui-input-inline">
+								<input type="text" name="site" lay-verify="required" placeholder="请输入您要搜索的地点名" class="layui-input">
+							</div>
+						</div>
+						<!-- 点击搜索按钮 -->
+						<div class="layui-inline" style="margin-right: 20px;">
+							<button class="layui-btn" lay-submit lay-filter="submit" style="width:90px">查询</button>
+						</div>
+						<!-- 显示查询结果 -->
+						<div class="layui-inline">
+							<label class="layui-form-label" style="width: 120px;">您查询的结果为：</label>
+							<div class="layui-input-inline">
+								<input type="text" id="result" autocomplete="off" class="layui-input" readonly>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- 地区数据查询显示 -->
+		<div class="layui-card" style="padding: 0 20px;">
+			<div class="layui-card-body">
+				<form class="layui-form" lay-filter="form">
+					<h3 style="padding: 10px; padding-left: 0px;">地区数据查询显示</h3>
+					<ul class="layui-nav tool-nav">
+						<div class="layui-input-inline" style="width: 100px;margin-right: 34px;">
+							<input type="text" class="layui-input" id="yearSelector2" name="date" placeholder="请选择年份" autocomplete="off"  lay-verify="required">
+						</div>
+						<div class="layui-input-inline" style="width: 190px;">
+							<input type="text" class="layui-input" id="itemText" placeholder="查询项目" autocomplete="off" readonly>
+							<input type="hidden" id="itemValue" name="value">
+						</div>
+						<li class="layui-nav-item" style="margin-left: 40px;">
+							<a href="javascript:;">土地面积</a>
+							<dl class="layui-nav-child">
+								<dd><a href="javascript:;" value='FARMLAND' class="item">年末常用耕地（亩）</a></dd>
+								<dd><a href="javascript:;" value='CROPTOTA' class="item">农作物播种面积（亩）</a></dd>
+								<dd><a href="javascript:;" value='GRTOTA' class="item">粮食播种面积（亩）</a></dd>
+								<dd><a href="javascript:;" value='VEGTOTA' class="item">蔬菜总面积（亩）</a></dd>
+								<dd><a href="javascript:;" value='ORCHA' class="item">果园面积（亩）</a></dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">经济数据</a>
+							<dl class="layui-nav-child">
+								<dd><a href="javascript:;" value='GDP' class="item">GDP（万元）</a></dd>
+								<dd><a href="javascript:;" value='PRIND' class="item">第一产业（万元）</a></dd>
+								<dd><a href="javascript:;" value='SECIND' class="item">第二产业（万元）</a></dd>
+								<dd><a href="javascript:;" value='TERIND' class="item">第三产业（万元）</a></dd>
+								<dd><a href="javascript:;" value='INDVA' class="item">工业增加值（万元）</a></dd>
+								<dd><a href="javascript:;" value='CONB' class="item">建筑业（万元）</a></dd>
+								<dd><a href="javascript:;" value='DISPINC' class="item">可支配收入</a></dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">牲畜出栏</a>
+							<dl class="layui-nav-child">
+								<dd><a href="javascript:;" value='HOGPROD' class="item">猪出栏（头）</a></dd>
+								<dd><a href="javascript:;" value='CATTLEPROD' class="item">牛出栏（头）</a></dd>
+								<dd><a href="javascript:;" value='SHEEPPROD' class="item">羊出栏（头）</a></dd>
+								<dd><a href="javascript:;" value='FOWLPROD' class="item">家禽出栏（万只）</a></dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">粮食果蔬产量</a>
+							<dl class="layui-nav-child">
+								<dd><a href="javascript:;" value='GRTOT' class="item">粮食总产量</a></dd>
+								<dd><a href="javascript:;" value='VEGTOT' class="item">蔬菜总产量（吨）</a></dd>
+								<dd><a href="javascript:;" value='FRUITPROD' class="item">园林水果产量（吨）</a></dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item"><a href="javascript:;" value='RURP' class="item">农村人口</a></li>
+					</ul>
+					<!-- 查询按钮 隐藏 -->
+					<div class="layui-inline" style="margin-right: 20px;display: none;">
+						<button class="layui-btn" lay-submit lay-filter="submit2" style="width:90px">查询</button>
+					</div>
+				</form>
+				<div id="chart"></div>
+			</div>
+		</div>
+	</div>
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 引入echarts -->
+	<script src="./assets/echarts/echarts.min.js"></script>
+
+	<!-- 数字河流分析查询.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'layedit', 'laydate'], function () {
+			//引入框架所需组件 基础组件、表单组件、下拉框组件，时间控件
+			var element = layui.element,
+				form = layui.form,
+				layedit = layui.layedit,
+				laydate = layui.laydate;
+
+			//年选择器
+			laydate.render({
+				elem: '#yearSelector',
+				type: 'year',
+				// 点击关闭选择框方法
+				ready: function(){
+					$('.layui-laydate').on('click','.laydate-year-list li',function(){
+						$('.laydate-btns-confirm').click();
+					})
+				}
+			});
+			element.render();
+			form.render();
+
+			// 数据精确查询
+			form.on('submit(submit)', function (data) {
+				console.log(data.field)
+				//获取数据，通过ajax提交，获取结果后渲染
+				$('#result').val('结果数据');
+				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			});
+
+			// 区域数据查询选择
+
+			//年选择器2 并监听年份变化
+			laydate.render({
+				elem: '#yearSelector2',
+				type: 'year',
+				// 点击关闭选择框方法
+				ready: function(){
+					$('.layui-laydate').on('click','.laydate-year-list li',function(){
+						$('.laydate-btns-confirm').click();
+					})
+				},
+				done: function(value, date, endDate){
+					//时间改变加载数据
+					console.log(value)
+					setTimeout(function(){
+						$('[lay-filter="submit2"]').click();
+					},100);
+				}
+			});
+
+			// 筛选框点击
+			$('.tool-nav .item').click(function(){
+				
+				//获取点击值
+				$('.tool-nav #itemText').val($(this).text());
+				$('.tool-nav #itemValue').val($(this).attr('value'));
+				
+				$('[lay-filter="submit2"]').click();
+			});
+
+			// 区域数据查询提交
+			form.on('submit(submit2)', function (data) {
+				console.log(data.field)
+				//判断是否选择了筛选条件
+				if(data.field.value){
+					// 通过ajax获取数据
+
+					// 获取数据后调用图表加载接口
+					$('#chart').css('height','500px');
+					// 渲染图表
+					var myChart = echarts.init(document.getElementById('chart'));
+					myChart.setOption(option);
+				}
+				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			});
+			
+		});
+
+        // 指定图表的配置项和数据
+        var option = {
+            tooltip: {},
+			color:['#2691cd','#38688d', '#5eb95', '#f37b1d', '#C71D23'],
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+	</script>
+</body>
+
+</html>

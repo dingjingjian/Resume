@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>华中大各部门电话汇总</title>
+		<link href="./css/mui.min.css" rel="stylesheet" />
+		<link href="./css/mui.indexedlist.css" rel="stylesheet" />
+		<link rel="stylesheet" href="./css/main.css">
+		<style>
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+			}
+			.mui-bar {
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div id='list' class="mui-indexed-list">
+				<button type="button" id="telView"><span class="mui-icon mui-icon-bars"></span><span class="icon-text">分类</span></button>
+				<div class="mui-indexed-list-search mui-input-row mui-search">
+					<input id="search" type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索单位名称或电话">
+				</div>
+				<div id="indexedList" class="mui-indexed-list-bar">
+				</div>
+				<div class="mui-indexed-list-alert"></div>
+				<div class="mui-indexed-list-inner">
+					<div class="mui-indexed-list-empty-alert">没有数据</div>
+					<ul id="telList" class="mui-table-view">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 底栏 -->
+		<div class="foot"><span class="footer_icon"></span> 智慧华中大</div>
+		<script src="./js/mui.min.js"></script>
+		<script src="./js/mui.indexedlist.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui(".mui-content")[0].setAttribute('style', 'display: block;');
+			mui.ready(function() {
+				mui.ajax('index.json',{
+					dataType:'json',
+					type:'get',//HTTP请求类型	              
+					success:function(data){
+						if(data === undefined){return false;}
+						var indexedListStr = ''
+						var telListStr = ''
+						//列表载入
+						search('')
+						//搜索事件绑定
+						mui("#search")[0].addEventListener('input', function() {
+							var keyword = this.value;
+							search(keyword);
+						}, false);
+						mui('.mui-search').on('tap', '.mui-icon-clear', function() {
+							search('');
+						});
+						//搜索方法
+						function search(keyword){
+							telListStr='';
+							indexedListStr='';
+							if(keyword==''){
+								mui.each(data,function(index,item){
+									indexedListStr+='<a>'+index+'</a>'
+									telListStr+='<li data-group="'+index+'" class="mui-table-view-divider mui-indexed-list-group">'+index+'</li>'
+									mui.each(item,function(telIndex,telItem){
+										telListStr+='<li class="mui-table-view-cell mui-indexed-list-item"><a href="tel:' + telItem.phoneNum + '">'+telItem.department+'</a></li>	'
+									});
+								});
+							}else{
+								mui.each(data,function(index,item){
+									var checkGroup = true;
+									mui.each(item,function(telIndex,telItem){
+										if (keyword && (telItem.phoneNum.indexOf(keyword) >= 0 || telItem.department.indexOf(keyword) >= 0)) {
+											if(checkGroup){
+												indexedListStr+='<a>'+index+'</a>'
+												telListStr+='<li data-group="'+index+'" class="mui-table-view-divider mui-indexed-list-group">'+index+'</li>'
+												checkGroup=false;
+											}
+											telListStr+='<li class="mui-table-view-cell mui-indexed-list-item"><a href="tel:' + telItem.phoneNum + '">'+telItem.department+'</a></li>	'
+										}
+									});
+								});
+							}
+							mui("#telList")[0].innerHTML=telListStr;
+							mui("#indexedList")[0].innerHTML=indexedListStr;
+							var list = document.getElementById('list');
+							window.indexedList = new mui.IndexedList(list);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+				//搜索按钮
+				mui(".mui-content").on('tap', '#telView', function () {
+					//打开电话列表页面
+					location.href='telList.html'
+				});
+			});
+		</script>
+	</body>
+
+</html>

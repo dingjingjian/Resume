@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>日志管理</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+    <link rel="stylesheet" href="./static/css/common.css">
+    
+    <style>
+        /* 导航菜单样式 */
+        .tool-nav{
+            background-color: #2691cd;
+        }
+        .tool-nav.layui-nav>.layui-nav-item>a{
+            color: #fff;
+        }
+        .tool-nav.layui-nav .layui-nav-more {
+            border-top-color: #fff;
+        }
+        .tool-nav.layui-nav .layui-nav-mored {
+            border-top-color: transparent;
+        }
+        .layui-nav-bar{
+            background-color: #fff!important;
+        }
+        /* 影像容器 */
+        .image-box{
+            background: #eee;
+            padding: 20px 15px;
+        }
+        .image-box .layui-card{
+            position: relative;
+            height: 520px;
+            padding: 10px 10px 10px 60px;
+            margin: 0 5px;
+        }
+        .image-box h2{
+            writing-mode: vertical-lr;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        /* 叠加图层透明度 */
+        .mask{
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 60px;
+            right: 10px;
+            opacity: 0.5;
+        }
+        .overlay{
+            width: 100%;
+            transition: all 0.4s;
+        }
+        .overlay.noShow{
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">河长制信息管理</a>
+				<a><cite>巡河辅助管理</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>巡河辅助管理</h1>
+			</div>
+			<div class="layui-card-body">
+                <ul class="layui-nav tool-nav">
+                    <li class="layui-nav-item layui-this">
+                        <a href="javascript:;">影像加载</a>
+                        <dl class="layui-nav-child">
+                            <dd lay-unselect><a href="javascript:;" bind-event="background">本底影像加载</a></dd>
+                            <dd lay-unselect><a href="javascript:;" bind-event="uavImage">无人机影像加载</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item" lay-unselect bind-event="point"><a href="javascript:;">点标记</a></li>
+                    <li class="layui-nav-item" lay-unselect bind-event="polygon"><a href="javascript:;">多边形标记</a></li>
+                    <li class="layui-nav-item" lay-unselect bind-event="overlay" state='0'><a href="javascript:;">图层叠加</a></li>
+                    <li class="layui-nav-item" lay-unselect bind-event="export"><a href="javascript:;">导出影像</a></li>
+                </ul>
+                <div class="layui-row image-box">
+                    <div class="overlay">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <h2>本底影像</h2>
+                                <svg width="100%" height="100%">
+                                    <image xlink:href="./static/images/loading1.jpg" width="100%" height="100%"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <h2>无人机影像</h2>
+                                <svg width="100%" height="100%">
+                                    <image xlink:href="./static/images/loading2.jpg" width="100%" height="100%"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md12 overlay noShow">
+                        <div class="layui-card">
+                            <h2>叠加影像</h2>
+                            <svg width="100%" height="100%">
+                                <image xlink:href="./static/images/loading1.jpg" width="100%" height="100%"/>
+                            </svg>
+                            <div class="mask">
+                                <svg width="100%" height="100%">
+                                    <image xlink:href="./static/images/loading2.jpg" width="100%" height="100%"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 日志管理.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element','form', 'upload'], function () {
+			//引入框架所需组件 基础组件 弹窗组件
+			var element = layui.element
+            upload = layui.upload,
+            form = layui.form;
+			element.render();
+            //本底影像加载
+            $('[bind-event="background"]').click(function(event) {
+                layer.open({
+                    type: 1,
+                    resize: false,
+                    title: '本底影像加载',
+                    area: ['480px'],
+                    content: '<form class="layui-form" style="padding:20px;" lay-filter="layer">' +
+                        '<div class="layui-form-item">' +
+                        '<label class="layui-form-label">文件名</label>' +
+                        '<div class="layui-input-block">' +
+                        '<input type="text" id="title" name="title" placeholder="上传本底影像文件" autocomplete="off" class="layui-input" required lay-verify="required" readonly style="width: 200px;display: inline;"> ' +
+                        '<button type="button" class="layui-btn" id="upload" style="position: relative;top: -1px;">' +
+                        '<i class="layui-icon">&#xe67c;</i>上传文件' +
+                        '</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="layui-form-item">' +
+                        '<div class="layui-input-block">' +
+                        '<button class="layui-btn" lay-submit lay-filter="submit">完成</button>' +
+                        '<button type="button" class="layui-btn layui-btn-primary colse-btn">关闭</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</form>',
+                    success: function (layero, index) {
+                        //关闭弹窗
+                        $('.colse-btn').click(function () {
+                            layer.close(index); //
+                        })
+                        //执行文件上传实例
+                        var uploadInst = upload.render({
+                            elem: '#upload' //绑定元素
+                                ,
+                            url: '' //上传接口
+                                ,
+                            exts: 'pdf|doc|docx',
+                            before: function (obj) {
+                                //预读本地文件示例，不支持ie8
+                                obj.preview(function (index, file, result) {
+                                    $('#title').val(file.name);
+                                });
+                            },
+                            done: function (res) {
+                                //上传完毕回调
+                                layer.msg('文件上传成功！')
+                            },
+                            error: function () {
+                                //请求异常回调
+                                layer.msg('文件上传失败！')
+                            }
+                        });
+                        form.render(null, 'layer');
+                        form.on('submit(submit)', function (data) { // 弹出层表单完成
+                            //点击完成执行的回调
+                            //关闭弹窗
+                            layer.close(index);
+                            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                        });
+                    }
+                });
+            });
+            //无人机影像加载
+            $('[bind-event="uavImage"]').click(function(event) {
+                layer.open({
+                    type: 1,
+                    resize: false,
+                    title: '无人机影像加载',
+                    area: ['480px'],
+                    content: '<form class="layui-form" style="padding:20px;" lay-filter="layer">' +
+                        '<div class="layui-form-item">' +
+                        '<label class="layui-form-label">文件名</label>' +
+                        '<div class="layui-input-block">' +
+                        '<input type="text" id="title" name="title" placeholder="上传无人机影像文件" autocomplete="off" class="layui-input" required lay-verify="required" readonly style="width: 200px;display: inline;"> ' +
+                        '<button type="button" class="layui-btn" id="upload" style="position: relative;top: -1px;">' +
+                        '<i class="layui-icon">&#xe67c;</i>上传文件' +
+                        '</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="layui-form-item">' +
+                        '<div class="layui-input-block">' +
+                        '<button class="layui-btn" lay-submit lay-filter="submit">完成</button>' +
+                        '<button type="button" class="layui-btn layui-btn-primary colse-btn">关闭</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</form>',
+                    success: function (layero, index) {
+                        //关闭弹窗
+                        $('.colse-btn').click(function () {
+                            layer.close(index); //
+                        })
+                        //执行文件上传实例
+                        var uploadInst = upload.render({
+                            elem: '#upload' //绑定元素
+                                ,
+                            url: '' //上传接口
+                                ,
+                            exts: 'pdf|doc|docx',
+                            before: function (obj) {
+                                //预读本地文件示例，不支持ie8
+                                obj.preview(function (index, file, result) {
+                                    $('#title').val(file.name);
+                                });
+                            },
+                            done: function (res) {
+                                //上传完毕回调
+                                layer.msg('文件上传成功！')
+                            },
+                            error: function () {
+                                //请求异常回调
+                                layer.msg('文件上传失败！')
+                            }
+                        });
+                        form.render(null, 'layer');
+                        form.on('submit(submit)', function (data) { // 弹出层表单完成
+                            //点击完成执行的回调
+                            //关闭弹窗
+                            layer.close(index);
+                            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                        });
+                    }
+                });
+            });
+            //点标记
+            $('[bind-event="point"]').click(function(event) {
+               //调用点标记接口
+            });
+            //多边形标记
+            $('[bind-event="polygon"]').click(function(event) {
+                //调用多边形标记接口
+            });
+            //叠加影像
+            $('[bind-event="overlay"]').click(function(event) {
+                if($(this).attr('state')==0){
+                    $('.overlay').eq(0).addClass('noShow');
+                    $('.overlay').eq(1).removeClass('noShow');
+                    $(this).attr('state',1);
+                    $(this).find('a').text('取消叠加');
+                }else{
+                    $('.overlay').eq(0).removeClass('noShow');
+                    $('.overlay').eq(1).addClass('noShow');
+                    $(this).attr('state',0);
+                    $(this).find('a').text('图层叠加');
+                }
+            });
+            //导出
+            $('[bind-event="export"]').click(function(event) {
+                layer.confirm('您确认要导出影像图像吗？', {title:'导出'}, function(index){
+                    layer.close(index);
+                    //调用导出接口
+                });
+            });
+		});
+	</script>
+</body>
+
+</html>

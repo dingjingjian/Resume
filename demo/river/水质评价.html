@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta title="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>“一河一策”数字河流子系统--河流管理规章法规</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">河长制信息管理</a>
+				<a href="#">“一河一策”</a>
+				<a><cite>水质评价</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>水质评价</h1>
+			</div>
+			<div class="layui-card-body">
+				<!-- 选项卡  通过'layui-this'属性设置当前选中项 'layui-show'设置相对应的展开项-->
+				<div class="layui-tab layui-tab-card">
+					<ul class="layui-tab-title">
+						<li class="layui-this">排污口</li>
+						<li>水质指标</li>
+						<li>水质评价</li>
+					</ul>
+					<div class="layui-tab-content">
+						<div class="layui-tab-item layui-show">
+							<table id="drainOutletTable" lay-filter="table">
+							</table>
+						</div>
+						<div class="layui-tab-item">
+							<table id="waterIndexTable" lay-filter="table">
+							</table>
+						</div>
+						<div class="layui-tab-item">
+							<table id="waterEvaluateTable" lay-filter="table">
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+	<!--   河流管理规章法规.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table', 'upload', 'laydate'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件、文件上传、时间选择
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table,
+				upload = layui.upload,
+				laydate = layui.laydate;
+
+			element.render();
+			form.render();
+
+			// 模拟数据 真实项目时删除
+			var drainOutletJson = [{
+					"outfallName": "测试1",
+					"outfallType": "测试1",
+					"adminRegion": "测试1",
+					"outfallSize": "测试1",
+					"GPS": "测试1"
+				},
+				{
+					"outfallName": "测试2",
+					"outfallType": "测试2",
+					"adminRegion": "测试2",
+					"outfallSize": "测试2",
+					"GPS": "测试2"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				},
+				{
+					"outfallName": "测试3",
+					"outfallType": "测试3",
+					"adminRegion": "测试3",
+					"outfallSize": "测试3",
+					"GPS": "测试3"
+				}
+			]
+
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [
+				[{
+					field: 'outfallName',
+					title: '排口名称',
+					minWidth: 80
+				}, {
+					field: 'outfallType',
+					title: '排口类型',
+					minWidth: 80
+				}, {
+					field: 'adminRegion',
+					title: '行政区',
+					minWidth: 80
+				}, {
+					field: 'outfallSize',
+					title: '排口尺寸（米）',
+					minWidth: 80
+				}, {
+					field: 'GPS',
+					title: 'GPS坐标',
+					minWidth: 80
+				}]
+			]
+			// 列表配置--排污口
+			var drainOutletList = table.render({
+				elem: '#drainOutletTable' //指向存放分页的容器
+				, cols: cols //表头
+				, page: true //是否显示分页
+				, limit: 10 //每页默认显示的数量
+				, limits: [10, 20, 50, 100] //每页条数的选择项
+				, defaultToolbar: ['filter'] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+				, data: drainOutletJson //直接赋值数据 实际项目请删除
+
+				// AJAX请求下的配置分页
+				/* 	, url: '' //列表数据接口地址
+					, method: 'GET' //请求方式
+					, request: {
+						pageName: 'pn' //页码的参数名称，默认：page
+						, limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				}, parseData: function (res) { //res 即为原始返回的数据
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.msg, //解析提示文本
+						"count": res.data.count, //解析数据长度
+						"data": res.data.list //解析数据列表
+					};
+				} */
+			});
+
+			// 模拟数据 真实项目时删除
+			var waterIndexJson = [{
+					"indexName": "测试11",
+					"indexType": "测试11",
+					"adminRegion": "测试11",
+					"outfallSize": "测试11",
+					"GPS": "测试11"
+				},
+				{
+					"indexName": "测试22",
+					"indexType": "测试22",
+					"adminRegion": "测试22",
+					"outfallSize": "测试22",
+					"GPS": "测试22"
+				},
+				{
+					"indexName": "测试33",
+					"indexType": "测试33",
+					"adminRegion": "测试33",
+					"outfallSize": "测试33",
+					"GPS": "测试33"
+				}
+			]
+
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [
+				[{
+					field: 'indexName',
+					title: '指标名称',
+					minWidth: 80
+				}, {
+					field: 'indexType',
+					title: '指标类型',
+					minWidth: 80
+				}, {
+					field: 'adminRegion',
+					title: '行政区',
+					minWidth: 80
+				}, {
+					field: 'outfallSize',
+					title: '指标',
+					minWidth: 80
+				}, {
+					field: 'GPS',
+					title: 'GPS坐标',
+					minWidth: 80
+				}]
+			]
+			// 列表配置--水质指标
+			var waterIndexList = table.render({
+				elem: '#waterIndexTable' //指向存放分页的容器
+				, cols: cols //表头
+				, page: true //是否显示分页
+				, limit: 10 //每页默认显示的数量
+				, limits: [10, 20, 50, 100] //每页条数的选择项
+				, defaultToolbar: ['filter'] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+				, data: waterIndexJson //直接赋值数据 实际项目请删除
+
+				// AJAX请求下的配置分页
+				/* 	, url: '' //列表数据接口地址
+					, method: 'GET' //请求方式
+					, request: {
+						pageName: 'pn' //页码的参数名称，默认：page
+						, limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				}, parseData: function (res) { //res 即为原始返回的数据
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.msg, //解析提示文本
+						"count": res.data.count, //解析数据长度
+						"data": res.data.list //解析数据列表
+					};
+				} */
+			});
+
+			// 模拟数据 真实项目时删除
+			var waterEvaluateJson = [{
+					"evaluateName": "测试111",
+					"evaluateType": "测试111",
+					"adminRegion": "测试111",
+					"outfallSize": "测试111",
+					"GPS": "测试111"
+				},
+				{
+					"evaluateName": "测试222",
+					"evaluateType": "测试222",
+					"adminRegion": "测试222",
+					"outfallSize": "测试222",
+					"GPS": "测试222"
+				},
+				{
+					"evaluateName": "测试333",
+					"evaluateType": "测试333",
+					"adminRegion": "测试333",
+					"outfallSize": "测试333",
+					"GPS": "测试333"
+				}
+			]
+
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [
+				[{
+					field: 'evaluateName',
+					title: '评价名称',
+					minWidth: 80
+				}, {
+					field: 'evaluateType',
+					title: '评价类型',
+					minWidth: 80
+				}, {
+					field: 'adminRegion',
+					title: '行政区',
+					minWidth: 80
+				}, {
+					field: 'outfallSize',
+					title: '评价',
+					minWidth: 80
+				}, {
+					field: 'GPS',
+					title: 'GPS坐标',
+					minWidth: 80
+				}]
+			]
+			// 列表配置--水质评价
+			var waterEvaluateList = table.render({
+				elem: '#waterEvaluateTable' //指向存放分页的容器
+				, cols: cols //表头
+				, page: true //是否显示分页
+				, limit: 10 //每页默认显示的数量
+				, limits: [10, 20, 50, 100] //每页条数的选择项
+				, defaultToolbar: ['filter'] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+				, data: waterEvaluateJson //直接赋值数据 实际项目请删除
+				// AJAX请求下的配置分页
+				/* 	,url: '' //列表数据接口地址
+					,method: 'GET' //请求方式
+					,request: {
+						,pageName: 'pn' //页码的参数名称，默认：page
+						,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				},
+				parseData: function (res) { //res 即为原始返回的数据
+					return {
+						"code": res.code, //解析接口状态
+						"msg": res.msg, //解析提示文本
+						"count": res.data.count, //解析数据长度
+						"data": res.data.list //解析数据列表
+					};
+				} */
+			});
+
+
+		});
+	</script>
+</body>
+
+</html>

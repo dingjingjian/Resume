@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Shapes and Symbols</title>
+
+    <link rel="stylesheet" href="./static/css/arcgis.css">
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.29/esri/css/esri.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.29/dijit/themes/claro/claro.css">
+   
+    <script src="https://js.arcgis.com/3.29/"></script>
+	<script src="./assets/jquery.min.js"></script>
+    <script>
+        var map, tb;
+
+        require([
+            "dojo/_base/array",
+            "esri/map",
+            "esri/layers/GraphicsLayer",
+            "esri/geometry/Point",
+            "esri/toolbars/draw",
+            "esri/toolbars/edit",
+            "esri/geometry/jsonUtils",
+            "esri/Color",
+            "esri/config",
+            "dojo/parser",
+            "dijit/Menu",
+            "dijit/MenuItem",
+            "dijit/MenuSeparator",
+            "esri/geometry/normalizeUtils",
+            "esri/tasks/GeometryService",
+            "esri/tasks/BufferParameters",
+            "esri/symbols/SimpleMarkerSymbol",
+            "esri/symbols/SimpleLineSymbol",
+            "esri/symbols/SimpleFillSymbol",
+            "esri/symbols/PictureFillSymbol",
+            "esri/symbols/CartographicLineSymbol",
+            "esri/geometry/Polyline",
+            "esri/graphic",
+            "esri/SpatialReference",
+            "esri/Color", "dojo/dom", "dojo/on", "dojo/domReady!"
+        ], function (
+            array,
+            Map,
+            GraphicsLayer,
+            Point,
+            Draw,
+            Edit,
+            jsonUtils,
+            Color,
+            esriConfig,
+            parser,
+            Menu,
+            MenuItem,
+            MenuSeparator,
+            normalizeUtils,
+            GeometryService,
+            BufferParameters,
+            SimpleMarkerSymbol,
+            SimpleLineSymbol,
+            SimpleFillSymbol,
+            PictureFillSymbol,
+            CartographicLineSymbol,
+            Polyline,
+            Graphic,
+            SpatialReference,
+            Color, dom, on
+        ) {
+
+                parser.parse();
+                // esriConfig.defaults.geometryService = new GeometryService("http://localhost:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer");
+                esriConfig.defaults.geometryService = new GeometryService("https://utility.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer");
+                esriConfig.defaults.io.proxyUrl = "/proxy/";
+                esriConfig.defaults.io.alwaysUseProxy = false;
+
+                // const sketchLayer = new GraphicsLayer();
+                map = new Map("mapDiv", {
+                    basemap: "satellite",
+                    center: [102.746951, 37.817633],
+                    zoom: 13,
+                    logo: false
+                });
+                // map.addLayer(sketchLayer);
+                map.on("load", function () {
+                    initToolbar();
+                    createToolbarAndContextMenu();
+                });
+
+
+                var lineSymbol = new CartographicLineSymbol(
+                    CartographicLineSymbol.STYLE_SOLID,
+                    new Color([255, 0, 0]), 4,
+                    CartographicLineSymbol.CAP_ROUND,
+                    CartographicLineSymbol.JOIN_MITER, 5
+                );
+
+
+                function initToolbar() {
+                    tb = new Draw(map);
+                    //   tb.on("draw-complete", addGraphic);
+                    tb.on("draw-complete", function (evt) {
+                        // 将绘制的线返回，进行名称设置
+                        var polylineGraphic = addGraphic(evt);
+
+                        // 设置缓冲区、河岸线的名称
+                        var bufferName = "";
+                        var lineName = "";
+                        $("#setNameDiv").show();
+                        $("#setNameBtn").click(function () {
+                            bufferName = $("#setNameInput").val();
+                            lineName = $("#setNameInput").val() + "_河岸线";
+                            $("#setNameDiv").hide();
+                            $("#setNameInput").val("");
+                            createLine();
+                            $("#setNameBtn").off("click");
+                        });
+
+                        // 绘制缓冲线，并将经纬度添加到表格中
+                        function createLine() {
+                            // 设置河岸线的名称
+                            var attributes = {
+                                name: lineName,
+                            }
+                            polylineGraphic.attributes = attributes;
+                            var baseLinePoints = polylineGraphic.geometry.paths[0];
+                            var currentWkid = polylineGraphic.geometry.spatialReference.wkid;//绘制的河岸线的投影坐标系
+                            var distance = $("#distance").prop("value");
+                            var bufferLineName = lineName + "_" + distance + "m缓冲线";//缓冲线的名称
+                            // console.log(polylineGraphic.geometry.paths[0]);
+                            doBuffer(evt, baseLinePoints, distance, currentWkid, bufferLineName);
+                        }
+                    });
+
+                    function doBuffer(evt, baseLinePoints, distance, currentWkid, bufferLineName) {
+                        tb.deactivate();
+                        var geometry = evt.geometry;
+
+                        var params = new BufferParameters();
+                        params.distances = [$("#distance").prop("value")];
+                        params.outSpatialReference = map.spatialReference;
+                        // params.unit = GeometryService[dom.byId("unit").value];
+                        params.unit = GeometryService["UNIT_METER"];
+
+                        normalizeUtils.normalizeCentralMeridian([geometry]).then(function (normalizedGeometries) {
+                            var normalizedGeometry = normalizedGeometries[0];
+
+                            params.geometries = [normalizedGeometry];
+                            esriConfig.defaults.geometryService.buffer(params, function (bufferedGeometries) {
+                                showBuffer(bufferedGeometries, baseLinePoints, currentWkid, bufferLineName);
+                            });
+
+                        });
+                    }
+                    function showBuffer(bufferedGeometries, baseLinePoints, currentWkid, bufferLineName) {
+                        var symbol = new SimpleFillSymbol(
+                            SimpleFillSymbol.STYLE_SOLID,
+                            new SimpleLineSymbol(
+                                SimpleLineSymbol.STYLE_SOLID,
+                                new Color([255, 0, 0, 0.65]), 2
+                            ),
+                            new Color([0, 0, 255, 0.1])
+                        );
+                        var graphic = new Graphic(bufferedGeometries[0], symbol);
+                        // map.graphics.add(graphic);
+                        console.log(bufferedGeometries[0].spatialReference);
+
+                        var bufferRingsPoints = bufferedGeometries[0].rings[0];
+                        var bufferRingsPoints_part = getPoints(bufferRingsPoints, baseLinePoints);
+
+                        var LR = document.getElementById("selectLR").value;
+                        var bufferRingsPoints_tud;
+                        if (LR == "left") {
+                            drawBufferLine(bufferRingsPoints_part[0], currentWkid, bufferLineName);
+                            // 投影坐标转换为经纬度坐标
+                            bufferRingsPoints_tud = coordinatesTransform(currentWkid, bufferRingsPoints_part[0]);
+                        }
+                        if (LR == "right") {
+                            drawBufferLine(bufferRingsPoints_part[1], currentWkid, bufferLineName);
+                            // 投影坐标转换为经纬度坐标
+                            bufferRingsPoints_tud = coordinatesTransform(currentWkid, bufferRingsPoints_part[1]);
+                        }
+
+                        var baseLinePoints_tud = coordinatesTransform(currentWkid, baseLinePoints);
+                        var bufferName = bufferLineName.split('_')[0];
+                        var baseLineName = bufferName + "_河岸线";
+                        setCoordinatesDivContext(baseLinePoints_tud, bufferRingsPoints_tud, bufferName, baseLineName, bufferLineName)
+
+                    }
+                    // 获取缓冲线的坐标
+                    function getPoints(pointsAll, baseLinePoints) {
+                        var newPointsAll = new Array(pointsAll.length);
+                        for (let i = 0; i < newPointsAll.length; i++) {
+                            newPointsAll[i] = pointsAll[i];
+                        }
+
+                        var A0 = (baseLinePoints[0][1] - baseLinePoints[1][1]) / (baseLinePoints[0][0] - baseLinePoints[1][0]);
+                        var B0 = -1;
+                        var C0 = (baseLinePoints[0][1] - A0 * baseLinePoints[0][0]);
+                        var minLineDistanceStart = Math.abs((A0 * newPointsAll[0][0] + B0 * newPointsAll[0][1] + C0) / (Math.sqrt(Math.pow(A0, 2) + Math.pow(B0, 2))));
+                        var minPointDistanceStart = Math.sqrt(Math.pow(newPointsAll[0][0] - baseLinePoints[0][0], 2) + Math.pow(newPointsAll[0][1] - baseLinePoints[0][1], 2));
+                        var pointStartIndex = 0;
+
+                        var n = baseLinePoints.length;
+                        var An = (baseLinePoints[n - 1][1] - baseLinePoints[n - 2][1]) / (baseLinePoints[n - 1][0] - baseLinePoints[n - 2][0]);
+                        var Bn = -1;
+                        var Cn = (baseLinePoints[n - 1][1] - An * baseLinePoints[n - 1][0]);
+                        var minLineDistanceEnd = Math.abs((An * newPointsAll[0][0] + Bn * newPointsAll[0][1] + Cn) / (Math.sqrt(Math.pow(An, 2) + Math.pow(Bn, 2))));
+                        var minPointDistanceEnd = Math.sqrt(Math.pow(newPointsAll[0][0] - baseLinePoints[n - 1][0], 2) + Math.pow(newPointsAll[0][1] - baseLinePoints[n - 1][1], 2));
+                        var pointEndIndex = 0;
+                        // 根据点到直线的最短距离和，和点到点的最短距离来获取 绘制的河岸线的两端对应的 缓冲线坐标
+                        for (let i = 1; i < newPointsAll.length; i++) {
+                            // 河岸线起始点对应的缓冲线坐标索引
+                            let currentLineDistanceStart = Math.abs((A0 * newPointsAll[i][0] + B0 * newPointsAll[i][1] + C0) / (Math.sqrt(Math.pow(A0, 2) + Math.pow(B0, 2))));
+                            let currentPointDistanceStart = Math.sqrt(Math.pow(newPointsAll[i][0] - baseLinePoints[0][0], 2) + Math.pow(newPointsAll[i][1] - baseLinePoints[0][1], 2));
+                            if ((currentLineDistanceStart < minLineDistanceStart) && (currentPointDistanceStart < minPointDistanceStart)) {
+                                minLineDistanceStart = currentLineDistanceStart;
+                                minPointDistanceStart = currentPointDistanceStart;
+                                pointStartIndex = i;
+                            }
+                            // 河岸线终止点对应的缓冲线坐标索引
+                            let currentLineDistanceEnd = Math.abs((An * newPointsAll[i][0] + Bn * newPointsAll[i][1] + Cn) / (Math.sqrt(Math.pow(An, 2) + Math.pow(Bn, 2))));
+                            let currentPointDistanceEnd = Math.sqrt(Math.pow(newPointsAll[i][0] - baseLinePoints[n - 1][0], 2) + Math.pow(newPointsAll[i][1] - baseLinePoints[n - 1][1], 2));
+                            if ((currentLineDistanceEnd < minLineDistanceEnd) && (currentPointDistanceEnd < minPointDistanceEnd)) {
+                                minLineDistanceEnd = currentLineDistanceEnd;
+                                minPointDistanceEnd = currentPointDistanceEnd;
+                                pointEndIndex = i;
+                            }
+                        }
+                        // 根据缓冲线的坐标索引获取对应的左右两边的缓冲线坐标
+                        var pointsLeft = new Array();
+                        var pointsRight = new Array();
+                        if (pointStartIndex <= pointEndIndex) {
+                            for (let i = pointStartIndex; i <= pointEndIndex; i++) {
+                                pointsLeft[i - pointStartIndex] = newPointsAll[i];
+                            }
+
+                            for (let i = pointEndIndex; i < newPointsAll.length; i++) {
+                                pointsRight[i - pointEndIndex] = newPointsAll[i];
+                            }
+                            let currentLengthRight = pointsRight.length;
+                            for (let i = 0; i <= pointStartIndex; i++) {
+                                pointsRight[currentLengthRight + i] = newPointsAll[i];
+                            }
+                        }
+                        if (pointStartIndex > pointEndIndex) {
+                            for (let i = pointStartIndex; i < newPointsAll.length; i++) {
+                                pointsLeft[i - pointStartIndex] = newPointsAll[i];
+                            }
+                            let currentLengthRight = pointsLeft.length;
+                            for (let i = 0; i <= pointEndIndex; i++) {
+                                pointsLeft[currentLengthRight + i] = newPointsAll[i];
+                            }
+
+                            for (let i = pointEndIndex; i <= pointStartIndex; i++) {
+                                pointsRight[i - pointEndIndex] = newPointsAll[i];
+                            }
+                        }
+                        // 将河岸线起止点坐标添加到缓冲线坐标中，使缓冲线连接更完整
+                        // pointsLeft.unshift(baseLinePoints[0]);
+                        // pointsLeft.push(baseLinePoints[baseLinePoints.length - 1]);
+                        // pointsRight.unshift(baseLinePoints[baseLinePoints.length - 1]);
+                        // pointsRight.push(baseLinePoints[0]);
+
+                        var pointsLR = [pointsLeft, pointsRight];
+                        return pointsLR;
+                    }
+                    // 绘制缓冲线
+                    function drawBufferLine(newPointsAll, currentWkid, bufferLineName) {
+                        var lineSymbol = new CartographicLineSymbol(
+                            CartographicLineSymbol.STYLE_SOLID,
+                            new Color([0, 0, 255]), 4,
+                            CartographicLineSymbol.CAP_ROUND,
+                            CartographicLineSymbol.JOIN_MITER, 5
+                        );
+
+                        var polyline = new Polyline({
+                            "paths": [newPointsAll],
+                            "spatialReference": {
+                                "wkid": currentWkid,
+                            }
+                        });
+
+                        var attributes = {
+                            "name": bufferLineName,
+                        }
+                        var plGraphic = new Graphic(polyline, lineSymbol);
+                        plGraphic.attributes = attributes;
+                        console.log("ddddddddd");
+                        console.log(newPointsAll);
+                        console.log(plGraphic);
+                        map.graphics.add(plGraphic);
+                        // sketchLayer.add(plGraphic);
+                    }
+
+                    // 投影坐标转换为经纬度坐标
+                    function coordinatesTransform(currentWkid, currentPoint) {
+                        var newPointsTude = new Array(currentPoint.length);
+                        for (let i = 0; i < currentPoint.length; i++) {
+                            let point = new Point(currentPoint[i][0], currentPoint[i][1], new SpatialReference(currentWkid));
+                            newPointsTude[i] = point.getLongitude().toFixed(4) +"; "+ point.getLatitude().toFixed(4);
+                        }
+                        return newPointsTude;
+                    }
+
+                    // 将绘制的河岸线、缓冲线坐标添加到表格中展示
+                    function setCoordinatesDivContext(baseLinePoints, bufferLinePoints, bufferName, lineName, bufferLineName) {
+                        var $tbStart1 = '<h4 class="panel-title" id="panel-title"><span id="collapse" class="esri-icon esri-icon-right-triangle-arrow"></span><input type="text" class="modifyBufferName" value="'+bufferName+'" ><button id="saveCoordinatesBtn">保存</button><button id="delCoordinatesBtn">删除</button></h4>';
+                        var $tbStart2 = '<div class="collapse">';
+                        var $tbStartLeft = '<div class="tbLeft" style="float:left;"><table id="' + lineName + '"><tr><td colspan="2">河岸线(红色)</td></tr><tr><td>序号</td><td>经纬度</td></tr>';
+                        var $tbMiddleLeft1 = "<tr><td>";
+                        var $tbMiddleLeft2 = "</td><td>";
+                        var $tbMiddleLeft3 = "</td></tr>";
+                        var $tbEndLeft = "</table></div>"
+
+                        var $tbStartRight = '<div class="tbRight" style="float:right;"><table id="' + bufferLineName + '"><tr><td colspan="2">缓冲区线(蓝色)</td></tr><tr><td>序号</td><td>经纬度</td></tr>';
+                        var $tbMiddleRight1 = "<tr><td>";
+                        var $tbMiddleRight2 = "</td><td>";
+                        var $tbMiddleRight3 = "</td></tr>";
+                        var $tbEndRight = "</table></div>"
+
+                        var $tbEnd = "</div>";
+                        var $tb = "";
+                        var $tbMiddleLeft = "";
+                        for (idx in baseLinePoints) {
+                            var i = parseInt(idx) + 1;
+                            $tbMiddleLeft = $tbMiddleLeft + $tbMiddleLeft1 + i + $tbMiddleLeft2 + baseLinePoints[idx] + $tbMiddleLeft3;
+                        };
+                        $tbMiddleLeft = $tbStartLeft + $tbMiddleLeft + $tbEndLeft;
+
+                        var $tbMiddleRight = "";
+                        for (let idx in bufferLinePoints) {
+                            let i = parseInt(idx) + 1;
+                            $tbMiddleRight = $tbMiddleRight + $tbMiddleRight1 + i + $tbMiddleRight2 + bufferLinePoints[idx] + $tbMiddleRight3;
+                        };
+                        $tbMiddleRight = $tbStartRight + $tbMiddleRight + $tbEndRight;
+
+                        $tb = $tbStart1 + $tbStart2 + $tbMiddleLeft + $tbMiddleRight + $tbEnd;
+                        $("#panel").append($tb);
+                        // 为添加的表格、div添加操作
+                        // setAnimate();
+                    }
+                    // function animate(obj, json, endFn) {
+                    //     //关闭上一个定时器
+                    //     clearInterval(obj.timer);
+                    //     //管理定时器
+                    //     obj.timer = setInterval(function () {
+                    //         //定时器开关 ,用来判断是否定时定时器
+                    //         var flag = true;
+
+                    //         for (var arrt in json) {
+                    //             //计算步长 步长 = 目标位置 - 当前位置
+                    //             var step = (json[arrt] - parseInt(getStyle(obj, arrt))) / 5;
+                    //             step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    //             //盒子移动: 盒子现在的位置 + 步长取整
+                    //             obj.style[arrt] = parseInt(getStyle(obj, arrt)) + step + 'px';
+
+                    //             //只要其中一个不满足条件，就不停止定时器
+                    //             if (parseInt(getStyle(obj, arrt)) != json[arrt]) {
+                    //                 flag = false;
+                    //             }
+                    //         }
+                    //         //关闭定时器
+                    //         if (flag) {
+                    //             clearInterval(obj.timer);
+                    //             //2秒后执行回调函数
+                    //             setTimeout(function () {
+                    //                 //判断是否有回调函数，有endFn 再执行回调函数
+                    //                 endFn && endFn();
+                    //             }, 1000)
+                    //         }
+                    //     }, 20);
+                    // }
+                    //获得现在的样式
+                    // function getStyle(obj, arrt) {
+                    //     return obj.currentStyle ? obj.currentStyle[arrt] : getComputedStyle(obj, null)[arrt];
+                    // }
+                    // 结果表格的显示、操作等
+                    function setAnimate() {
+                        // var panel = document.getElementById("panel");
+                        // var oH = panel.getElementsByTagName('h4');
+                        // // var oDiv = panel.getElementsByTagName('div');
+                        // var oDiv = panel.getElementsByClassName("collapse");
+                        // for (var i = 0; i < oH.length; i++) {
+                        //     oH[i].index = i;
+                        //     oH[i].onclick = function () {
+                        //         for (var j = 0; j < oH.length; j++) {
+                        //             animate(oDiv[j], {
+                        //                 height: 0
+                        //             });
+                        //         }
+                        //         if (parseInt(getStyle(oDiv[this.index], 'height')) == 0) {
+                        //             animate(oDiv[this.index], {
+                        //                 height: 400
+                        //             });
+                        //             // oDiv[this.index].innerHTML = str[this.index];
+                        //         } else {
+                        //             animate(oDiv[this.index], {
+                        //                 height: 0
+                        //             });
+                        //         }
+                        //     }
+                        // }
+                        $('#coordinatesDiv').on('click','#collapse',function(){
+                            if($(this).hasClass('esri-icon-right-triangle-arrow')){
+                                $(this).closest('#panel').find('.collapsed').removeClass('collapsed');
+                                $(this).closest('#panel').find('.esri-icon-down-arrow').removeClass('esri-icon-down-arrow').addClass('esri-icon-right-triangle-arrow');
+                                $(this).removeClass('esri-icon-right-triangle-arrow').addClass('esri-icon-down-arrow');
+                                $(this).parent().next().addClass('collapsed');
+                            }else{
+                                $(this).removeClass('esri-icon-down-arrow').addClass('esri-icon-right-triangle-arrow');
+                                $(this).parent().next().removeClass('collapsed');
+                            }
+                        });
+                    }
+                    //时间绑定直接调动
+                    setAnimate();
+
+                    // event delegation so a click handler is not
+                    // needed for each individual button
+                    on(dom.byId("Polyline"), "click", function (evt) {
+                        // if ( evt.target.id === "info" ) {
+                        //   return;
+                        // }
+                        // var tool = evt.target.id.toLowerCase();
+                        map.disableMapNavigation();
+                        tb.activate("polyline");
+                    });
+                }
+
+                function createToolbarAndContextMenu() {
+                    // 添加图层
+                    // addGraphics();
+                    // 创建一个编辑工具
+                    editToolbar = new Edit(map);
+                    editToolbar.on("vertex-move", function (evt) {
+                        console.log(evt);
+                    });
+                    //地图点击事件
+                    // map.on("click", function (evt) {
+                    //     editToolbar.deactivate();
+                    // });
+                    map.on("click", function (evt) {
+                        editToolbar.deactivate();
+                    });
+                    //添加点按钮
+                    // createMapMenu();
+                    //添加主菜单栏
+                    createGraphicsMenu();
+                }
+                
+                //编辑等右键菜单栏函数封装
+                function createGraphicsMenu() {
+                    // Creates right-click context menu for GRAPHICS
+                    ctxMenuForGraphics = new Menu({});
+                    ctxMenuForGraphics.addChild(new MenuItem({
+                        label: "编辑",
+                        onClick: function () {
+                            if (selected.geometry.type !== "point") {
+                                editToolbar.activate(Edit.EDIT_VERTICES, selected);
+                            } else {
+                                alert("Not implemented");
+                            }
+                        }
+                    }));
+
+                    ctxMenuForGraphics.addChild(new MenuSeparator());
+                    ctxMenuForGraphics.addChild(new MenuItem({
+                        label: "删除",
+                        onClick: function () {
+                            map.graphics.remove(selected);
+                        }
+                    }));
+
+                    ctxMenuForGraphics.startup();
+                    //给每个graphics添加鼠标移入事件
+                    map.graphics.on("mouse-over", function (evt) {
+                        //获取当前鼠标悬浮的graphic
+                        selected = evt.graphic;
+
+                        // Let's bind to the graphic underneath the mouse cursor
+                        ctxMenuForGraphics.bindDomNode(evt.graphic.getDojoShape().getNode());
+                        // console.log(evt.graphic.getDojoShape().getNode());
+                    });
+                    //给每个graphics添加鼠标移出事件
+                    map.graphics.on("mouse-out", function (evt) {
+                        ctxMenuForGraphics.unBindDomNode(evt.graphic.getDojoShape().getNode());
+                    });
+                }
+               
+                function addGraphic(evt) {
+                    //deactivate the toolbar and clear existing graphics 
+                    tb.deactivate();
+                    map.enableMapNavigation();
+
+
+                    var symbol = lineSymbol;
+
+                    var polylineGraphic = new Graphic(evt.geometry, symbol);
+                    console.log("44444");
+                    console.log(polylineGraphic);
+                    map.graphics.add(polylineGraphic);
+                    // sketchLayer.add(polylineGraphic);
+                    return polylineGraphic;
+                }
+            });
+    </script>
+</head>
+
+<body>
+
+    <div class="esri-ui-top-right esri-ui-corner"><button class="esri-widget--button esri-icon-polyline geometry-button esri-component" id="Polyline" title="绘制缓冲线"></button></div>
+    
+    <div id="mapDiv">
+        <div id="setting">
+            <h1>参数设置</h1>
+            <div class="panel">
+                绘制岸线：
+                <select id="selectLR">
+                    <option value="left">左边</option>
+                    <option value="right">右边</option>
+                </select><br>
+                缓冲区距离：<input type="text" id="distance" value="200"><span class="input-m">m</span>
+            </div>
+        </div>
+        <div class="coordinatesDiv-scroll">
+            <div id="coordinatesDiv">
+                <div class="title">
+                    <h1>缓冲区经纬度</h1>
+                </div>
+                <div class="panel" id="panel"></div>
+            </div>
+        </div>
+
+        <div id="setNameDiv">
+            <div class="title">缓冲区命名</div>
+            <input type="text" id="setNameInput" placeholder="例如：xx河xx村段">
+            <button id="setNameBtn">确定</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

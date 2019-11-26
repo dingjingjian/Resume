@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>地表水水质采集</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+	<style>
+		/* 主体部分 */
+		.beyond_box {
+			border: 1px solid #e6e6e6;
+			position: relative;
+			margin-bottom: 15px;
+		}
+		.beyond_form{
+			height: 40px;
+			line-height: 40px;
+		}
+		/* 表格剧中大标题 */
+		.beyond_box h3 {
+			font-weight: 700;
+			text-align: center;
+			height: 50px;
+			line-height: 50px;
+			background-color: #f2f2f2;
+		}
+		.beyond_box h3>button {
+			position: absolute;
+			right: 15px;
+			top: 10px;
+			font-weight: normal;
+		}
+		/* 表格样式 */
+		.beyond_box .layui-row{
+			border-top: 1px solid #e6e6e6;
+		}
+		.beyond_box .layui-row .layui-col-md6:first-child .layui-table-view{
+			border-left: none;
+			border-right: 1 solid #e6e6e6;
+		}
+		.beyond_box .layui-row .layui-col-md6:last-child .layui-table-view{
+			border-left: none;
+			border-right: 1 solid #e6e6e6;
+		}
+		.layui-card-body .layui-table-view {
+			margin: 0;
+		}
+		.layui-table-view .layui-table td, .layui-table-view .layui-table th{
+			text-align: center;
+		}
+		.layui-card-body .layui-table-view .layui-table-grid-down{
+			display: none!important;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">河流信息采集处理</a>
+				<a href="#">数据采集与入库</a>
+				<a><cite>地表水水质采集</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>地表水水质采集</h1>
+			</div>
+			<form class="layui-card-body layui-form" lay-filter="form">
+				<div class="layui-row">
+					<div class="beyond_form">
+						<div class="layui-col-xs12 layui-col-sm6 layui-col-md6" style="font-size: 16px;">
+							检测单位：武威市环境保护监测站
+						</div>
+						<div class="layui-col-xs12 layui-col-sm6 layui-col-md6">
+							<div class="layui-form-item" style="float: right;margin-bottom: 5px;">
+								<div class="layui-inline">
+									<div class="layui-input-inline">
+										<select name="STBNM" lay-verify="required" lay-search="">
+											<option value="">请选择断面名称</option>
+											<option value="1">扎子沟</option>
+											<option value="2">黄羊水库</option>
+											<option value="3">红崖山水库</option>
+											<option value="4">西营水库</option>
+											<option value="5">南营水库</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-inline" style="margin-right: 0;">
+									<div class="layui-input-inline" style="margin-right: 0;">
+										<input type="text" class="layui-input" id="selectDate" name="PRB" autocomplete="off" lay-verify="required" placeholder="请选择采样日期">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="beyond_box">
+					<h3>地表水水质检测表<button type="button" class="layui-btn layui-btn-sm" lay-event="import">数据导入</button></h3>
+					<div class="layui-row">
+						<div class="layui-col-md6">
+							<table id="tableLeft" lay-filter="tableLeft"></table>
+						</div>
+						<div class="layui-col-md6">
+							<table id="tableRight" lay-filter="tableRight"></table>
+						</div>
+					</div>
+				</div>
+				<div style="text-align: center;">备注：表中“L”所示数据为该项目最低检测出浓度。</div>
+				<!-- 表单提交 -->
+				<div class="layui-form-item" style="text-align: right;">
+					<button type="submit" class="layui-btn" lay-submit="" lay-filter="submitForm">提交数据</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 地表水水质查询.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table', 'laydate'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件,时间控件
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table,
+				laydate = layui.laydate;
+			element.render();
+			form.render();
+
+			//如果需要ajax获取select选项，在获取后需要 调用 form.render('select', 'form'); 方法重新渲染组件
+
+			//自定义格式日期格式
+			//时间选择器插件可以参考文档 https://www.layui.com/doc/modules/laydate.html
+			laydate.render({
+				elem: '#selectDate',
+				format: 'yyyy年MM月dd日'
+			});
+			//检测列表
+			var tableData = [
+				{ item:'水温',name:'WT',unit:'℃',testValue:'',valueRange:'' },
+				{ item:'PH',name:'PH',unit:'-',testValue:'',valueRange:'6-9' },
+				{ item:'溶解氧',name:'DO',unit:'毫克/升',testValue:'',valueRange:'0-10' },
+				{ item:'高锰酸盐指数',name:'CODMN',unit:'毫克/升',testValue:'',valueRange:'0-15' },
+				{ item:'化学需氧量',name:'COD',unit:'毫克/升',testValue:'',valueRange:'0-60' },
+				{ item:'生化需氧量',name:'BOD',unit:'毫克/升',testValue:'',valueRange:'0-60' },
+				{ item:'氨氮',name:'NH3N',unit:'毫克/升',testValue:'',valueRange:'0-5' },
+				{ item:'总磷',name:'TP',unit:'毫克/升',testValue:'',valueRange:'0-1' },
+				{ item:'总氮',name:'TN',unit:'毫克/升',testValue:'',valueRange:'0-1' },
+				{ item:'铜',name:'CU',unit:'毫克/升',testValue:'',valueRange:'0-1' },
+				{ item:'锌',name:'ZN',unit:'毫克/升',testValue:'',valueRange:'0-2' },
+				{ item:'氟化物',name:'F',unit:'毫克/升',testValue:'',valueRange:'0-1.5' },
+				{ item:'硒',name:'SE',unit:'毫克/升',testValue:'',valueRange:'0-0.02' },
+				{ item:'砷',name:'ARS',unit:'毫克/升',testValue:'',valueRange:'0-0.1' },
+				{ item:'汞',name:'HG',unit:'毫克/升',testValue:'',valueRange:'0-0.001' },
+				{ item:'镉',name:'CD',unit:'毫克/升',testValue:'',valueRange:'0-0.01' },
+				{ item:'六价铬',name:'CR6',unit:'毫克/升',testValue:'',valueRange:'0-0.1' },
+				{ item:'铅',name:'PB',unit:'毫克/升',testValue:'',valueRange:'0-0.1' },
+				{ item:'氰化物',name:'CN',unit:'毫克/升',testValue:'',valueRange:'0-0.2' },
+				{ item:'挥发酚',name:'VLPH',unit:'毫克/升',testValue:'',valueRange:'0-0.1' },
+				{ item:'石油类',name:'OIL',unit:'毫克/升',testValue:'',valueRange:'0-1' },
+				{ item:'阴离子表面活性剂',name:'LAS',unit:'毫克/升',testValue:'',valueRange:'0-0.3' },
+				{ item:'硫化物',name:'S2',unit:'毫克/升',testValue:'',valueRange:'0-1' },
+				{ item:'粪大肠杆菌',name:'FCG',unit:'个/升',testValue:'',valueRange:'0-40000' },
+				{ item:'透明度',name:'CLARITY',unit:'厘米',testValue:'',valueRange:'' },
+				{ item:'叶绿素a',name:'CHLA',unit:'毫克/升',testValue:'',valueRange:'' },
+				{ item:'电导率',name:'COND',unit:'西门子/米',testValue:'',valueRange:'' },
+				{ item:'水位',name:'WL',unit:'米',testValue:'',valueRange:'0-' },
+				{ item:'流量',name:'FLOW',unit:'万立方米',testValue:'',valueRange:'0-' }
+			]
+			//表格载入方法
+			function tableList(tableData){
+				var leftData=[]
+				var rightData=[]
+				for(var i=0;i<tableData.length;i++){
+					if(i<15){
+						leftData.push(tableData[i]);
+						leftData[i].num=(i+1);
+					}else{
+						rightData.push(tableData[i]);
+						rightData[i-15].num=(i+1);
+					}
+				}
+				//表头配置
+				var cols = [[
+					{ field: 'num', title: '序号', width: 80 }
+					, { field: 'item', title: '监测项目', templet: function(d){
+							return '<a title="'+d.item+'" href="javascript:;">'+d.item+'</a>'
+						}
+					}
+					, { field: 'unit', title: '单位', width: 100}
+					, { field: 'testValue', title: '监测结果', edit: 'text'}
+				]]
+				window.tableLeft = table.render({
+					elem: '#tableLeft' //指向存放分页的容器
+					, cols:  cols //表头
+					, limit: 1000 //每页默认显示的数量
+					, data: leftData
+					, even: true//斑马纹
+				});
+				window.tableRight = table.render({
+					elem: '#tableRight' //指向存放分页的容器
+					, cols:  cols //表头
+					, limit: 1000 //每页默认显示的数量
+					, data: rightData
+					, even: true//斑马纹
+				});
+			}
+			//首次数据渲染
+			tableList(tableData);
+			//监听单元格编辑
+			table.on('edit(tableLeft)', function(obj){
+				tableEdit(obj)
+			});
+			table.on('edit(tableRight)', function(obj){
+				tableEdit(obj)
+			});
+			//输入输入的验证
+			function tableEdit(obj){
+				//判断如果有验证条件
+				if(obj.data.valueRange&&obj.value!=""){
+					//判断是否符合验证条件
+					if(obj.data.valueRange.split("-")[0]==''&&obj.data.valueRange.split("-")[1]!=''){
+						if(!(obj.value<=parseFloat(obj.data.valueRange.split("-")[1]))){
+							layer.msg(obj.data.item+'的测量值填写有误');
+
+							//输入值置空
+							obj.update({
+								testValue: ''
+							});
+							//重新载入表格
+							table.reload('tableLeft');
+							table.reload('tableRight');
+						}
+					}else if(obj.data.valueRange.split("-")[0]!=''&&obj.data.valueRange.split("-")[1]==''){
+						if(!(obj.value>=parseFloat(obj.data.valueRange.split("-")[0]))){
+							layer.msg(obj.data.item+'的测量值填写有误');
+
+							//输入值置空
+							obj.update({
+								testValue: ''
+							});
+							//重新载入表格
+							table.reload('tableLeft');
+							table.reload('tableRight');
+						}
+					}else if(obj.data.valueRange.split("-")[0]!=''&&obj.data.valueRange.split("-")[1]!=''){
+						if(!(obj.value>=parseFloat(obj.data.valueRange.split("-")[0])&&obj.value<=parseFloat(obj.data.valueRange.split("-")[1]))){
+							layer.msg(obj.data.item+'的测量值填写有误');
+
+							//输入值置空
+							obj.update({
+								testValue: ''
+							});
+							//重新载入表格
+							table.reload('tableLeft');
+							table.reload('tableRight');
+						}
+					}
+				}
+			};
+			//数据导入
+			$('[lay-event="import"]').click(function(){
+				layer.open({
+					title: '数据导入',
+					type: 1,
+					resize: false,
+					area: ['480px'],
+					content: '<form id="importForm">' 
+						+ '<p style="padding:20px;">提示：请不要改变模板样式，按照模板填写信息上传即可。'
+						+ '<br><a class="download" style="color:#38688d;margin-left: 3em;" download href="javascript:;">点击下载模板</a>'
+						+'</p>'
+						+ '<input class="fileUp layui-hide" name="file" type="file">'
+						+ '</form>',
+					btn: ['导入数据', '取 消'],
+					yes: function(index, layero) {
+						$('.fileUp').trigger('click').change(function() {
+							// 导入方法
+							// var that = this;
+							// var formData = new FormData();
+							// var file = $("#importForm input[type='file']")[0].files[0];
+							// formData.append('file', file);
+							// var llo = layer.load(2, { shade: [0.001, '#fff'] });
+							// $.ajax({
+							// 	url: '',
+							// 	type: 'POST',
+							// 	cache: false,
+							// 	data: formData,
+							// 	processData: false,
+							// 	contentType: false,
+							// 	success: function(data) {
+							// 		/*清空文件域start*/
+							// 		var file = $(".fileUp")
+							// 		file.after(file.clone().val(""));
+							// 		file.remove();
+							// 		/*清空文件域end*/
+							// 		layer.close(llo);
+							// 			layer.close(index);
+							// 			layer.msg('导入成功', { time: 1000 });
+							// 			//表格数据重载
+							//          tableList(data)
+							// 	},
+							// 	error: function(xhr) {
+							// 		layer.close(llo);
+							// 		layer.msg('系统错误，请联系管理员');
+							// 	}
+							// });
+						});
+					},
+					success: function() {
+						/* window.location.href填写模板下载地址 */
+						$('#importForm .download').click(function(){
+							window.location.href = ''
+							layer.msg('下载中，请稍后...');
+						})
+					}
+				});
+			});
+			//表单提交回调
+			form.on('submit(submitForm)', function (data) {
+				/* 可取到断面和采样日期 */
+				console.log(data.field)
+				/* 可取到左侧表格的所有数据 */
+				console.log(table.cache.tableLeft)
+				/* 可取到右侧表格的所有数据 */
+				console.log(table.cache.tableRight)
+				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			});
+		});
+	</script>
+</body>
+
+</html>

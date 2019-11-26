@@ -1,0 +1,214 @@
+/* 公告组件样式 */
+/* 按钮组件 */
+.layui-btn {
+  background-color: #38688d;
+}
+.layui-btn.green {
+  background-color: #5eb95e;
+}
+.layui-btn.orange {
+  background-color: #f37b1d;
+}
+.layui-btn.layui-btn-danger {
+  background-color: #C71D23!important;
+}
+.layui-btn-primary {
+  background-color: #fff;
+}
+.layui-btn-primary:hover {
+  border-color: #38688d;
+}
+/* radio */
+.layui-form-radio > i:hover,
+.layui-form-radioed > i {
+  color: #2691cd;
+}
+/* checkbox组件 */
+.layui-form-checkbox[lay-skin=primary]:hover i {
+  border-color: #38688d;
+}
+.layui-form-checked[lay-skin=primary] i {
+  border-color: #2691cd !important;
+  background-color: #2691cd;
+}
+/* select组件 */
+.layui-form-select dl dd.layui-this {
+  background-color: #2691cd;
+}
+/* select多选框组件 */
+div[xm-select-skin] .xm-select-title div.xm-select-label > span {
+  border: 1px solid #2691cd !important;
+}
+.xm-select-parent .xm-select-title div.xm-select-label > span {
+  background-color: #2691cd !important;
+}
+.xm-form-checkbox > i {
+  border-color: #2691cd !important;
+}
+.xm-select-parent dl dd.xm-select-this div i {
+  color: #2691cd !important;
+}
+.xm-select-parent .xm-form-selected .xm-select,
+.xm-select-parent .xm-form-selected .xm-select:hover {
+  border-color: #C9C9C9!important;
+}
+.xm-select-parent dd .xm-cz:hover {
+  color: #2691cd !important;
+}
+/* 导航栏组件 */
+.layui-nav {
+  background-color: transparent;
+}
+.layui-nav .layui-nav-child dd.layui-this a,
+.layui-nav-child dd.layui-this {
+  background-color: #2691cd;
+  font-weight: bold;
+}
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after {
+  background-color: #2691cd !important;
+}
+/* 分页组件 */
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #38688d;
+}
+.layui-laypage input:focus,
+.layui-laypage select:focus {
+  border-color: #38688d !important;
+}
+.layui-laypage a:hover {
+  color: #38688d;
+}
+/* 顶部导航样式 */
+.layui-layout-admin .layui-header {
+  background-color: #38688d;
+}
+.layui-layout-admin .layui-header .layui-logo {
+  color: #fff;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-item a {
+  color: #fff;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+  border-top-color: #fff;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-mored {
+  border-top-color: transparent;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-child a {
+  color: #666;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-child dd.layui-this a {
+  color: #fff;
+}
+/* 侧边导航样式 */
+.layui-layout-admin .index-side {
+  background-color: #fff!important;
+}
+.layui-layout-admin .index-side .layui-nav .layui-nav-item a {
+  color: #38688d;
+}
+.layui-layout-admin .index-side .layui-nav .layui-nav-item a:hover {
+  color: #38688d;
+}
+.layui-layout-admin .index-side .layui-nav-itemed > .layui-nav-child {
+  background-color: #f2f2f2 !important;
+}
+.layui-layout-admin .index-side .layui-nav-itemed > .layui-nav-child a{
+  color: #333;
+}
+.layui-layout-admin .index-side .layui-nav-itemed > a{
+  background-color: #38688d!important;
+  color: #fff!important;
+}
+.layui-layout-admin .index-side .layui-nav-itemed .layui-nav-itemed > a{
+  background-color: #eee!important;
+  color: #333!important;
+}
+.layui-layout-admin .index-side .layui-nav-tree .layui-nav-title a,
+.layui-layout-admin .index-side .layui-nav-tree .layui-nav-title a:hover {
+  color: #38688d!important;
+}
+.layui-layout-admin .index-side .layui-nav-tree .layui-nav-item a:hover {
+  background-color: #f2f2f2;
+}
+.layui-layout-admin .index-side .layui-this {
+  background-color: #2691cd !important;
+  color: #fff!important;
+}
+.layui-layout-admin .index-side .layui-this > a {
+  background-color: #2691cd !important;
+  color: #fff!important;
+}
+.layui-layout-admin .index-side .side-this > a {
+  border-color: #2691cd;
+}
+.layui-layout-admin .index-side .layui-nav .layui-nav-more {
+  border-top-color: #38688d;
+}
+.layui-layout-admin .index-side .layui-nav-itemed>a .layui-nav-more{
+  border-top-color: #38688d;
+}
+.layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item:hover:after{
+  background-color: #38688d;
+}
+.layui-layout-admin .index-side .layui-nav-tree>.layui-nav-item:hover>a>.layui-nav-more{
+  border-top-color: #38688d;
+}
+.layui-layout-admin .index-side .layui-nav .layui-nav-mored{
+  border-top-color: transparent;
+  border-bottom-color: #38688d;
+}
+.layui-layout-admin .index-side .layui-nav-itemed .layui-nav-child .layui-nav-more{
+  border-top-color: #333;
+}
+.layui-layout-admin .index-side .layui-nav-itemed .layui-nav-child a:hover .layui-nav-more{
+  border-top-color: #38688d;
+}
+.layui-layout-admin .index-side .layui-nav-itemed>.layui-nav-child>.layui-nav-itemed>a>.layui-nav-more,
+.layui-layout-admin .index-side .layui-nav-itemed>.layui-nav-child>.layui-nav-itemed>a:hover>.layui-nav-more{
+  border-top-color: transparent;
+  border-bottom-color: #333;
+}
+.layui-layout-admin .index-side .layui-nav-itemed .layui-nav-child .layui-nav-itemed .layui-nav-child{
+  background-color: #ddd!important;
+}
+.layui-layout-admin .index-side .layui-nav-itemed .layui-nav-child .layui-nav-itemed .layui-nav-child a:hover{
+  background-color: #ddd;
+}
+/* 面包屑导航 */
+.layui-breadcrumb a {
+  font-weight: bold;
+  color: #38688d !important;
+}
+.layui-breadcrumb a:hover {
+  color: #2691cd !important;
+}
+.layui-breadcrumb a cite {
+  font-weight: normal;
+  color: #38688d!important;
+}
+.layui-elem-quote {
+  border-left: 5px solid #38688d;
+}
+/* layDate选择器 */
+.layui-laydate .layui-laydate-content .layui-this {
+  background-color: #38688d !important;
+}
+.layui-laydate-content td.laydate-selected {
+  background-color: #2691cd !important;
+  color: #fff;
+}
+.layui-laydate-footer span:hover {
+  color: #38688d !important;
+}
+.layui-laydate-header i:hover,
+.layui-laydate-header span:hover {
+  color: #38688d !important;
+}
+/* layer弹窗样式 */
+.layui-layer .layui-layer-btn .layui-layer-btn0 {
+  border-color: #38688d;
+  background-color: #38688d;
+}

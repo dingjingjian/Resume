@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>登录</title>
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+	<!-- login.css为login页面样式 -->
+	<link rel="stylesheet" href="./static/css/login.css">
+
+</head>
+
+<body>
+	<div id="box" class="box">
+		<div class="login_url">
+		</div>
+		<div class="login_title">
+			<div class="container">
+				<form class="login-box layui-form " method="get" action="loading.html">
+					<h2 class="users_login_h2">用户登录</h2>
+					<!-- 用户名 -->
+					<div class="users_name">
+						<label><i class="layui-icon">&#xe66f;</i></label>
+						<input type="text" name="username" autocomplete="off" class="" lay-verify="required" placeholder="请输入用户名">
+					</div>
+					<!-- 密码 -->
+					<div class="users_password">
+						<label><i class="layui-icon">&#xe673;</i></label>
+						<input type="password" name="password" autocomplete="off" class="" lay-verify="required" placeholder="请输入密码">
+					</div>
+					<!-- 验证码 -->
+					<div class="users_code">
+						<div class="input_code">
+							<input type="text" name="code" autocomplete="off" class="" lay-verify="required" placeholder="请输入验证码">
+						</div>
+						<!-- 验证码图片加载 -->
+						<div class="img_code"><img src="./static/images/loginCode.jpg"></div>
+					</div>
+					<!-- 记住密码 -->
+					<div class="users_checkbox">
+						<input type="checkbox" name="" lay-skin="primary" title="记住密码">
+					</div>
+					<!-- 登录 -->
+					<div class="button" style="width: 240px; margin-left: 40px;">
+						<button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit id="submit">登 录</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+	<script>
+		//layui基本组件加载
+		layui.use(['element', 'form'], function () {
+			var element = layui.element
+			, form = layui.form;
+
+			//返回信息 可参看layer相关部分文档进行定制 https://www.layui.com/doc/modules/layer.html
+			// layer.msg('密码错误', {icon: 5,anim: 6});
+
+			// layer.msg('登陆成功', {icon: 6});
+		});
+	</script>
+</body>
+
+</html>

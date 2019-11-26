@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>友情链接管理</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">数字河流信息发布</a>
+				<a><cite>友情链接管理</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>友情链接管理</h1>
+			</div>
+			<div class="layui-card-body">
+				<table id="friendshipTable" lay-filter="table">
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 友情链接管理.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件
+			var element = layui.element,
+				form = layui.form,
+				table = layui.table;
+			element.render();
+			form.render();
+			//模拟数据实际项目删除
+			var testData = [{
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				}, {
+					'title': '链接名称',
+					'url': '链接地址',
+					'email': '联系人邮件'
+				},
+
+			]
+
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [
+				[{
+					type: 'checkbox',
+					fixed: 'left'
+				}, {
+					type: 'numbers',
+					title: '编号'
+				}, {
+					field: 'title',
+					title: '链接名称',
+					minWidth: 80
+				}, {
+					field: 'url',
+					title: '链接地址',
+					minWidth: 80
+				}, {
+					field: 'email',
+					title: '联系人邮件',
+					minWidth: 80
+				}, {
+					title: '操作',
+					width: 180,
+					fixed: 'right',
+					templet: function (d) {
+						return '<a class="layui-btn layui-btn-xs" lay-event="edit" href="javascript:;"><i class="layui-icon">&#xe642;</i>编辑</a><a class="layui-btn layui-btn-xs layui-btn-danger" style="background:#FF5722;" lay-event="del" href="javascript:;"><i class="layui-icon">&#xe640;</i>删除</a>'
+					}
+				}]
+			]
+			// 列表配置
+			window.tableList = table.render({
+				elem: '#friendshipTable' //指向存放分页的容器
+					,
+				cols: cols //表头
+					,
+				page: true //是否显示分页
+					,
+				toolbar: '<div><button type="button" class="layui-btn layui-btn-sm" lay-event="adds">新增友情链接</button><button type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="dels">批量删除</button></div>',
+				limit: 10 //每页默认显示的数量
+					,
+				limits: [10, 20, 50, 100] //每页条数的选择项
+					,
+				defaultToolbar: ['filter'] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+					,
+				data: testData //加载测试数据实际项目删除
+				// AJAX请求下的配置分页
+				// ,url:'${pageContext.request.contextPath}/user/selectAllUsers' //列表数据接口地址
+				// ,method:'GET'//请求方式
+				// ,request: {
+				// 	pageName: 'pn' //页码的参数名称，默认：page
+				// 	,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				// }
+				// ,parseData: function(res){ //res 即为原始返回的数据
+				// 	return {
+				// 		"code": res.code, //解析接口状态
+				// 		"msg": res.msg, //解析提示文本
+				// 		"count": res.data.count, //解析数据长度
+				// 		"data": res.data.list //解析数据列表
+				// 	};
+				// }
+			});
+
+			//监听头工具栏事件
+			//  obj 对象，包含event元素 和 table 配置
+			table.on('toolbar(table)', function (obj) {
+				var checkStatus = table.checkStatus(obj.config.id);
+				var arr = []
+				$.each(checkStatus.data, function (index, value) {
+					arr.push(value.id)
+				})
+				switch (obj.event) {
+					case 'adds': // 新增友情链接
+						addOrUpdate(null, 'add');
+						break;
+					case 'dels': // 批量删除
+						if (arr.length === 0) {
+							layer.msg('请先勾选数据'); //提示框
+						} else {
+							layer.confirm('确认要删除这些数据吗？', {
+								title: '提示'
+							}, function (index) {
+								$.ajax({
+									url: "${pageContext.request.contextPath}/user/deleteUser/" +
+										arr.join('-'),
+									type: "DELETE",
+									success: function (result) {
+										layer.msg('批量删除成功', {
+											time: 1000
+										}); //提示框
+										tableList.reload(); // 表格重载
+									},
+									error: function (xhr) {
+										layer.close(llo);
+										layer.msg('系统错误，请联系管理员');
+									}
+								});
+								layer.close(index);
+							});
+						}
+						break;
+				};
+			});
+			//监听行工具事件
+			table.on('tool(table)', function (obj) {
+				//obj.data 可获取当前行的数据
+				var data = obj.data;
+				if (obj.event === 'edit') { // 修改当前行数据
+					addOrUpdate(data, 'update')
+				} else if (obj.event === 'del') { // 删除单条行数据
+					layer.confirm('确认要删除该条数据吗？', {
+						title: '提示'
+					}, function (index) {
+						$.ajax({
+							url: "${pageContext.request.contextPath}/user/deleteUser/" + data
+								.id,
+							type: "DELETE",
+							success: function (result) {
+								layer.msg('删除成功', {
+									time: 1000
+								}); //提示框
+								tableList.reload(); // 表格重载
+							},
+							error: function (xhr) {
+								layer.close(llo);
+								layer.msg('系统错误，请联系管理员');
+							}
+						});
+						layer.close(index);
+					});
+				}
+			});
+			//添加或修改
+			function addOrUpdate(data, addOrUpdate) {
+				var title = '新增';
+				var formId = '';
+				if (addOrUpdate == 'update') {
+					title = '修改';
+					if (data) formId = data.id;
+				}
+				layer.open({
+					type: 1, //弹窗类型
+					resize: false, //弹窗是否允许拉伸
+					title: title + '友情链接', //标题设置
+					area: ['480px'], //弹窗大小设置
+					content: '<form class="layui-form" style="padding:20px;" lay-filter="layer">'+
+					'<div class="layui-form-item">' +
+					'<label class="layui-form-label">连接名称</label>' +
+					'<div class="layui-input-block">' +
+					'<input type="text" id="TITLE" name="TITLE" placeholder="请输入链接名称" autocomplete="off" class="layui-input" lay-verify="required">' +
+					'</div>' +
+					'</div>' +
+					'<div class="layui-form-item">' +
+					'<label class="layui-form-label">链接地址</label>' +
+					'<div class="layui-input-block">' +
+					'<input type="text" id="URL" name="URL" placeholder="请输入链接地址" autocomplete="off" class="layui-input" lay-verify = "required" > ' +
+					'</div>' +
+					'</div>' +
+					'<div class="layui-form-item">' +
+					'<label class="layui-form-label">联系人邮件</label>' +
+					'<div class="layui-input-block">' +
+					'<input type="text" id="EMAIL" name="EMAIL" placeholder="请输入联系人邮件" autocomplete="off" class="layui-input" lay-verify = "required" > ' +
+					'</div>' +
+					'</div>' +
+					'<div class="layui-form-item">' +
+					'<div class="layui-input-block">' +
+					'<button class="layui-btn" lay-submit lay-filter="submit">提交</button>' +
+					'<button type="button" class="layui-btn layui-btn-primary colse-btn">关闭</button>' +
+					'</div>' +
+					'</div>' +
+					'</form>',
+					success: function (layero, index) { //成功弹窗回调
+						//关闭弹窗
+						$('.colse-btn').click(function () {
+							layer.close(index);
+						})
+						//弹窗如果为新增
+						if (addOrUpdate == 'update') {
+							//载入数据
+							form.val("layer", { //layer 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+								// "ID": data.id, // "name": "value"
+								"TITLE": data.title,
+								"URL": data.url,
+								"EMAIL": data.email,
+								"ROLE": data.role
+							});
+						}
+						//表单组件渲染
+						form.render(null, 'layer');
+						//表单提交回调
+						form.on('submit(submit)', function (data) {
+							if (USERNAME && PHONENUM) {
+								//如果为新增
+								if (addOrUpdate == 'add') {
+									var ajaxUrl =
+										"${pageContext.request.contextPath}/user/addUser"
+								} else {
+									var ajaxUrl =
+										"${pageContext.request.contextPath}/user/updateUser/" +
+										formId
+								}
+								var llo = layer.load(2, {
+									shade: [0.001, '#fff']
+								});
+								$.ajax({
+									url: ajaxUrl,
+									cache: false,
+									type: "POST",
+									dataType: "json",
+									data: data.field,
+									success: function (data) {
+										layer.close(llo);
+										layer.msg('操作成功', {
+											time: 1000
+										});
+										tableList.reload(); //只重载数据
+										layer.close(index);
+									},
+									error: function (xhr) {
+										layer.close(llo);
+										layer.msg('系统错误，请联系管理员');
+									}
+								});
+							}
+							return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+						});
+					}
+				});
+			}
+		});
+	</script>
+</body>
+
+</html>

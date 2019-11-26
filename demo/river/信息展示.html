@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>信息展示</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+	<!-- new.css为信息展示样式 -->
+	<link rel="stylesheet" href="./static/css/new.css">
+</head>
+
+<body style="overflow-x: auto;">
+	<div class="layui-fluid" style="min-width: 1300px;">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">数字河流信息发布</a>
+				<a><cite>信息展示</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>信息展示</h1>
+			</div>
+			<div class="layui-card-body" style="overflow: hidden;">
+				<ul class="protogenesis-nav">
+					<li class="this"><a href="信息发布列表页.html">首页</a></li>
+					<li><a href="信息发布列表页.html">政策法规</a></li>
+					<li><a href="信息发布列表页.html">问题清单</a></li>
+					<li><a href="信息发布列表页.html">目标清单</a></li>
+					<li><a href="信息发布列表页.html">措施清单</a></li>
+					<li><a href="信息发布列表页.html">负面清单</a></li>
+					<li><a href="信息发布列表页.html">责任清单</a></li>
+				</ul>
+				<!-- 主体部分 -->
+				<div class="protogenesis-box">
+					<div class="box-top">
+						<div class="box-slideshow" style="float: left;">
+							<div class="layui-carousel" id="boXslideshow" lay-filter="boXslideshow">
+								<div carousel-item="">
+									<div>
+										<a href="JavaScript:;"><img src="static/images/register.png" alt=""></a>
+										<p>
+											<span>由于轮播的使用非常简单，所以本篇不做过于详细的讲解，核心在于基础参数选项的设置。你也可以前往示例页面进行更为直观的了解。</span>
+										</p>
+									</div>
+									<div>
+										<a href="JavaScript:;"></a><img src="static/images/loading1.jpg" alt=""></a>
+										<p>
+											<span>由于轮播的使用非常简单，所以本篇不做过于详细的讲解，核心在于基础参数选项的设置。你也可以前往示例页面进行更为直观的了解。</span>
+										</p>
+									</div>
+									<div>
+										<a href="JavaScript:;"></a><img src="static/images/loading2.jpg" alt=""></a></a>
+										<p>
+											<span>由于轮播的使用非常简单，所以本篇不做过于详细的讲解，核心在于基础参数选项的设置。你也可以前往示例页面进行更为直观的了解。</span>
+										</p>
+									</div>
+									<div>
+										<a href="JavaScript:;"></a><img src="static/images/loading3.jpg" alt=""></a>
+										<p>
+											<span>由于轮播的使用非常简单，所以本篇不做过于详细的讲解，核心在于基础参数选项的设置。你也可以前往示例页面进行更为直观的了解。</span>
+										</p>
+									</div>
+									<div>
+										<a href="JavaScript:;"><img src="static/images/login.jpg" alt=""></a>
+										<p>
+											<span>由于轮播的使用非常简单，所以本篇不做过于详细的讲解，核心在于基础参数选项的设置。你也可以前往示例页面进行更为直观的了解。</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="box-top-right">
+							<div class="box-recent-updates">
+								<div class="module">
+									<span class="box-title">最近更新</span>
+									<span class="box-msg"><a href="信息发布列表页.html">查看更多></a></span>
+								</div>
+								<div class="r-u-bottom">
+									<h3>table 数据表格文档 - layui.table</h3>
+									<p>table 模块是我们的又一走心之作，在 layui 2.0 的版本中全新推出，是 layui
+										最核心的组成之一。它用于对表格进行一些列功能和动态化数据操作，涵盖了日常业务所涉及的几乎全部需求。支持固定表头、固定行、固定列左/列右，支持拖拽改变列宽度，支持排序，支持多级表头，支持单元格的自定义模板，支持对表格重载（比如搜索、条件筛选等），支持复选框，支持分页，支持单元格编辑等等一些列功能。尽管如此，我们仍将对其进行完善，在控制代码量和性能的前提下，不定期增加更多人性化功能。table
+										模块也将是 layui 重点维护的项目之一</p><a href="信息发布详情页.html">[查看全文]</a>
+								</div>
+							</div>
+							<div class="box-hot-news" style="margin-top: 20px;">
+								<div class="module">
+									<span class="box-title">热点新闻</span>
+									<span class="box-msg"><a href="信息发布列表页.html">查看更多></a>></span>
+								</div>
+								<ul class="module-ul">
+									<li>
+										<!-- 通过个a标签加入title属性，达到显示完整标题的目的 -->
+										<a href="信息发布详情页.html" title="用JS方法的配置完成渲染"><span
+												class="layui-badge-dot"></span>用JS方法的配置完成渲染<span>2019-04-14</span></a>
+									</li>
+									<li>
+										<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+												class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+									</li>
+									<li>
+										<a href="信息发布详情页.html" title="转化一段已有的表格元素"><span
+												class="layui-badge-dot"></span>转化一段已有的表格元素<span>2019-09-30</span></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-bottom">
+					<!-- 政策法规 -->
+					<div class="box-policies-regulations">
+						<div class="module">
+							<span class="box-title">政策法规</span>
+							<span class="box-msg"><a href="信息发布列表页.html">查看更多></a>></span>
+						</div>
+						<ul class="module-ul">
+							<li>
+								<a href="信息发布详情页.html" title="用JS方法的配置完成渲染"><span
+										class="layui-badge-dot"></span>用JS方法的配置完成渲染<span>2019-04-14</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+										class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="转化一段已有的表格元素"><span
+										class="layui-badge-dot"></span>转化一段已有的表格元素<span>2019-09-30</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+										class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="转化一段已有的表格元素"><span
+										class="layui-badge-dot"></span>转化一段已有的表格元素<span>2019-09-30</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="转化一段已有的表格元素"><span
+										class="layui-badge-dot"></span>转化一段已有的表格元素<span>2019-09-30</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+										class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+							</li>
+						</ul>
+					</div>
+					<!-- 问题清单 -->
+					<div class="box-issue-list">
+						<div class="module">
+							<span class="box-title">问题清单</span>
+							<span class="box-msg"><a href="信息发布列表页.html">查看更多></a>></span>
+						</div>
+						<ul class="module-ul">
+							<li>
+								<a href="信息发布详情页.html" title="用JS方法的配置完成渲染"><span
+										class="layui-badge-dot"></span>用JS方法的配置完成渲染<span>2019-04-14</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+										class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="转化一段已有的表格元素"><span
+										class="layui-badge-dot"></span>转化一段已有的表格元素<span>2019-09-30</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+										class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="转化一段已有的表格元素"><span
+										class="layui-badge-dot"></span>转化一段已有的表格元素<span>2019-09-30</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="box-bottom">
+					<!-- 目标清单 -->
+					<div class="box-List-goals">
+						<div class="module">
+							<span class="box-title">目标清单</span>
+							<span class="box-msg"><a href="信息发布列表页.html">查看更多></a>></span>
+						</div>
+						<ul class="module-ul">
+							<li>
+								<a href="信息发布详情页.html" title="用JS方法的配置完成渲染"><span
+										class="layui-badge-dot"></span>用JS方法的配置完成渲染<span>2019-04-14</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+										class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+										class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="转化一段已有的表格元素"><span
+										class="layui-badge-dot"></span>转化一段已有的表格元素<span>2019-09-30</span></a>
+							</li>
+						</ul>
+					</div>
+					<!-- 措施清单 -->
+					<div class="box-measures-listing">
+						<div class="module">
+							<span class="box-title">措施清单</span>
+							<span class="box-msg"><a href="信息发布列表页.html">查看更多></a>></span>
+						</div>
+						<ul class="module-ul">
+							<li>
+								<a href="信息发布详情页.html" title="用JS方法的配置完成渲染"><span
+										class="layui-badge-dot"></span>用JS方法的配置完成渲染<span>2019-04-14</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="HTML配置，自动渲染"><span
+										class="layui-badge-dot"></span>HTML配置，自动渲染<span>2019-08-24</span></a>
+							</li>
+							<li>
+								<a href="信息发布详情页.html" title="转化一段已有的表格元素"><span
+										class="layui-badge-dot"></span>转化一段已有的表格元素<span>2019-09-30</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="box-bottom">
+					<!-- 友情链接 -->
+					<div class="box-friendship-a">
+						<div class="module">
+							<span class="box-title">友情链接</span>
+						</div>
+						<ul class="module-ul">
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+							<li><a href="#" title="友情链接">友情链接</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 维护管理子系统.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'carousel', 'form', 'table'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件
+			var element = layui.element,
+				carousel = layui.carousel,
+				form = layui.form,
+				table = layui.table;
+			element.render();
+			form.render();
+
+			/* 	轮播设置 */
+			//改变下时间间隔、动画类型、高度
+			carousel.render({
+				elem: '#boXslideshow', //指向容器选择器，如：elem: '#id'。也可以是DOM对象
+				interval: 4000, //自动切换的时间间隔，单位：ms（毫秒），不能低于800
+				anim: 'fade', //轮播切换动画方式，可选值为：default（左右切换）updown（上下切换）fade（渐隐渐显切换）
+				width: '790px', //设定轮播容器宽度，支持像素和百分比
+				height: '400px' //设定轮播容器高度，支持像素和百分比
+			});
+		})
+	</script>
+</body>
+
+</html>

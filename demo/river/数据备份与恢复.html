@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>数据备份与恢复</title>
+
+	<!-- 引入样式表 -->
+	<!-- layui.css为layui框架样式 -->
+	<link rel="stylesheet" href="./assets/layui/css/layui.css">
+	<!-- theme.css为主题颜色样式 -->
+	<link rel="stylesheet" href="./static/css/theme.css">
+	<!-- common.css为公共样式 -->
+	<link rel="stylesheet" href="./static/css/common.css">
+
+</head>
+
+<body>
+	<div class="layui-fluid">
+		<!-- 面包屑导航 -->
+		<div class="layui-card main-breadcrumb">
+			<!-- 面包屑导航  通过'lay-separator'属性设置分隔符号  a标签的href可以写对应的跳转地址-->
+			<span class="layui-breadcrumb" lay-separator=">">
+				<a href="#"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href="#">维护与管理</a>
+				<a><cite>数据备份与恢复</cite></a>
+			</span>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h1>数据备份与恢复</h1>
+			</div>
+			<div class="layui-card-body">
+				<table id="mmSubsystemTable" lay-filter="table">
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- JS引入 -->
+	<!-- layui.js为框架必需js -->
+	<script src="./assets/layui/layui.js"></script>
+	<!-- jquery.min.js layui依赖JQ -->
+	<script src="./assets/jquery.min.js"></script>
+	<!-- common.js 公共js -->
+	<script src="./static/js/common.js"></script>
+
+	<!-- 维护管理子系统.js -->
+	<script>
+		//实际项目时，可将以下代码存入页面对应js文件
+		layui.use(['element', 'form', 'table', 'upload'], function () {
+			//引入框架所需组件 基础组件、表单组件、表格组件
+			var element = layui.element
+				, form = layui.form
+                , upload = layui.upload
+				, table = layui.table;
+			element.render();
+			form.render();
+			//模拟数据实际项目删除
+			var testData = [
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				},
+				{
+					'name':'数据库名称',
+					'username':'备份人',
+                    'date':'2019-10-14 8:00:00'
+				}
+			]
+
+			//表头参数设置 field 设定字段名，title 设置表头名称，通过width,minWidth,maxWidth可设置列宽，fixed: 'left'/'right'设置列的左右固定
+			var cols = [[
+				{ type: 'checkbox', fixed: 'left' }
+				, {type:'numbers', title: '编号'}
+				, { field: 'name', title: '数据库名称', minWidth: 120 }
+				, { field: 'username', title: '备份人', minWidth: 80 }
+				, { field: 'date', title: '备份日期', minWidth: 120 }
+				, { title: '操作', width: 180, fixed: 'right', templet: function(d){
+						return '<a class="layui-btn layui-btn-xs" lay-event="restore" href="javascript:;"><i class="layui-icon layui-icon-refresh"></i>还原</a><a class="layui-btn layui-btn-xs layui-btn-danger" style="background:#FF5722;" lay-event="del" href="javascript:;"><i class="layui-icon">&#xe640;</i>删除</a>'
+					}
+				}
+			]]
+			// 列表配置
+			window.tableList = table.render({
+				elem: '#mmSubsystemTable' //指向存放分页的容器
+				, cols:  cols //表头
+				, page: true //是否显示分页
+				, toolbar: '<div><button type="button" id="upload" class="layui-btn layui-btn-sm">数据库备份</button></div>'
+				, limit: 10 //每页默认显示的数量
+				, limits: [10, 20, 50, 100] //每页条数的选择项
+				, defaultToolbar: ['filter'] //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+				, data: testData //加载测试数据实际项目删除
+				// AJAX请求下的配置分页
+				// ,url:'${pageContext.request.contextPath}/user/selectAllUsers' //列表数据接口地址
+				// ,method:'GET'//请求方式
+				// ,request: {
+				// 	pageName: 'pn' //页码的参数名称，默认：page
+				// 	,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				// }
+				// ,parseData: function(res){ //res 即为原始返回的数据
+				// 	return {
+				// 		"code": res.code, //解析接口状态
+				// 		"msg": res.msg, //解析提示文本
+				// 		"count": res.data.count, //解析数据长度
+				// 		"data": res.data.list //解析数据列表
+				// 	};
+				// }
+			});
+            //备份上传
+            //更多配置 参考 https://www.layui.com/doc/modules/upload.html
+            upload.render({
+                elem: '#upload'
+                ,url: '' //必填项 上传地址
+                ,method: 'post'  //可选项。HTTP类型，默认post
+                ,data: {} //可选项。额外的参数，如：{id: 123, abc: 'xxx'}
+            });   
+			//监听行工具事件
+			table.on('tool(table)', function (obj) {
+				//obj.data 可获取当前行的数据
+				var data = obj.data;
+				if (obj.event === 'restore') { // 还原数据
+					layer.confirm('确认要还原该备份数据吗？', { title: '提示' }, function (index) {
+						$.ajax({
+							// url:"${pageContext.request.contextPath}/user/deleteUser/"+data.id,
+							type:"POST",
+							success:function(result){            
+								layer.msg('还原成功', { time: 1000 }); //提示框
+							},
+							error: function (xhr) {
+								layer.close(llo);
+								layer.msg('系统错误，请联系管理员');
+							}
+						});
+						layer.close(index);
+					});
+				} else if (obj.event === 'del') { // 删除单条行数据
+					layer.confirm('确认要删除该条数据吗？', { title: '提示' }, function (index) {
+						$.ajax({
+							url:"${pageContext.request.contextPath}/user/deleteUser/"+data.id,
+							type:"DELETE",
+							success:function(result){            
+								layer.msg('删除成功', { time: 1000 }); //提示框
+								tableList.reload(); // 表格重载
+							},
+							error: function (xhr) {
+								layer.close(llo);
+								layer.msg('系统错误，请联系管理员');
+							}
+						});
+						layer.close(index);
+					});
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
