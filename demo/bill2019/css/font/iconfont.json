@@ -1,0 +1,37 @@
+{
+  "id": "1586478",
+  "name": "hkndzd",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "155064",
+      "name": "双箭头",
+      "font_class": "shuangjiantou",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "625967",
+      "name": "32-向上箭头",
+      "font_class": "xiangshangjiantou",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "2258833",
+      "name": "音乐关闭",
+      "font_class": "muisc_close",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "2786763",
+      "name": "音乐关闭",
+      "font_class": "muisc_close1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}

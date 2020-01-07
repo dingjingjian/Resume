@@ -1,0 +1,433 @@
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 0.14rem;
+  /*实际相当于14px*/
+  margin: 0;
+  padding: 0;
+  background-color:#fef9f6;
+}
+
+@font-face {
+  font-family: Font;
+  src: url('../css/font/Regular.ttf')
+}
+#loading{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color:#fef9f6;
+    background-image: url(../images/backg001.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  	background-position: center;
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  font-size: 0.18rem;
+}
+
+.page {
+  font-size: .4rem;
+  color: #f17a5c;
+  position: absolute;
+  bottom: 5%;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+}
+
+/* Slide1 */
+.slide1 {
+  background: url('../images/backg001.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  font-size: 0.29rem;
+}
+
+.slide1_content {
+  color: #545655;
+  position: absolute;
+  width: 100%;
+  top: 19%;
+}
+
+.slide1_content li {
+  height: 0.6rem;
+  line-height: 0.6rem;
+}
+
+.slide1_name {
+  font-size: 0.38rem;
+  color: #f27b5d;
+  margin-left: 0.10rem;
+}
+
+.slide1_2019 {
+  font-style: italic;
+  font-family: Font;
+  color: #aa4d3c;
+  width: 3.00rem;
+  height: 0.56rem;
+  line-height: 0.56rem;
+  background: #fcd4ca;
+  border-radius: 0.28rem;
+  margin: 0 auto;
+  margin-top: 0.1rem;
+  box-sizing: border-box;
+}
+
+.slide1_hook {
+  font-size: .30rem;
+  color: #f3775b;
+  width: 2.00rem;
+  height: 0.64rem;
+  line-height: 0.56rem;
+  border: 1px solid;
+  border-radius: 0.32rem;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  margin-left: -1rem;
+}
+
+.slide1_hook i {
+  font-size: .34rem;
+}
+
+/* 日期调节 */
+.month {
+  font-size: .46rem;
+}
+
+.day {
+  font-size: .46rem;
+}
+
+/* Slide2 */
+.slide2 {
+  background: url('../images/backg002.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  position: absolute;
+  font-size: 0.29rem;
+  color: #555555;
+  margin-left: 12%;
+}
+
+.say {
+  font-style: italic;
+  font-family: Font;
+  font-size: 0.32rem;
+  color: #a74f3a;
+  margin-left: 12%;
+  position: absolute;
+}
+
+.say>p:nth-child(2) {
+  text-indent: .5rem;
+}
+
+.say>p:nth-child(3) {
+  text-indent: 1rem;
+}
+
+.card>p {
+  height: 0.72rem;
+  line-height: 0.72rem;
+}
+
+.slide2_card {
+  top: 10%;
+}
+
+.slide_num_style {
+  font-size: 0.38rem;
+  color: #f3795c;
+  margin: 0 0.10rem;
+}
+
+.say>p {
+  height: 0.72rem;
+  line-height: 0.72rem;
+  padding-right: 0.10rem;
+}
+
+.slide2_say {
+  top: 42%;
+}
+
+/* Slide3 */
+.slide3 {
+  background: url('../images/backg003.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide3_say {
+  top: 10%;
+}
+
+.slide3_card {
+  top: 62%;
+}
+
+.slide3_card>p:nth-child(1) .slide_num_style,
+.slide7_card>p:nth-child(1) .slide_num_style {
+  margin: 0;
+}
+
+/* Slide4 */
+.slide4 {
+  background: url('../images/backg004.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide4_card {
+  top: 5%;
+}
+
+.slide4_say {
+  top: 40%;
+}
+
+/* Slide5 */
+.slide5 {
+  background: url('../images/backg005.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide5>span {
+  font-size: 0.24rem;
+  color: #926749;
+  position: absolute;
+  left: 59%;
+}
+
+.slide5_card {
+  top: 54%;
+}
+
+/* Slide6 */
+.slide6 {
+  background: url('../images/backg006.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide6_card {
+  top: 10%;
+}
+
+.slide6_say {
+  top: 48%;
+}
+
+/* Slide7 */
+.slide7 {
+  background: url('../images/backg007.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide7_card {
+  top: 64%;
+}
+
+.slide7_say {
+  top: 18%;
+}
+
+/* Slide8 */
+.slide8 {
+  background: url('../images/backg008.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide8_card {
+  top: 6%;
+}
+
+.slide8_say {
+  top: 42%;
+}
+
+/* Slide9 */
+.slide9 {
+  background: url('../images/backg009.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide9_card {
+  top: 64%;
+}
+
+.slide9_say {
+  top: 16%;
+}
+
+/* Slide10 */
+.slide10 {
+  background: url('../images/backg010.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide10_card {
+  top: 16%;
+}
+
+.slide10_say {
+  top: 44%;
+}
+
+/* Slide11 */
+.slide11 {
+  background: url('../images/backg011.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide11_card {
+  top: 56%;
+}
+
+.slide11_say {
+  top: 10%;
+}
+
+/* Slide12 */
+.slide12 {
+  background: url('../images/backg012.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide12_card {
+  top: 10%;
+}
+
+.slide12_say {
+  top: 42%;
+}
+
+/* Slide13 */
+.slide13 {
+  background: url('../images/backg013.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.slide13_h2 {
+  font-size: 0.56rem;
+  width: 100%;
+  position: absolute;
+  top: 15%;
+}
+.slide13_wire{
+    width: 1rem;
+    height: 2px;
+    background-color: #a74f3a;
+    display: inline-block;
+    margin-bottom: 0.2rem;
+}
+.slide2020{
+  color: #a74f3a;
+}
+.slide13_way {
+  font-size: 0.28rem;
+  color: #555555;
+  width: 100%;
+  position: absolute;
+  top: 21%;
+}
+
+.slide13_way>p {
+  height: .72rem;
+  line-height: .72rem;
+}
+
+.slide13_way>.slide13_xnkl {
+  height: .56rem;
+  line-height: .56rem;
+  font-size: 0.32rem;
+  bottom: 55%;
+}
+
+/* rem及宽屏适配 */
+@media (min-width: 320px) {
+    html {
+        font-size: 50px;
+    }
+}
+@media (min-width: 375px) {
+    html {
+        font-size: 58.5938px;
+    }
+}
+@media (min-width: 414px) {
+    html {
+        font-size: 64.6875px;
+    }
+}
+@media (min-width: 640px) {
+    html {
+        font-size: 100px;
+    }
+    .slide1{
+    	background-size: 100% 120%;
+    }
+    .slide2{
+    	background-size: 100% 120%;
+    }
+    .slide4{
+    	background-size: 100% 140%;
+    }
+    .slide8{
+    	background-size: 100% 120%;
+    }
+    .slide12{
+    	background-size: 100% 140%;
+    }
+}
