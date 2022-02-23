@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <title>深圳市舆情分析系统</title>
+  <link rel="stylesheet" href="assets/layui/css/layui.css">
+  <link rel="stylesheet" href="iconfont/iconfont.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <div class="layui-fluid main-box">
+    <!-- 内容主体区域 -->
+    <div class="left-card">
+      <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+          <li class="layui-this">日</li>
+          <li>周</li>
+          <li>月</li>
+        </ul>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show">
+            <div class="count-box">
+              <div class="count-box-item">
+                <div class="count-box-item-title">总记录<span id="zjl-tips" class="iconfont icon-wenhao"></span></div>
+                <div class="count-box-item-num">6,231</div>
+              </div>
+              <div class="count-box-item">
+                <div class="count-box-item-title">问题记录<span id="wtjl-tips" class="iconfont icon-wenhao"></span></div>
+                <div class="count-box-item-num">4,231</div>
+              </div>
+              <div class="count-box-item">
+                <div class="count-box-item-title">环比变化<span id="hbbh-tips" class="iconfont icon-wenhao"></span></div>
+                <div class="count-box-item-num">65%<span class="iconfont icon-xiajiantou"></span></div>
+              </div>
+            </div>
+            <hr>
+            <h2 class="title">舆情类别</h2>
+            <div id="yqlbChart" style="width: 350px;height:350px;margin:0 auto 20px;"></div>
+            <hr>
+            <h2 class="title">情感倾向</h2>
+            <div id="gqqxChart" style="width: 350px;height:300px;margin: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="middle-card">
+      <div class="layui-panel" id="map_container">
+      </div>
+      <div class="layui-panel">
+        <h2 class="title">舆情趋势图</h2>
+        <div class="layui-btn-group yqqs-btn-group">
+          <button type="button" class="layui-btn layui-btn-primary">日</button>
+          <button type="button" class="layui-btn layui-btn-primary active">周</button>
+          <button type="button" class="layui-btn layui-btn-primary">月</button>
+        </div>
+        <div id="yqqsChart" style="height:280px;margin-top: 15px;"></div>
+      </div>   
+    </div>
+    <div class="right-card">
+      <div class="layui-panel">
+        <h2 class="title">事件详情</h2>
+        <form class="layui-form" action="">
+          <div class="layui-input-inline">
+            <select name="quiz1">
+              <option value="">全部类别</option>
+            </select>
+          </div>
+          <div class="layui-input-inline">
+            <select name="quiz2">
+              <option value="">全部来源</option>
+            </select>
+          </div>
+          <div class="layui-input-inline">
+            <input type="text" name="date" id="date" placeholder="全部时间" autocomplete="off" class="layui-input">
+          </div>
+          <div class="layui-input-inline">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="submit">确定</button>
+          </div>
+        </form>
+        <div class="detail-box">
+          <div class="detail-items">
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item detail-show">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-head">
+                <h2 class="detail-title">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h2>
+                <div class="detail-time">2022-10-23</div>
+                <div class="detail-ignore"><span class="iconfont icon-hulue"></span>忽略</div>
+                <span class="iconfont icon-xialatianchong"></span>
+              </div>
+              <div class="detail-body">
+                <div class="detail-classification"><span class="iconfont icon-24gf-tags"></span>类别名称</div>
+                <div class="detail-source"><span class="iconfont icon-laiyuangailan"></span>来源</div>
+                <div class="detail-content">
+                  内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <p>Copyright © 2022 深圳市舆情分析系统 All Rights Reserved.   </p>
+    <p>鄂ICP备8888888号-1</p>
+  </div>
+  <script type="text/javascript" src="assets/layui/layui.js"></script>
+  <script type="text/javascript" src="assets/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/echarts/echarts.min.js"></script>
+  <script src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=01T9N7GL1b65ITLDYu3wROaCmhjz6boe"></script>
+  <script src="https://code.bdstatic.com/npm/mapvgl@1.0.0-beta.141/dist/mapvgl.min.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
