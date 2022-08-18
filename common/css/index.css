@@ -1,78 +1,79 @@
-.me-tr{
+.me-tr {
     text-align: right;
 }
 
-.me-fr{
+.me-fr {
     float: right;
 }
 
-.me-nav{
+.me-nav {
     position: fixed;
     top: 0px;
     z-index: 9999;
     width: 100%;
 }
 
-.me-wrap{
+.me-wrap {
     padding: 80px 0 60px;
     background: #f2f2f2;
 }
 
-.me-div{
+.me-div {
     max-width: 1000px;
-    margin:0 auto 20px;
+    margin: 0 auto 20px;
     padding: 10px 20px;
     overflow: hidden;
 }
 
-.me-h1{
-    font-size:1.5em;
-    font-family:黑体;
-    color:#0070C0;
-    margin:18px 0;
+.me-h1 {
+    font-size: 1.5em;
+    font-family: 黑体;
+    color: #0070C0;
+    margin: 18px 0;
 }
 
-.me-h2{
+.me-h2 {
     font-weight: bold;
     font-size: 18px;
 }
 
-.me-h3{
+.me-h3 {
     font-weight: bold;
-    margin:0.5em 1em;
+    margin: 0.5em 1em;
 }
 
-.me-p{
+.me-p {
     padding-left: 1em;
 }
 
-.me-ol li{
-    list-style-type:decimal;
+.me-ol li {
+    list-style-type: decimal;
     margin-left: 3em;
 }
 
-.me-ul li{
-    list-style-type:square;
+.me-ul li {
+    list-style-type: square;
     padding: 0.4em;
     margin-left: 2em;
 }
 
-.me-img{
+.me-img {
     width: 150px;
 }
 
-.me-good{
+.me-good {
     color: #00b050;
 }
 
-.me-bad{
+.me-bad {
     margin-top: 10px;
     color: #FFB800;
 }
 
-.me-timeline{
+.me-timeline {
     margin-top: 10px;
 }
+
 /* 导航弹窗样式 */
 .site-dir li {
     line-height: 26px;
@@ -108,13 +109,34 @@ body .layui-layer-dir .layui-layer-content {
     color: #c2c2c2;
     font-style: normal;
 }
+
+.click-me {
+    color: #45B97C;
+    float: right;
+    animation: scale 1.3s linear infinite;
+    /*名称 1s 匀速 无限循环*/
+}
+.click-me:hover {
+    color: #0070C0;
+}
+
+@keyframes scale {
+    /*动画帧*/
+
+    50% {
+        transform: scale(1.1)
+    }
+
+}
+
 @media screen and (max-width: 450px) {
-    .me-mobile-hide{
-        display: none!important;
+    .me-mobile-hide {
+        display: none !important;
     }
 }
+
 @media screen and (max-width: 330px) {
-    .layui-nav{
+    .layui-nav {
         padding: 0 10px;
     }
 }

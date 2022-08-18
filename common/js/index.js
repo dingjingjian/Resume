@@ -65,14 +65,21 @@ $(function () {
                 }
                 var badgeHtml = ''
                 if (item.badge) {
-                    badgeHtml = ' <span class="layui-badge layui-bg-blue">' + item.badge + '</span>'
+                    if (typeof item.badge ==='string') {
+                        badgeHtml = ' <span class="layui-badge layui-bg-blue">' + item.badge + '</span>'
+                    } else {
+                        item.badge.map(function(badge){
+                            badgeHtml += ' <span class="layui-badge layui-bg-blue">' + badge + '</span>'
+                        })
+                    }
+                    
                 }
-                var dutyHtml = ''
-                if (item.duty && item.duty.length) {
-                    item.duty.map(function (dutyItem) {
-                        dutyHtml += '<li>' + dutyItem + '</li>'
-                    })
-                }
+                // var dutyHtml = ''
+                // if (item.duty && item.duty.length) {
+                //     item.duty.map(function (dutyItem) {
+                //         dutyHtml += '<li>' + dutyItem + '</li>'
+                //     })
+                // }
                 var urlHtml = ''
                 if (item.url) {
                     urlHtml = '<p class="me-p"><b>项目预览：</b><a href="' + item.url + '" target="_blank">' + item.url + '</a></p>'
@@ -90,10 +97,10 @@ $(function () {
                     + '<div class="layui-timeline-content layui-text">'
                     + '<h3 class="layui-timeline-title">' + dateHtml + '：' + item.title + badgeHtml + '</h3>'
                     + '<p class="me-p"><b>项目简述：</b>' + item.brief + '</p>'
-                    + '<p class="me-p"><b>职责描述：</b></p>'
-                    + '<ol class="me-ol">'
-                    + dutyHtml
-                    + '</ol>'
+                    // + '<p class="me-p"><b>职责描述：</b></p>'
+                    // + '<ol class="me-ol">'
+                    // + dutyHtml
+                    // + '</ol>'
                     + urlHtml
                     + '</div>'
                     + '</li>'
