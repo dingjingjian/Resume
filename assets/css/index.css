@@ -137,6 +137,10 @@ body .layui-layer-dir .layui-layer-content {
     .me-mobile-hide {
         display: none !important;
     }
+    
+    .me-timeline>li {
+        margin-bottom: 0;
+    }
 }
 
 @media screen and (max-width: 330px) {
