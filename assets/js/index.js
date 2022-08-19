@@ -18,7 +18,7 @@ $(function () {
             , shade: 0.8
             , btn: ['知道啦']
             , btnAlign: 'c'
-            , content: '<div style="padding: 50px 20px 40px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><p class="me-h2 me-p">丁璟剑</p><p class="me-p">电话：13545171767</p><p class="me-p">邮箱：dingjingjian@qq.com</p><img style="width: 145px;margin: 20px auto 0;display: block;" src="common/images/me.jpg"></div>'
+            , content: '<div style="padding: 50px 20px 40px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><p class="me-h2 me-p">丁璟剑</p><p class="me-p">电话：13545171767</p><p class="me-p">邮箱：dingjingjian@qq.com</p><img style="width: 145px;margin: 20px auto 0;display: block;" src="assets/images/me.jpg"></div>'
             , success: function (layero) {
             }
         });
@@ -27,7 +27,6 @@ $(function () {
     util.fixbar({
         bar1: true
         , click: function (type) {
-            console.log(type)
             if (type === 'bar1') {
                 var ua = navigator.userAgent;
                 var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
@@ -44,7 +43,7 @@ $(function () {
     });
     //项目信息加载
     $.ajax({
-        url: './index.json',
+        url: './index.min.json',
         success: function (data) {
             renderData(data.data)
         }
@@ -74,12 +73,6 @@ $(function () {
                     }
                     
                 }
-                // var dutyHtml = ''
-                // if (item.duty && item.duty.length) {
-                //     item.duty.map(function (dutyItem) {
-                //         dutyHtml += '<li>' + dutyItem + '</li>'
-                //     })
-                // }
                 var urlHtml = ''
                 if (item.url) {
                     urlHtml = '<p class="me-p"><b>项目预览：</b><a href="' + item.url + '" target="_blank">' + item.url + '</a></p>'
@@ -97,10 +90,6 @@ $(function () {
                     + '<div class="layui-timeline-content layui-text">'
                     + '<h3 class="layui-timeline-title">' + dateHtml + '：' + item.title + badgeHtml + '</h3>'
                     + '<p class="me-p"><b>项目简述：</b>' + item.brief + '</p>'
-                    // + '<p class="me-p"><b>职责描述：</b></p>'
-                    // + '<ol class="me-ol">'
-                    // + dutyHtml
-                    // + '</ol>'
                     + urlHtml
                     + '</div>'
                     + '</li>'
@@ -171,7 +160,7 @@ $(function () {
 if (window.console) {
     var cons = console;
     if (cons) {
-        cons.log("%c\n       ", "font-size:100px;background:url('https://dingjingjian.github.io/Resume/common/images/me.jpg') no-repeat;background-size:100px;");
+        cons.log("%c\n       ", "font-size:100px;background:url('https://dingjingjian.github.io/Resume/assets/images/me.jpg') no-repeat;background-size:100px;");
         cons.log('我的名字是 %c丁璟剑', "font-weight:bold;");
         cons.log("联系电话: %c13545171767", "color:#45B97C;font-weight:bold;");
         cons.log("电子邮箱: %cdingjingjian@qq.com", "color:#45B97C;font-weight:bold;");
