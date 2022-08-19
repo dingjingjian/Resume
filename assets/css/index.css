@@ -74,6 +74,10 @@
     margin-top: 10px;
 }
 
+.me-timeline>li {
+    margin-bottom: 15px;
+}
+
 /* 导航弹窗样式 */
 .site-dir li {
     line-height: 26px;
