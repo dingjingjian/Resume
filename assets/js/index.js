@@ -1,15 +1,18 @@
 $(function () {
     //基本元素
     var element = layui.element,
-    layer = layui.layer,
-    util = layui.util;
+        layer = layui.layer,
+        util = layui.util;
     //代码修饰器
     layui.code({
         encode: true,
         about: false
     });
-    //弹窗
+    //联系我弹窗
     $('#about').on('click', function () {
+        meLayer()
+    });
+    function meLayer() {
         layer.open({
             type: 1
             , title: false
@@ -22,7 +25,7 @@ $(function () {
             , success: function (layero) {
             }
         });
-    });
+    }
     //固定工具栏
     util.fixbar({
         bar1: true
@@ -34,9 +37,9 @@ $(function () {
                     isAndroid = ua.match(/(Android)\s+([\d.]+)/),
                     isMobile = isIphone || isAndroid;
                 if (isMobile) {
-                    window.location.href = "mqqwpa://im/chat?chat_type=wpa&uin=464759011&version=1&src_type=web&web_src=oicqzone.com"
+                    meLayer()
                 } else {
-                    window.location.href = "tencent://message/?uin=464759011&Site=http://vps.shuidazhe.com&Menu=yes"
+                    window.location.href = "tencent://message/?uin=464759011"
                 }
             }
         }
@@ -64,14 +67,14 @@ $(function () {
                 }
                 var badgeHtml = ''
                 if (item.badge) {
-                    if (typeof item.badge ==='string') {
+                    if (typeof item.badge === 'string') {
                         badgeHtml = ' <span class="layui-badge layui-bg-blue">' + item.badge + '</span>'
                     } else {
-                        item.badge.map(function(badge){
+                        item.badge.map(function (badge) {
                             badgeHtml += ' <span class="layui-badge layui-bg-blue">' + badge + '</span>'
                         })
                     }
-                    
+
                 }
                 var urlHtml = ''
                 if (item.url) {
@@ -79,11 +82,11 @@ $(function () {
                     urlListHtml += '<dd><a href="' + item.url + '" target="_blank">' + item.title + '</a></dd>'
                 }
                 var yaerId = ''
-                if (yearArr[yearArr.length-1]!=item.startDate.split('/')[0]){
+                if (yearArr[yearArr.length - 1] != item.startDate.split('/')[0]) {
                     var yearTemp = item.startDate.split('/')[0]
                     yearArr.push(yearTemp)
-                    siteDirHtml += '<li data-year="' + yearTemp + '"><a href="javascript:;"><cite>'+yearTemp+'年</cite></a></li>'
-                    yaerId = ' id="year_'+yearTemp+'"'
+                    siteDirHtml += '<li data-year="' + yearTemp + '"><a href="javascript:;"><cite>' + yearTemp + '年</cite></a></li>'
+                    yaerId = ' id="year_' + yearTemp + '"'
                 }
                 timelineHtml += '<li class="layui-timeline-item"' + yaerId + '>'
                     + '<i class="layui-icon layui-timeline-axis layui-icon-circle"></i>'
@@ -104,55 +107,55 @@ $(function () {
             + '</li>'
         $('#timeline').html(timelineHtml)
         $('#urlList').html(urlListHtml)
-        renderSiteDir(siteDirHtml,yearArr)
+        renderSiteDir(siteDirHtml, yearArr)
     }
     //时间轴导航加载
-    function renderSiteDir(siteDirHtml,yearArr){
-        if(siteDirHtml&&$(window).width() > 750){
-          layer.ready(function(){
-            layer.open({
-              type: 1
-              ,content: siteDirHtml
-              ,skin: 'layui-layer-dir'
-              ,area: 'auto'
-              ,maxHeight: $(window).height() - 300
-              ,title: '时间轴'
-              ,closeBtn: false
-              ,offset: 'r'
-              ,shade: false
-              ,success: function(layero, index){
-                layer.style(index, {
-                  marginLeft: -15
-                });
-                var yearHeightArr = []
-                yearArr.map(function(item){
-                    yearHeightArr.push($('#year_'+item).offset().top - 90)
-                })
-                $('.site-dir').find('li').on('click', function(){
-                    var othis = $(this);
-                    $('html').animate({ scrollTop: yearHeightArr[othis.index()] }, 500);
-                });
-                $(document).scroll(function(){
-                    yearHeight()
-                })
-                function yearHeight() {
-                    if($('html').scrollTop()<yearHeightArr[0]-50){
-                        $('.site-dir li').find('a').removeClass('layui-this');
-                    }else{
-                        for(var i=0;i<yearHeightArr.length;i++){
-                            if($('html').scrollTop()>yearHeightArr[i]-50){
-                                $('.site-dir li').eq(i).find('a').addClass('layui-this');
-                                $('.site-dir li').eq(i).siblings().find('a').removeClass('layui-this');
-                            }else{
-                                break;
+    function renderSiteDir(siteDirHtml, yearArr) {
+        if (siteDirHtml && $(window).width() > 750) {
+            layer.ready(function () {
+                layer.open({
+                    type: 1
+                    , content: siteDirHtml
+                    , skin: 'layui-layer-dir'
+                    , area: 'auto'
+                    , maxHeight: $(window).height() - 300
+                    , title: '时间轴'
+                    , closeBtn: false
+                    , offset: 'r'
+                    , shade: false
+                    , success: function (layero, index) {
+                        layer.style(index, {
+                            marginLeft: -15
+                        });
+                        var yearHeightArr = []
+                        yearArr.map(function (item) {
+                            yearHeightArr.push($('#year_' + item).offset().top - 90)
+                        })
+                        $('.site-dir').find('li').on('click', function () {
+                            var othis = $(this);
+                            $('html').animate({ scrollTop: yearHeightArr[othis.index()] }, 500);
+                        });
+                        $(document).scroll(function () {
+                            yearHeight()
+                        })
+                        function yearHeight() {
+                            if ($('html').scrollTop() < yearHeightArr[0] - 50) {
+                                $('.site-dir li').find('a').removeClass('layui-this');
+                            } else {
+                                for (var i = 0; i < yearHeightArr.length; i++) {
+                                    if ($('html').scrollTop() > yearHeightArr[i] - 50) {
+                                        $('.site-dir li').eq(i).find('a').addClass('layui-this');
+                                        $('.site-dir li').eq(i).siblings().find('a').removeClass('layui-this');
+                                    } else {
+                                        break;
+                                    }
+                                }
                             }
                         }
+                        yearHeight()
                     }
-                }
-                yearHeight()
-              }
+                });
             });
-          });
         }
     }
 })
