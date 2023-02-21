@@ -57,7 +57,7 @@ $(function () {
         var siteDirHtml = ''
         var yearArr = []
         if (data && data.length) {
-            for (var i = data.length - 1; i >= 0; i--) {
+            for (var i = 0; i < data.length; i++) {
                 var item = data[i]
                 var dateHtml = ''
                 if (item.startDate == item.endDate) {
