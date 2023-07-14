@@ -119,7 +119,7 @@ $(function () {
                     , skin: 'layui-layer-dir'
                     , area: 'auto'
                     , maxHeight: $(window).height() - 300
-                    , title: '时间轴'
+                    , title: '项目经验 • 时间轴'
                     , closeBtn: false
                     , offset: 'r'
                     , shade: false
