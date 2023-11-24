@@ -46,7 +46,7 @@ $(function () {
     });
     //项目信息加载
     $.ajax({
-        url: './index.min.json?t=2023.7.14',
+        url: './index.min.json?t=2023.11.24',
         success: function (data) {
             renderData(data.data)
         }
