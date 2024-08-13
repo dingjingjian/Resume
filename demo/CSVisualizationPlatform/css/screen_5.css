@@ -1,0 +1,21 @@
+body{
+  /* background-image: url(../images/screen_5_bg.jpg); */
+  background-image: url(../images/screen_5_bg.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.barChart {
+  width: 910px;
+  height: 770px;
+  position: absolute;
+}
+.left-content .barChart {
+  left: 30px;
+  top: 250px;
+}
+.right-content .barChart {
+  right: 45px;
+  top: 250px;
+}

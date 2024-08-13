@@ -1,17 +1,19 @@
-$(function () {
+layui.use(function(){
     //基本元素
     var element = layui.element,
         layer = layui.layer,
-        util = layui.util;
+        util = layui.util,
+        $ = layui.$
     //代码修饰器
     layui.code({
+        elem: '.layui-code',
         encode: true,
         about: false
-    });
+    })
     //联系我弹窗
     $('#about').on('click', function () {
         meLayer()
-    });
+    })
     function meLayer() {
         layer.open({
             type: 1
@@ -24,18 +26,18 @@ $(function () {
             , content: '<div style="padding: 50px 20px 40px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><p class="me-h2 me-p">丁璟剑</p><p class="me-p">电话：13545171767</p><p class="me-p">邮箱：dingjingjian@qq.com</p><img style="width: 145px;margin: 20px auto 0;display: block;" src="assets/images/me.jpg"></div>'
             , success: function (layero) {
             }
-        });
+        })
     }
     //固定工具栏
     util.fixbar({
         bar1: true
         , click: function (type) {
             if (type === 'bar1') {
-                var ua = navigator.userAgent;
+                var ua = navigator.userAgent
                 var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
                     isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
                     isAndroid = ua.match(/(Android)\s+([\d.]+)/),
-                    isMobile = isIphone || isAndroid;
+                    isMobile = isIphone || isAndroid
                 if (isMobile) {
                     meLayer()
                 } else {
@@ -43,10 +45,10 @@ $(function () {
                 }
             }
         }
-    });
+    })
     //项目信息加载
     $.ajax({
-        url: './index.min.json?t=2023.11.24',
+        url: './index.json?t=2024.08.13',
         success: function (data) {
             renderData(data.data)
         }
@@ -126,46 +128,62 @@ $(function () {
                     , success: function (layero, index) {
                         layer.style(index, {
                             marginLeft: -15
-                        });
+                        })
                         var yearHeightArr = []
                         yearArr.map(function (item) {
                             yearHeightArr.push($('#year_' + item).offset().top - 90)
                         })
                         $('.site-dir').find('li').on('click', function () {
-                            var othis = $(this);
-                            $('html').animate({ scrollTop: yearHeightArr[othis.index()] }, 500);
-                        });
+                            var othis = $(this)
+                            $('html').animate({ scrollTop: yearHeightArr[othis.index()] }, 500)
+                        })
                         $(document).scroll(function () {
                             yearHeight()
                         })
                         function yearHeight() {
                             if ($('html').scrollTop() < yearHeightArr[0] - 50) {
-                                $('.site-dir li').find('a').removeClass('layui-this');
+                                $('.site-dir li').find('a').removeClass('layui-this')
                             } else {
                                 for (var i = 0; i < yearHeightArr.length; i++) {
                                     if ($('html').scrollTop() > yearHeightArr[i] - 50) {
-                                        $('.site-dir li').eq(i).find('a').addClass('layui-this');
-                                        $('.site-dir li').eq(i).siblings().find('a').removeClass('layui-this');
+                                        $('.site-dir li').eq(i).find('a').addClass('layui-this')
+                                        $('.site-dir li').eq(i).siblings().find('a').removeClass('layui-this')
                                     } else {
-                                        break;
+                                        break
                                     }
                                 }
                             }
                         }
                         yearHeight()
                     }
-                });
-            });
+                })
+            })
         }
     }
+    //彩蛋
+    $('body').on('click', '#shuttle', function () {
+        if ($('.solar-syst').length < 1) {
+            $('body').prepend('<div class="solar-syst"><div class="sun"></div><div class="mercury"></div><div class="venus"></div><div class="earth"></div><div class="mars"></div><div class="jupiter"></div><div class="saturn"></div><div class="uranus"></div><div class="neptune"></div><div class="pluto"></div><div class="asteroids-belt"></div></div>')
+        }
+        $('.shuttle').addClass('active')
+        $('.solar-syst').addClass('active')
+        $('html , body').animate({ scrollTop: 0 }, 3000, function () {
+            $('.shuttle').removeClass('active')
+            $('body').addClass('active')
+        })
+    })
+    $('body').on('click', '.solar-syst', function () {
+        $('body').removeClass('active')
+        $('.solar-syst').removeClass('active')
+    })
 })
 //console 输出
 if (window.console) {
-    var cons = console;
+    var cons = console
     if (cons) {
-        cons.log("%c\n       ", "font-size:100px;background:url('https://dingjingjian.github.io/Resume/assets/images/me.jpg') no-repeat;background-size:100px;");
-        cons.log('我的名字是 %c丁璟剑', "font-weight:bold;");
-        cons.log("联系电话: %c13545171767", "color:#45B97C;font-weight:bold;");
-        cons.log("电子邮箱: %cdingjingjian@qq.com", "color:#45B97C;font-weight:bold;");
+        cons.log("%c\n       ", "font-size:100px;background:url('https://dingjingjian.github.io/Resume/assets/images/me.jpg') no-repeat;background-size:100px;")
+        cons.log('我的名字是 %c丁璟剑', "font-weight:bold;")
+        cons.log("联系电话: %c13545171767", "color:#45B97C;font-weight:bold;")
+        cons.log("电子邮箱: %cdingjingjian@qq.com", "color:#45B97C;font-weight:bold;")
     }
 }

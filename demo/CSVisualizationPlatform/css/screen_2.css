@@ -1,0 +1,42 @@
+body{
+  /* background-image: url(../images/screen_2_bg.jpg); */
+  background-image: url(../images/screen_2_bg.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  margin-left: 30px;
+  position: relative;
+  top: 415px;
+
+  width: 1920px;
+  height: 1080px;
+}
+.content .title {
+  color: #fff;
+  text-align: center;
+  font-size: 38px;
+}
+.content .title .num-value{
+  font-size: 44px;
+  letter-spacing: 1px;
+  margin: 0 4px;
+}
+
+.content .radarChart {
+  width: 595px;
+  height: 580px;
+}
+
+.content .high .title>span {
+  color: rgba(255,79,62,1);
+}
+.content .middle .title>span {
+  color: rgba(250,161,27,1);
+}
+.content .low .title>span {
+  color: rgba(87,239,245,1);
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1920" height="79" viewBox="0 0 1920 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="80" transform="translate(0 -1)" fill="url(#paint0_linear_27_335)"/>
+<mask id="mask0_27_335" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="-1" width="1920" height="96">
+<rect width="1920" height="96" transform="translate(0 -1)" fill="#135FF2"/>
+</mask>
+<g mask="url(#mask0_27_335)">
+<path opacity="0.4" d="M1920 22.1161C1920 22.1161 1900.8 39.8233 1731.84 34.2736C1562.88 28.7239 1466.15 14.1701 1341.73 28.7342C1217.28 43.288 1155.84 48.1427 991.987 38.4333C828.134 28.7239 771.84 30.8089 569.587 38.4333C367.373 46.0577 170.227 -10.7466 0 2.74907V74.8332H1920V22.1161Z" fill="#94C0FF" fill-opacity="0.15"/>
+<path d="M0 34.9583C0 34.9583 19.2 52.2556 188.16 46.8424C357.12 41.4189 453.85 27.2015 578.266 41.4292C702.72 55.6466 764.16 60.3858 928.013 50.9075C1091.87 41.4189 1148.16 43.4514 1350.41 50.9075C1552.67 58.3636 1749.77 2.85245 1920 16.0328V79H0V34.9583Z" fill="#94C0FF" fill-opacity="0.1"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_27_335" x1="0" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#005CB4"/>
+<stop offset="1" stop-color="#0075E5"/>
+</linearGradient>
+</defs>
+</svg>

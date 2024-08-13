@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh" style="zoom: 0.5;-moz-transform: scale(0.5);-moz-transform-origin: left top;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>智慧华中大 | 安全态势</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/screen_1.css" />
+</head>
+
+<body>
+    <div class="box">
+    <!-- 地图数据 -->
+    <div id="timeBox"><span class="date"></span><span class="time"></span></div>
+    <!-- 今日总攻击次数 -->
+    <div id="Box1"><span class="num-value">26,112</span></div>
+    <!-- 今日总拦截次数 -->
+    <div id="Box2"><span class="num-value">25,523</span></div>
+    <!-- 地图 -->
+    <div id="mapChart" class="mapChart"></div>
+    <!-- 地图图例 -->
+    <div id="mapLegend"></div>
+    <!-- 攻击列表 -->
+    <div id="table">
+        <table class="table">
+            <colgroup>
+                <col width="240">
+                <col width="200">
+                <col width="180">
+                <col width="240">
+                <col width="240">
+                <col width="240">
+                <col width="240">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>攻击时间</th>
+                    <th>攻击类型</th>
+                    <th>攻击危害程度</th>
+                    <th>攻击源IP端口</th>
+                    <th>攻击源地址</th>
+                    <th>攻击目的IP端口</th>
+                    <th>攻击目的地址</th>
+                    <th>请求URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div>2021-10-29 08:10:16</div></td>
+                    <td><div>信息泄露</div></td>
+                    <td><div><span class="high-dot"></span>高</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>中国湖北武汉</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>攻击目的地地址</div></td>
+                    <td><div>http://192.168.0.119:8080</div></td>
+                </tr>
+                <tr>
+                    <td><div>2021-10-29 08:10:16</div></td>
+                    <td><div>信息泄露</div></td>
+                    <td><div><span class="middle-dot"></span>中</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>中国湖北武汉</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>攻击目的地地址</div></td>
+                    <td><div>http://192.168.0.119:8080</div></td>
+                </tr>
+                <tr>
+                    <td><div>2021-10-29 08:10:16</div></td>
+                    <td><div>信息泄露</div></td>
+                    <td><div><span class="low-dot"></span>中</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>中国湖北武汉</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>攻击目的地地址</div></td>
+                    <td><div>http://192.168.0.119:8080</div></td>
+                </tr>
+                <tr>
+                    <td><div>2021-10-29 08:10:16</div></td>
+                    <td><div>信息泄露</div></td>
+                    <td><div><span class="high-dot"></span>高</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>中国湖北武汉</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>攻击目的地地址</div></td>
+                    <td><div>http://192.168.0.119:8080</div></td>
+                </tr>
+                <tr>
+                    <td><div>2021-10-29 08:10:16</div></td>
+                    <td><div>信息泄露</div></td>
+                    <td><div><span class="middle-dot"></span>中</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>中国湖北武汉</div></td>
+                    <td><div>192.168.0.119:8080</div></td>
+                    <td><div>攻击目的地地址</div></td>
+                    <td><div>http://192.168.0.119:8080</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <script src="assets/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="assets/echarts/world.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/screen_1.js"></script>
+</body>
+
+</html>

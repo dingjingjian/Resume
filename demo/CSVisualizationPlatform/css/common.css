@@ -1,0 +1,36 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+html,body{
+  /* width: 1920px;
+  height: 1080px; */
+  width: 100%;
+  height: 100%;
+  /* height: 1080px; */
+  font-family:"Microsoft YaHei";
+}
+ /* 背景 */
+ body{
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+  overflow: hidden;
+}
+
+@font-face{
+  font-family:"Num-Font";
+  src: url(../font/Num-Font.TTF);
+}
+
+.num-value {
+  font-family:"Num-Font";
+}
+.box{
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+}

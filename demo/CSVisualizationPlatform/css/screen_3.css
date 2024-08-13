@@ -1,0 +1,27 @@
+body{
+  /* background-image: url(../images/screen_3_bg.jpg); */
+  background-image: url(../images/screen_3_bg.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.left-content {
+  position: absolute;
+  width: 915px;
+  left: 60px;
+  top: 275px;
+  height: 740px;
+}
+.right-content {
+  position: absolute;
+  width: 915px;
+  right: 28px;
+  top: 275px;
+  height: 740px;
+}
+
+.barChart {
+  width: 100%;
+  height: 100%;
+}

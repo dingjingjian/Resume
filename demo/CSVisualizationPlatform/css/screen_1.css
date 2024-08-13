@@ -1,0 +1,176 @@
+body{
+  background-image: url(../images/screen_1_bg.jpg);
+  background-image: url(../images/screen_1_bg.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+#timeBox {
+  position: absolute;
+  top: 88px;
+  left: 5px;
+  width: 479px;
+  height: 80px;
+  font-family: "Num-Font";
+  background-image: url(../images/screen_1_time.png);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+#timeBox .date {
+  font-size: 26px;
+  padding-left: 68px;
+  line-height: 26px;
+  position: relative;
+  top: 30px;
+}
+
+#timeBox .date>b{
+  font-family:"Microsoft YaHei";
+  font-weight: normal;
+  font-size: 24px;
+  margin-left: 16px;
+}
+
+#timeBox .time {
+  font-size: 42px;
+  float: right;
+  position: relative;
+  right: 60px;
+  top: 20px;
+}
+
+#Box1 {
+  position: absolute;
+  top: 201px;
+  right: 35px;
+  width: 250px;
+  height: 134px;
+  font-family: "Num-Font";
+  background-image: url(../images/screen_1_box_1.png);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #FF4F3D;
+}
+#Box2 {
+  position: absolute;
+  top: 390px;
+  right: 35px;
+  width: 250px;
+  height: 134px;
+  font-family: "Num-Font";
+  background-image: url(../images/screen_1_box_2.png);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #2AEA65;
+}
+
+#Box1 .num-value,#Box2 .num-value{
+  font-size: 42px;
+  position: absolute;
+  right: 72px;
+  bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.mapChart {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: -100px;
+  top: 30px;
+  z-index: 0;
+}
+
+#mapLegend {
+  position: absolute;
+  top: 583px;
+  left: 42px;
+  width: 217px;
+  height: 100px;
+  background-image: url(../images/screen_1_map_legend.png);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#table {
+  position: absolute;
+  bottom: 30px;
+  left: 12px;
+  width: 1898px;
+  height: 313px;
+  background-image: url(../images/screen_1_table.png);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0 44px;
+  box-sizing: border-box;
+}
+
+.table {
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  position: relative;
+  top: 48px;
+}
+
+.table thead tr th,
+.table tbody tr td {
+  line-height: 1;
+  padding: 12px 20px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.table tbody tr:nth-child(odd) td {
+  background: rgba(109,178,255,0.1);
+}
+
+.table tbody tr td>div{
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto;
+}
+
+.table .high-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #FF5129;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  top: -2px;
+}
+
+.table .middle-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #F8A21B;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  top: -2px;
+}
+
+.table .low-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #55EFF5;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  top: -2px;
+}
