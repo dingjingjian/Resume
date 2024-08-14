@@ -91,11 +91,12 @@
 }
 
 .site-dir li a:active {
-    color: #0070C0;
+    color: #16b777;
 }
 
 .site-dir li a.layui-this {
-    color: #0070C0;
+    color: #16b777;
+    font-weight: bold;
 }
 
 body .layui-layer-dir {
@@ -115,7 +116,7 @@ body .layui-layer-dir .layui-layer-content {
 }
 
 .click-me {
-    color: #45B97C;
+    color: #16b777;
     float: right;
     animation: scale 1.3s linear infinite;
     /*名称 1s 匀速 无限循环*/
