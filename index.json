@@ -86,14 +86,15 @@
       "url": "demo/KnowledgeGraphGuidanceSystem/index.html"
     },
     {
-      "title": "案例展示平台",
+      "title": "网罗天下案例展示平台",
       "startDate": "2023/02",
       "endDate": "2023/02",
       "badge": [
         "VUE",
         "七牛云"
       ],
-      "brief": "在紧迫的时间内整理资料、代码并完成网站搭建上线。"
+      "brief": "在紧迫的时间内整理资料、代码并完成网站搭建上线。",
+      "url": "http://protest.wluotx.com/"
     },
     {
       "title": "网罗天下官网新版开发",
