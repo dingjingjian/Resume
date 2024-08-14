@@ -48,7 +48,7 @@ layui.use(function(){
     })
     //项目信息加载
     $.ajax({
-        url: './index.json?t=2024.08.13',
+        url: './index.min.json?t=2024.08.14',
         success: function (data) {
             renderData(data.data)
         }
