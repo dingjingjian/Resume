@@ -1,5 +1,61 @@
 {
-  "data": [    
+  "data": [
+    {
+      "title": "鸿蒙开发和AI技术探索",
+      "startDate": "2024/12",
+      "endDate": "2024/12",
+      "badge": [
+        "鸿蒙"
+      ],
+      "brief": "完成了鸿蒙next应用的开发和上架。"
+    },
+    {
+      "title": "serverless开发",
+      "startDate": "2024/11",
+      "endDate": "2024/12",
+      "badge": [
+        "Serverless"
+      ],
+      "brief": "使用serverless完成会议邀请函、电子书等项目开发和部署。"
+    },
+    {
+      "title": "可视化工作流版本",
+      "startDate": "2024/11",
+      "endDate": "2024/12",
+      "badge": [
+        "Flowable"
+      ],
+      "brief": "集成了Flowable可视化编辑工作流版本。"
+    },
+    {
+      "title": "若依拓展组件整理集成",
+      "startDate": "2024/9",
+      "endDate": "2024/10",
+      "badge": [
+        "RuoYi"
+      ],
+      "brief": "基于RuoYi-Vue的插件集成或完整项目的整理和集成。"
+    },
+    {
+      "title": "集成自动化测试",
+      "startDate": "2024/7",
+      "endDate": "2024/8",
+      "badge": [
+        "Vitest",
+        "Cypress"
+      ],
+      "brief": "引入了Vitest和Cypress等前端测试工具，自动化测试覆盖了更多的用例，有效减少了人为疏漏。"
+    },
+    {
+      "title": "交通控制算法接口平台升级",
+      "startDate": "2024/7",
+      "endDate": "2024/8",
+      "badge": [
+        "Antd Vue",
+        "多租户"
+      ],
+      "brief": "支持大数据多租户"
+    },
     {
       "title": "华科光阴的故事2024",
       "startDate": "2024/6",
